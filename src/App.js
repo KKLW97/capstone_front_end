@@ -1,11 +1,11 @@
 import "./App.css";
-import GameContainer from "./containers/GameContainer";
-import LandingContainer from "./containers/LandingContainer";
+import GameContainer from "./gamepage/GameContainer";
+import LandingContainer from "./homepage/LandingContainer";
 
 //react router imports
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PlayerContainer from "./containers/PlayerContainer";
-import LoginContainer from "./containers/LoginContainer";
+import LoginContainer from "./homepage/LoginContainer";
 import Navbar from "./components/Navbar";
 
 function App() {

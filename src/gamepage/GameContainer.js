@@ -1,5 +1,5 @@
 import MapContainer from "./MapContainer";
-import PaintingListContainer from "./PaintingListContainer";
+import PaintingListContainer from "../containers/PaintingListContainer";
 
 const GameContainer = () => {
   return (
