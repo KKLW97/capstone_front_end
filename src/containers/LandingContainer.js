@@ -7,7 +7,6 @@ const LandingContainer = () => {
 
         <>
         <h1> This is the landing page</h1>
-        <Navbar />
         <LoginContainer/>
         
         
