@@ -17,6 +17,10 @@ function App() {
   const [currentGame, setCurrentGame] = useState(null);
   const [isNewGame, setIsNewGame] = useState(false);
 
+  const [artworksInGame, setArtworksInGame] = useState([]);
+
+  const [artworksInGameList, setArtworksInGameList] = useState([]);
+
 
 
   // fetch all the player data
@@ -38,11 +42,25 @@ function App() {
   //called function when page loads
   useEffect(() => {
     fetchPlayers();
-    fetchPlayerById(3);
+    fetchPlayerById(2);
+  }, []);
+
+
+  // get artworks in game by game id 
+  const fetchArtworkInGameByGameId = async () => {
+    const response = await fetch("http://localhost:8080/artworksInGame?game_id=2")
+    const jsonData = await response.json();
+    console.log(jsonData); // Check the retrieved data in the browser console
+    setArtworksInGame(jsonData);
+  };
+
+  useEffect(() => {
+  
+    fetchArtworkInGameByGameId();
   }, []);
 
   const fetchGameForPlayer = async () => {
-    const response = await fetch("http://localhost:8080/games/3");
+    const response = await fetch("http://localhost:8080/games/2");
     const jsonData = await response.json();
     setCurrentGame(jsonData);
   };
@@ -55,18 +73,10 @@ function App() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+  // const mapArtworksIngGame = artworksInGame.map((artworkInGame , index) => 
+  //       { return (key=index , artworkInGame)});
+  // setArtworksInGameList(mapArtworksIngGame);
+  // console.log(artworksInGameList);
 
   const router = createBrowserRouter([
     {
@@ -106,7 +116,8 @@ function App() {
       element: <GameContainer
       activePlayer = {activePlayer}
       currentGame={currentGame}
-      setCurrentGame={setCurrentGame} />,
+      setCurrentGame={setCurrentGame} 
+      artworksInGame = {artworksInGame} />,
     },
   ]);
 
