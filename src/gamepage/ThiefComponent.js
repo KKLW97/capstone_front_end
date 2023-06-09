@@ -14,7 +14,6 @@ const ThiefComponent = ({containerHeight, containerWidth, thiefPositionX, thiefP
             }}
         >
             <img src={blob2}/>
-s
         </div>
       );
 }
