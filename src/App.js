@@ -12,11 +12,16 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <LandingContainer />,
+      element: (
+        <LandingContainer 
+        />
+      ),
       children: [
         {
-          path: "/login",
-          element: <LoginContainer />,
+          path:"/logIn",
+          element: (
+            <LoginContainer/>
+          ),
         },
       ],
     },
