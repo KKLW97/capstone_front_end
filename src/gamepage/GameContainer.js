@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MapContainer from "./MapContainer";
 import PaintingListContainer from "../containers/PaintingListContainer";
 
-const GameContainer = () => {
+const GameContainer = (activePlayer, game, setGame) => {
 
   const [gameContainerWidth, setGameContainerWidth] = useState(600);
   const [gameContainerHeight, setGameContainerHeight] = useState(600);
@@ -13,6 +13,17 @@ const GameContainer = () => {
   const displayMultipleChoiceQuestion = () => {
       console.log("Displays modal for Multiple Choice Question / Displays info about painting, giving the option for the player to select this painting");
   }
+
+  // find the corresponding game for player 
+
+    const fetchGameForPlayer = async (gameId) => {
+      const response = await fetch("http://localhost:8080/games/4");
+      const jsonData = await response.json();
+      setGame(jsonData);
+    };
+  useEffect(() => {
+    fetchGameForPlayer();
+  }, []);
   
   return (
     <>
