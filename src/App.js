@@ -14,7 +14,7 @@ function App() {
   const [activePlayer, setActivePlayer] = useState(null);
   const [newPlayer, setNewPlayer] = useState("");
   const [allPlayers, setAllPlayers] = useState([]);
-  const [game, setGame] = useState(null);
+  const [currentGame, setCurrentGame] = useState(null);
   const [isNewGame, setIsNewGame] = useState(false);
 
 
@@ -39,6 +39,16 @@ function App() {
   useEffect(() => {
     fetchPlayers();
     fetchPlayerById(3);
+  }, []);
+
+  const fetchGameForPlayer = async () => {
+    const response = await fetch("http://localhost:8080/games/3");
+    const jsonData = await response.json();
+    setCurrentGame(jsonData);
+  };
+  
+  useEffect(() => {
+    fetchGameForPlayer();
   }, []);
 
 
@@ -86,7 +96,7 @@ function App() {
     {
       path: "playersAccount",
       element: <PlayerContainer 
-      game={game}
+      currentGame={currentGame}
       isNewGame={isNewGame}
       setIsNewGame={setIsNewGame}
       />,
@@ -95,8 +105,8 @@ function App() {
       path: "gamePage",
       element: <GameContainer
       activePlayer = {activePlayer}
-      game={game}
-      setGame={setGame} />,
+      currentGame={currentGame}
+      setCurrentGame={setCurrentGame} />,
     },
   ]);
 

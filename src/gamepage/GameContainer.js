@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import MapContainer from "./MapContainer";
 import PaintingListContainer from "../containers/PaintingListContainer";
 
-const GameContainer = (activePlayer, game, setGame) => {
+const GameContainer = (activePlayer, currentGame, setCurrentGame) => {
 
   const [gameContainerWidth, setGameContainerWidth] = useState(600);
   const [gameContainerHeight, setGameContainerHeight] = useState(600);
@@ -16,10 +16,10 @@ const GameContainer = (activePlayer, game, setGame) => {
 
   // find the corresponding game for player 
 
-    const fetchGameForPlayer = async (gameId) => {
-      const response = await fetch("http://localhost:8080/games/4");
+    const fetchGameForPlayer = async () => {
+      const response = await fetch("http://localhost:8080/games/3");
       const jsonData = await response.json();
-      setGame(jsonData);
+      setCurrentGame(jsonData);
     };
   useEffect(() => {
     fetchGameForPlayer();
