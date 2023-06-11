@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 import GameContainer from "./gamepage/GameContainer";
 import LandingContainer from "./homepage/LandingContainer";
 
@@ -13,7 +13,7 @@ function App() {
 
   const [activePlayer, setActivePlayer] = useState(null);
   const [newPlayer, setNewPlayer] = useState("");
-  const [allPlayers, setAllPlayers] = useState([]);
+ 
   const [currentGame, setCurrentGame] = useState(null);
   const [isNewGame, setIsNewGame] = useState(false);
 
@@ -21,6 +21,30 @@ function App() {
 
   const [artworksInGameList, setArtworksInGameList] = useState([]);
 
+
+
+  const [allPlayers, setAllPlayers] = useState([]);
+  // get all players 
+  const fetchAllPlayers = async () => {
+      const response = await fetch("http://localhost:8080/players");
+      const data = await response.json();
+      setAllPlayers(data)
+  }
+  useEffect(() => {
+    fetchAllPlayers();
+  }, [])
+
+
+
+  const postNewPlayer = async (newPlayer) => {
+      const response = await fetch("http://localhost:8080/players", {
+          method: "POST",
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(newPlayer)
+      })
+      const savedPlayer = await response.json();
+      setAllPlayers([...allPlayers, savedPlayer]);
+  }
 
 
   // fetch all the player data
@@ -98,6 +122,7 @@ function App() {
             allPlayers = {allPlayers} 
             newPlayer = {newPlayer}
             activePlayer = {activePlayer} 
+            postNewPlayer={postNewPlayer}
             />
           ),
         },
