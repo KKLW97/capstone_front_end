@@ -63,6 +63,7 @@ function App() {
     };
 
 
+
   //called function when page loads
   useEffect(() => {
     fetchPlayers();
@@ -122,6 +123,7 @@ function App() {
             allPlayers = {allPlayers} 
             newPlayer = {newPlayer}
             activePlayer = {activePlayer} 
+            setActivePlayer = {setActivePlayer}
             postNewPlayer={postNewPlayer}
             />
           ),

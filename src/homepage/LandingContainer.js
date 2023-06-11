@@ -6,14 +6,14 @@ import { useState, useEffect } from "react";
 const LandingContainer = () => {
 
 
+
+
     return ( 
 
         <>
         <Outlet />
         <h1> This is the landing page</h1>
     
-        
-        
         </>
 
      );
