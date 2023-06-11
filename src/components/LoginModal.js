@@ -24,7 +24,7 @@ const LoginModal = ({ closeModal, postNewPlayer, allPlayers }) => {
     
     } else {
       setErrorMessage(
-        "Username has been taken exists. Please choose a different name."
+        "Username has been taken. Please choose a different name."
       );
     }
   };
@@ -37,7 +37,7 @@ const LoginModal = ({ closeModal, postNewPlayer, allPlayers }) => {
         </div>
 
         <div className="title">
-          <h1> Enter your name to register </h1>
+          <h1> Enter you username to register </h1>
         </div>
 
         <div className="body">
