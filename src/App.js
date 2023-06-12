@@ -18,7 +18,6 @@ function App() {
   const [isNewGame, setIsNewGame] = useState(false);
 
   const [artworksInGame, setArtworksInGame] = useState([]);
-
   const [artworksInGameList, setArtworksInGameList] = useState([]);
 
 
@@ -117,7 +116,7 @@ function App() {
       activePlayer = {activePlayer}
       currentGame={currentGame}
       setCurrentGame={setCurrentGame} 
-      artworksInGame = {artworksInGame} />,
+      artworksInGame = {artworksInGame}/>,
     },
   ]);
 
