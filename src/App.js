@@ -15,7 +15,7 @@ function App() {
 
 
   const [allPlayers, setAllPlayers] = useState([]);
-  const [activePlayer, setActivePlayer] = useState("");
+  const [activePlayer, setActivePlayer] = useState(null);
   const [newPlayer, setNewPlayer] = useState("");
   const [currentGame, setCurrentGame] = useState(null);
   const [isNewGame, setIsNewGame] = useState(false);
@@ -50,7 +50,7 @@ function App() {
   //called function when page loads
   useEffect(() => {
     fetchAllPlayers();  
-    // fetchPlayerById(1);
+    fetchPlayerById(1);
   }, [])
 
   const postNewPlayer = async (newPlayer) => {
@@ -63,6 +63,14 @@ function App() {
       setAllPlayers([...allPlayers, savedPlayer]);
   }
 
+  const createNewGame = async (playerId) => {
+    const response = await fetch(`http://localhost:8080/games?playerId=${playerId}`, {
+      method: "POST",
+      headers: { "Content-Type": "Application/json" },
+    });
+    const savedGame = await response.json();
+    setCurrentGame(savedGame);
+  }
 
 
 
@@ -107,7 +115,8 @@ function App() {
     },
     {
       path: "playerAccount",
-      element: <PlayerContainer 
+      element: <PlayerContainer  
+      createNewGame = {createNewGame}
       activePlayer={activePlayer}
       />,
     },
@@ -123,7 +132,7 @@ function App() {
     <>
       {/* <LandingContainer />
     <GameContainer /> */}
-    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, setNewPlayer, postNewPlayer , fetchPlayerById }}>
+    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById }}>
 
       <Navbar />
       <RouterProvider router={router} />
