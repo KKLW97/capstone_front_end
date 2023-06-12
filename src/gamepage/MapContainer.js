@@ -1,193 +1,184 @@
 import { useState } from "react";
 import ThiefComponent from "./ThiefComponent";
 import PaintingComponent from "./PaintingComponent";
-import mapImage from "../assets/mapPrototype2.png";
+import mapImage from "../assets/unnamed-1.png";
 
 const MapContainer = ({containerWidth, containerHeight, displayMultipleChoiceQuestion, paintingPositionX, paintingPositionY}) => {
-    const [thiefPositionX, setThiefPositionX] = useState(500);
-    const [thiefPositionY, setThiefPositionY] = useState(500);
-    const [thiefImage, setThiefImage] = useState("heading left");
+    const [paintingPosition1X, setPaintingPosition1X] = useState(150);
+    const [paintingPosition1Y, setPaintingPosition1Y] = useState(40);    
+    const [paintingPosition2X, setPaintingPosition2X] = useState(790);
+    const [paintingPosition2Y, setPaintingPosition2Y] = useState(40);    
+    const [paintingPosition3X, setPaintingPosition3X] = useState(190);
+    const [paintingPosition3Y, setPaintingPosition3Y] = useState(720);    
+    const [paintingPosition4X, setPaintingPosition4X] = useState(750);
+    const [paintingPosition4Y, setPaintingPosition4Y] = useState(720); 
+
+
+    const [thiefPositionX, setThiefPositionX] = useState(480);
+    const [thiefPositionY, setThiefPositionY] = useState(0);
+    const [thiefImage, setThiefImage] = useState("heading down");
     
     const theifSpeed = 5;
 
-    const checkIfNearPainting = () => {
+    const checkIfNearPainting1 = () => {
         const proximityLimit = 40;
-        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPositionX, 2) + Math.pow(thiefPositionY - paintingPositionY, 2));
+        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition1X, 2) + Math.pow(thiefPositionY - paintingPosition1Y, 2));
         if (distance <= proximityLimit) {
-            displayMultipleChoiceQuestion();
+            displayMultipleChoiceQuestion(0);
           }
     }
-    // 0, 43, 85, 128, 
+
+    const checkIfNearPainting2 = () => {
+        const proximityLimit = 40;
+        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition2X, 2) + Math.pow(thiefPositionY - paintingPosition2Y, 2));
+        if (distance <= proximityLimit) {
+            displayMultipleChoiceQuestion(1);
+          }
+    }
+    const checkIfNearPainting3 = () => {
+        const proximityLimit = 40;
+        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition3X, 2) + Math.pow(thiefPositionY - paintingPosition3Y, 2));
+        if (distance <= proximityLimit) {
+            displayMultipleChoiceQuestion(2);
+          }
+    }
+    const checkIfNearPainting4 = () => {
+        const proximityLimit = 40;
+        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition4X, 2) + Math.pow(thiefPositionY - paintingPosition4Y, 2));
+        if (distance <= proximityLimit) {
+            displayMultipleChoiceQuestion(3);
+          }
+    }
+
     const moveRight = () => {
-        if((thiefPositionX <= 495)){
-            if(thiefPositionY >= 495){
-                if(thiefPositionX >= 450){
+        setThiefImage("heading right");
+        if(thiefPositionX <= 1000){
+            if(thiefPositionY <= 200){
+                if(thiefPositionX <= 920 && thiefPositionX >= 600){
                     setThiefPositionX(thiefPositionX + theifSpeed);
-                    // setThiefImage("heading right");
                 }
-                if(thiefPositionX <= 310){
+                if(thiefPositionX <= 560 && thiefPositionX >= 350){
                     setThiefPositionX(thiefPositionX + theifSpeed);
-                    // setThiefImage("heading right");
                 }
-            }
-            if(thiefPositionY >= 315 && thiefPositionY <= 490){
-                if(thiefPositionX >= 450){
+                if(thiefPositionX <= 275){
                     setThiefPositionX(thiefPositionX + theifSpeed);
-                    // setThiefImage("heading right");
-                }
-                if(thiefPositionX <= 85){
-                    setThiefPositionX(thiefPositionX + theifSpeed);
-                    // setThiefImage("heading right");
                 }
             }
-            if(thiefPositionY >= 265 && thiefPositionY <= 315){
+            if(thiefPositionY <= 450 && thiefPositionY > 200){
                 setThiefPositionX(thiefPositionX + theifSpeed);
-                // setThiefImage("heading right");
             }
-            if(thiefPositionY >= 90 && thiefPositionY <= 265){
-                if(thiefPositionX >= 90 && thiefPositionX <= 160){
+            if(thiefPositionY <= 635 && thiefPositionY > 450){
+                if(thiefPositionX <= 840 && thiefPositionX >= 600){
                     setThiefPositionX(thiefPositionX + theifSpeed);
-                    // setThiefImage("heading right");
                 }
-                if(thiefPositionX >= 400 && thiefPositionX <= 530){
+                if(thiefPositionX <= 560 && thiefPositionX >= 350){
                     setThiefPositionX(thiefPositionX + theifSpeed);
-                    // setThiefImage("heading right");
+                }
+                if(thiefPositionX <= 205){
+                    setThiefPositionX(thiefPositionX + theifSpeed);
                 }
             }
-            if(thiefPositionY >= 40 && thiefPositionY <= 90){
-                setThiefPositionX(thiefPositionX + theifSpeed);
-                // setThiefImage("heading right");
-            }
-            if(thiefPositionY > 0 && thiefPositionY <= 40){
-                if(thiefPositionX >= 90 && thiefPositionX <= 160){
+            if(thiefPositionY <= 690 && thiefPositionY > 635){
+                if(thiefPositionX <= 840){
                     setThiefPositionX(thiefPositionX + theifSpeed);
-                    // setThiefImage("heading right");
+                }
+            }
+            if(thiefPositionY > 690){
+                if(thiefPositionX <= 600){
+                    setThiefPositionX(thiefPositionX + theifSpeed);
                 }
             }
         }
     }
     const moveLeft = () => {
-        if(thiefPositionX >= 45){
-            if(thiefPositionY >= 490){
-                if(thiefPositionX >= 460 && thiefPositionX <= 530){
+        setThiefImage("heading left");
+        if(thiefPositionX >= 0){
+            if(thiefPositionY <= 200){
+                if(thiefPositionX >= 690 && thiefPositionX <= 1000){
                     setThiefPositionX(thiefPositionX - theifSpeed);
-                    // setThiefImage("heading left");
                 }
-                if(thiefPositionX <= 320){
+                if(thiefPositionX >= 405 && thiefPositionX <= 600){
                     setThiefPositionX(thiefPositionX - theifSpeed);
-                    // setThiefImage("heading left");
                 }
-            }
-            if(thiefPositionY >= 315 && thiefPositionY <= 490){
-                if(thiefPositionX >= 460){
+                if(thiefPositionX >= 45 && thiefPositionX <= 395){
                     setThiefPositionX(thiefPositionX - theifSpeed);
-                    // setThiefImage("heading left");
-                }
-                if(thiefPositionX <= 100){
-                    setThiefPositionX(thiefPositionX - theifSpeed);
-                    // setThiefImage("heading left");
                 }
             }
-            if(thiefPositionY >= 265 && thiefPositionY <= 315){
+            if(thiefPositionY <= 450 && thiefPositionY > 200){
                 setThiefPositionX(thiefPositionX - theifSpeed);
-                // setThiefImage("heading left");
             }
-            if(thiefPositionY >= 90 && thiefPositionY <= 265){
-                if(thiefPositionX >= 460){
+            if(thiefPositionY <= 635 && thiefPositionY > 450){
+                if(thiefPositionX >= 770){
                     setThiefPositionX(thiefPositionX - theifSpeed);
-                    // setThiefImage("heading left");
                 }
-                if(thiefPositionX >= 120 && thiefPositionX <= 200){
+                if(thiefPositionX <= 600 && thiefPositionX >= 405){
                     setThiefPositionX(thiefPositionX - theifSpeed);
-                    // setThiefImage("heading left");
+                }
+                if(thiefPositionX <= 210 && thiefPositionX >= 125){
+                    setThiefPositionX(thiefPositionX - theifSpeed);
                 }
             }
-            if(thiefPositionY >= 40 && thiefPositionY <= 90){
-                setThiefPositionX(thiefPositionX - theifSpeed);
-                // setThiefImage("heading left");
-            }
-            if(thiefPositionY > 0 && thiefPositionY <= 40){
-                if(thiefPositionX >= 120 && thiefPositionX <= 200){
+            if(thiefPositionY <= 690 && thiefPositionY > 635){
+                if(thiefPositionX >= 125){
                     setThiefPositionX(thiefPositionX - theifSpeed);
-                    // setThiefImage("heading left");
+                }
+            }
+            if(thiefPositionY > 690){
+                if(thiefPositionX >= 370){
+                    setThiefPositionX(thiefPositionX - theifSpeed);
                 }
             }
         }
     }
     const moveDown = () => {
-        if((thiefPositionX >= 455 && thiefPositionX <= 600 && thiefPositionY <= 530)){
-            setThiefPositionY(thiefPositionY + theifSpeed);
-        }
-        if(thiefPositionX >= 160 && thiefPositionX <= 455){
-            if(thiefPositionY <= 80){
-                setThiefPositionY(thiefPositionY + theifSpeed);
+        setThiefImage("heading down");
+        if((thiefPositionY <= 725)){
+            if((thiefPositionX <= 120 || (thiefPositionX <= 395 && thiefPositionX >= 210) || (thiefPositionX <= 760 && thiefPositionX >= 570) || (thiefPositionX >= 850))){
+                if(thiefPositionY <= 445){
+                    setThiefPositionY(thiefPositionY + theifSpeed);
+                }
+                if(thiefPositionY > 500 && thiefPositionY <= 685){
+                    setThiefPositionY(thiefPositionY + theifSpeed);
+                }
             }
-            if(thiefPositionY <= 310 && thiefPositionY >= 100){
-                setThiefPositionY(thiefPositionY + theifSpeed);
+            if(thiefPositionY <= 685 && (thiefPositionX > 120 && thiefPositionX < 210)|| (thiefPositionX > 395 && thiefPositionX < 570) || (thiefPositionX > 760 && thiefPositionX < 850)){
+                    setThiefPositionY(thiefPositionY + theifSpeed);
             }
-            if(thiefPositionY <= 530 && thiefPositionY >= 400){
-                setThiefPositionY(thiefPositionY + theifSpeed);
-            }
-        }
-        if((thiefPositionX >= 120 && thiefPositionX <= 160)){
-            if(thiefPositionY <= 310){
-                setThiefPositionY(thiefPositionY + theifSpeed);
-            }
-            if(thiefPositionY <= 530 && thiefPositionY >= 400){
-                setThiefPositionY(thiefPositionY + theifSpeed);
-            }
-        }
-        if((thiefPositionX >= 90 && thiefPositionX <= 120)){
-            if(thiefPositionY >= 530){
-                setThiefPositionY(thiefPositionY + theifSpeed);
-            }
-        }
-        if(thiefPositionX >= 45 && thiefPositionX <= 90){
-            if(thiefPositionY <= 80){
-                setThiefPositionY(thiefPositionY + theifSpeed);
-            }
-            if(thiefPositionY <= 530 && thiefPositionY >= 100){
+            if((thiefPositionX <= 395 && thiefPositionX >= 360) || (thiefPositionX <= 610 && thiefPositionX >= 570)){
                 setThiefPositionY(thiefPositionY + theifSpeed);
             }
         }
     }
     const moveUp = () => {
-        if((thiefPositionX >= 455 && thiefPositionX <= 600)){
-            if(thiefPositionY >= 45){
-                setThiefPositionY(thiefPositionY - theifSpeed);
+        setThiefImage("heading up");
+        if(thiefPositionY >= 0){
+            if(thiefPositionX <= 35 || thiefPositionX >= 935){
+                if(thiefPositionY >= 205){
+                    setThiefPositionY(thiefPositionY - theifSpeed);
+                }
             }
-        }
-        if(thiefPositionX >= 160 && thiefPositionX <= 455){
-            if(thiefPositionY >= 45 && thiefPositionY <= 110){
-                setThiefPositionY(thiefPositionY - theifSpeed);
+            if((thiefPositionX > 35 && thiefPositionX <= 210) || (thiefPositionX >= 765 && thiefPositionX < 935)){
+                if(thiefPositionY >= 45){
+                    setThiefPositionY(thiefPositionY - theifSpeed);
+                }
             }
-            if(thiefPositionY >= 268 && thiefPositionY <= 400){
-                setThiefPositionY(thiefPositionY - theifSpeed);
+            if((thiefPositionX > 210 && thiefPositionX <= 290) || (thiefPositionX >= 675 && thiefPositionX < 765)){
+                if(thiefPositionY >= 45 && thiefPositionY < 600){
+                    setThiefPositionY(thiefPositionY - theifSpeed);
+                }
+                if(thiefPositionY >= 640){
+                    setThiefPositionY(thiefPositionY - theifSpeed);
+                }
             }
-            if(thiefPositionY >= 490){
-                setThiefPositionY(thiefPositionY - theifSpeed);
+            if((thiefPositionX > 290 && thiefPositionX <= 395) || (thiefPositionX >= 570 && thiefPositionX < 675)){
+                if(thiefPositionY >= 205 && thiefPositionY < 460){
+                    setThiefPositionY(thiefPositionY - theifSpeed);
+                }
+                if(thiefPositionY >= 640){
+                    setThiefPositionY(thiefPositionY - theifSpeed);
+                }
             }
-        }
-        if((thiefPositionX >= 120 && thiefPositionX <= 160)){
-            if(thiefPositionY >= 10 && thiefPositionY <= 350)setThiefPositionY(thiefPositionY - theifSpeed);
-            
-            if(thiefPositionY >= 490 && thiefPositionY <= 600){
-                setThiefPositionY(thiefPositionY - theifSpeed);
-            }
-        }
-        if((thiefPositionX >= 90 && thiefPositionX <= 120)){
-            if(thiefPositionY >= 10 && thiefPositionY <= 350){
-                setThiefPositionY(thiefPositionY - theifSpeed);
-            }
-            if(thiefPositionY >= 490 && thiefPositionY <= 600){
-                setThiefPositionY(thiefPositionY - theifSpeed);
-            }
-        }
-        if(thiefPositionX >= 45 && thiefPositionX <= 90){
-            if(thiefPositionY >= 45 && thiefPositionY <= 150){
-                setThiefPositionY(thiefPositionY - theifSpeed);
-            }
-            if(thiefPositionY >= 270){
+            if(thiefPositionX > 395 && thiefPositionX < 570){
                 setThiefPositionY(thiefPositionY - theifSpeed);
             }
         }
@@ -210,13 +201,19 @@ const MapContainer = ({containerWidth, containerHeight, displayMultipleChoiceQue
             e.preventDefault();
             moveUp();
         }
-        checkIfNearPainting();
+        checkIfNearPainting1();
+        checkIfNearPainting2();
+        checkIfNearPainting3();
+        checkIfNearPainting4();
     }
     return ( 
-        <div className="map-container" style={{height: `${containerHeight}px`, width: `${containerWidth}px`, backgroundImage: `url(${mapImage})`, backgroundSize: `${containerWidth}px`, backgroundColor: `#171717`}}>
-            {/* <h3> This is the MapContainer </h3> */}
-            <ThiefComponent containerHeight={containerHeight} containerWidth={containerWidth} thiefPositionX={thiefPositionX} thiefPositionY={thiefPositionY} thiefImage={thiefImage}/>
-            <PaintingComponent containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPositionX} paintingPositionY={paintingPositionY} displayMultipleChoiceQuestion={displayMultipleChoiceQuestion}></PaintingComponent>
+        <div className="map-container" style={{height: `${containerHeight}px`, width: `${containerWidth}px`, backgroundImage: `url(${mapImage})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundColor: `black`, backgroundPosition: "center"}}>
+            <ThiefComponent  containerHeight={containerHeight} containerWidth={containerWidth} thiefPositionX={thiefPositionX} thiefPositionY={thiefPositionY} thiefImage={thiefImage}/>
+            {/* <Paintings containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPositionX} paintingPositionY={paintingPositionY} displayMultipleChoiceQuestion={displayMultipleChoiceQuestion}/> */}
+            <PaintingComponent containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPosition1X} paintingPositionY={paintingPosition1Y} displayMultipleChoiceQuestion={displayMultipleChoiceQuestion}/>
+            <PaintingComponent containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPosition2X} paintingPositionY={paintingPosition2Y} displayMultipleChoiceQuestion={displayMultipleChoiceQuestion}/>
+            <PaintingComponent containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPosition3X} paintingPositionY={paintingPosition3Y} displayMultipleChoiceQuestion={displayMultipleChoiceQuestion}/>
+            <PaintingComponent containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPosition4X} paintingPositionY={paintingPosition4Y} displayMultipleChoiceQuestion={displayMultipleChoiceQuestion}/>
         </div>
      );
 }

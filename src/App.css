@@ -4,33 +4,27 @@ body {
   font-family: 'Courier New', Courier, monospace;
   margin: 30px;
 }
-/* .App{
-  display: grid;
-} */
-
-.main-container{
-  display: grid;
-  /* grid-template-columns: 1fr 1fr; */
-  grid-template-areas: "a a" 20vh "b c" 65vh / 1fr 1fr;
-  gap: 10px;
-}
 .navbar{
   grid-area: a;
   text-align: center;
 }
-.map-container{
-  grid-area: b;
+
+.game-and-stolen-art-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.map-container {
+  grid-column: 1 / 2;
   margin: 30px;
   position: relative;
-  /* justify-self: center; */
 }
-.caught-fish{
-  grid-area: c;
+.caught-fish {
+  grid-column: 2 / 3;
   background-color: rgb(132, 132, 132);
   padding: 20px;
   margin: 30px;
   color: black;
-  /* height: 560px; */
   overflow-y: auto;
   overflow-x: auto;
 }
@@ -46,41 +40,46 @@ button {
   cursor: pointer;
 }
 
-/* .App {
+
+
+/* body {
+  background-color: black;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  margin: 30px;
+}
+
+.main-container{
+  display: grid;
+  grid-template-areas: "a a" 20vh "b c" 65vh / 1fr 1fr;
+  gap: 10px;
+}
+.navbar{
+  grid-area: a;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.map-container{
+  grid-area: b;
+  margin: 30px;
+  position: relative;
+}
+.caught-fish{
+  grid-area: c;
+  background-color: rgb(132, 132, 132);
+  padding: 20px;
+  margin: 30px;
+  color: black;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.table td {
+  text-align: center;
+  width: 200px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 } */
