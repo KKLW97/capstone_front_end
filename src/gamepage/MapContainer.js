@@ -3,7 +3,7 @@ import ThiefComponent from "./ThiefComponent";
 import PaintingComponent from "./PaintingComponent";
 import mapImage from "../assets/unnamed-1.png";
 
-const MapContainer = ({containerWidth, containerHeight, displayPaintingInfo}) => {
+const MapContainer = ({containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion}) => {
 
     const [thiefPositionX, setThiefPositionX] = useState(480);
     const [thiefPositionY, setThiefPositionY] = useState(0);
@@ -17,6 +17,19 @@ const MapContainer = ({containerWidth, containerHeight, displayPaintingInfo}) =>
     const paintingPosition3Y = 720;    
     const paintingPosition4X = 750;
     const paintingPosition4Y = 720; 
+
+    const paintingPosition5X = 200;
+    const paintingPosition5Y = 200; 
+    const paintingPosition6X = 300;
+    const paintingPosition6Y = 300; 
+    const paintingPosition7X = 400;
+    const paintingPosition7Y = 400; 
+    const paintingPosition8X = 500;
+    const paintingPosition8Y = 500; 
+    const paintingPosition9X = 600;
+    const paintingPosition9Y = 600; 
+    const paintingPosition10X = 700;
+    const paintingPosition10Y = 400; 
     
     const theifSpeed = 5;
 
@@ -25,6 +38,7 @@ const MapContainer = ({containerWidth, containerHeight, displayPaintingInfo}) =>
         const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition1X, 2) + Math.pow(thiefPositionY - paintingPosition1Y, 2));
         if (distance <= proximityLimit) {
             displayPaintingInfo(0);
+            getEasyQuestion(0);
           }
     }
 
@@ -33,6 +47,7 @@ const MapContainer = ({containerWidth, containerHeight, displayPaintingInfo}) =>
         const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition2X, 2) + Math.pow(thiefPositionY - paintingPosition2Y, 2));
         if (distance <= proximityLimit) {
             displayPaintingInfo(1);
+            getEasyQuestion(1);
           }
     }
     const checkIfNearPainting3 = () => {
@@ -40,6 +55,7 @@ const MapContainer = ({containerWidth, containerHeight, displayPaintingInfo}) =>
         const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition3X, 2) + Math.pow(thiefPositionY - paintingPosition3Y, 2));
         if (distance <= proximityLimit) {
             displayPaintingInfo(2);
+            getEasyQuestion(2);
           }
     }
     const checkIfNearPainting4 = () => {
@@ -47,6 +63,55 @@ const MapContainer = ({containerWidth, containerHeight, displayPaintingInfo}) =>
         const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition4X, 2) + Math.pow(thiefPositionY - paintingPosition4Y, 2));
         if (distance <= proximityLimit) {
             displayPaintingInfo(3);
+            getEasyQuestion(3);
+          }
+    }
+    const checkIfNearPainting5 = () => {
+        const proximityLimit = 40;
+        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition5X, 2) + Math.pow(thiefPositionY - paintingPosition5Y, 2));
+        if (distance <= proximityLimit) {
+            displayPaintingInfo(4);
+            getEasyQuestion(4);
+          }
+    }
+    const checkIfNearPainting6 = () => {
+        const proximityLimit = 40;
+        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition6X, 2) + Math.pow(thiefPositionY - paintingPosition6Y, 2));
+        if (distance <= proximityLimit) {
+            displayPaintingInfo(5);
+            getMediumQuestion(0);
+          }
+    }
+    const checkIfNearPainting7 = () => {
+        const proximityLimit = 40;
+        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition7X, 2) + Math.pow(thiefPositionY - paintingPosition7Y, 2));
+        if (distance <= proximityLimit) {
+            displayPaintingInfo(6);
+            getMediumQuestion(1);
+          }
+    }
+    const checkIfNearPainting8 = () => {
+        const proximityLimit = 40;
+        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition8X, 2) + Math.pow(thiefPositionY - paintingPosition8Y, 2));
+        if (distance <= proximityLimit) {
+            displayPaintingInfo(7);
+            getMediumQuestion(2);
+          }
+    }
+    const checkIfNearPainting9 = () => {
+        const proximityLimit = 40;
+        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition9X, 2) + Math.pow(thiefPositionY - paintingPosition9Y, 2));
+        if (distance <= proximityLimit) {
+            displayPaintingInfo(8);
+            getHardQuestion(0);
+          }
+    }
+    const checkIfNearPainting10 = () => {
+        const proximityLimit = 40;
+        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition10X, 2) + Math.pow(thiefPositionY - paintingPosition10Y, 2));
+        if (distance <= proximityLimit) {
+            displayPaintingInfo(9);
+            getHardQuestion(1);
           }
     }
 
@@ -205,6 +270,12 @@ const MapContainer = ({containerWidth, containerHeight, displayPaintingInfo}) =>
         checkIfNearPainting2();
         checkIfNearPainting3();
         checkIfNearPainting4();
+        checkIfNearPainting5();
+        checkIfNearPainting6();
+        checkIfNearPainting7();
+        checkIfNearPainting8();
+        checkIfNearPainting9();
+        checkIfNearPainting10();
     }
     return ( 
         <div className="map-container" style={{height: `${containerHeight}px`, width: `${containerWidth}px`, backgroundImage: `url(${mapImage})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundColor: `black`, backgroundPosition: "center"}}>
@@ -213,6 +284,12 @@ const MapContainer = ({containerWidth, containerHeight, displayPaintingInfo}) =>
             <PaintingComponent paintingPositionX={paintingPosition2X} paintingPositionY={paintingPosition2Y}/>
             <PaintingComponent paintingPositionX={paintingPosition3X} paintingPositionY={paintingPosition3Y}/>
             <PaintingComponent paintingPositionX={paintingPosition4X} paintingPositionY={paintingPosition4Y}/>
+            <PaintingComponent paintingPositionX={paintingPosition5X} paintingPositionY={paintingPosition5Y}/>
+            <PaintingComponent paintingPositionX={paintingPosition6X} paintingPositionY={paintingPosition6Y}/>
+            <PaintingComponent paintingPositionX={paintingPosition7X} paintingPositionY={paintingPosition7Y}/>
+            <PaintingComponent paintingPositionX={paintingPosition8X} paintingPositionY={paintingPosition8Y}/>
+            <PaintingComponent paintingPositionX={paintingPosition9X} paintingPositionY={paintingPosition9Y}/>
+            <PaintingComponent paintingPositionX={paintingPosition10X} paintingPositionY={paintingPosition10Y}/>
         </div>
      );
 }

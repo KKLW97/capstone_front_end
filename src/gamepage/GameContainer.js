@@ -11,6 +11,12 @@ const GameContainer = (activePlayer, currentGame, setCurrentGame) => {
   const [artworksInGame, setArtworksInGame] = useState([]);
   const [paintingInfo, setPaintingInfo] = useState([]);
 
+  const [easyQuestions, setEasyQuestions] = useState([]);
+  const [mediumQuestions, setMediumQuestions] = useState([]);
+  const [hardQuestions, setHardQuestions] = useState([]);
+
+  const [currentQuestion, setCurrentQuestion] = useState({});
+
   const fetchArtworkInGameByGameId = async () => {
     // gameId is hard-coded for now
     const response = await fetch(`http://localhost:8080/artworksInGame?game_id=2`)
@@ -27,7 +33,46 @@ const GameContainer = (activePlayer, currentGame, setCurrentGame) => {
     // console.log("Displays modal for Multiple Choice Question / Displays info about painting, giving the option for the player to select this painting");
     console.log(`${artworksInGame[index].title}, ${artworksInGame[index].artist}`);
     setPaintingInfo(<>{artworksInGame[index].title}, {artworksInGame[index].artist}<br/>Value: £{artworksInGame[index].value}<br/>Rarity: {artworksInGame[index].rarityLevel}</>);
-}
+  }
+
+
+  const fetchEasyQuestions = async () => {
+      const response = await fetch("https://opentdb.com/api.php?amount=5&category=25&difficulty=easy&type=multiple");
+      const jsonData = await response.json();
+      setEasyQuestions(jsonData.results);
+  }
+
+  const fetchMediumQuestions = async () => {
+    const response = await fetch("https://opentdb.com/api.php?amount=3&category=25&difficulty=medium&type=multiple");
+    const jsonData = await response.json();
+    setMediumQuestions(jsonData.results);
+  }
+
+  const fetchHardQuestions = async () => {
+    const response = await fetch("https://opentdb.com/api.php?amount=2&category=25&difficulty=hard&type=multiple");
+    const jsonData = await response.json();
+    setHardQuestions(jsonData.results);
+  }
+
+  useEffect(()=>{
+    fetchEasyQuestions();
+    fetchMediumQuestions();
+    fetchHardQuestions();
+  }, [])
+
+  const getEasyQuestion = (index) => {
+    setCurrentQuestion(easyQuestions[index]);
+  }
+  const getMediumQuestion = (index) => {
+    setCurrentQuestion(mediumQuestions[index]);
+  }
+  const getHardQuestion = (index) => {
+    setCurrentQuestion(hardQuestions[index]);
+  }
+
+
+
+
   // find the corresponding game for player 
 
   // const fetchGameForPlayer = async () => {
@@ -69,7 +114,7 @@ const GameContainer = (activePlayer, currentGame, setCurrentGame) => {
 
   return (
       <div className="game-and-stolen-art-list">
-        <MapContainer containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo}/>
+        <MapContainer containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion}/>
         <PaintingListContainer paintingInfo={paintingInfo}/>
       </div>
     );
