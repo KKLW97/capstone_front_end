@@ -7,29 +7,29 @@ import { useNavigate } from "react-router-dom";
 
 const LoginModal = ({ closeModal }) => {
   
-  const [newPlayerToBeAdded, setNewPlayerToBeAdded] = useState("");
+  // const [newPlayerToBeAdded, setNewPlayerToBeAdded] = useState("");
   const [erroMessage, setErrorMessage] = useState("");
   const [confirmationMessage] = useState("Your username has now been registered");
 
-  const { allPlayers, postNewPlayer, setActivePlayer} = useContext(UserContext);
+  const { allPlayers, postNewPlayer, setActivePlayer, newPlayer, setNewPlayer} = useContext(UserContext);
 
   const navigate = useNavigate();
 
   const handleChange = (event) => {
-    setNewPlayerToBeAdded(event.target.value);
+    setNewPlayer(event.target.value);
   };
 
   const handleClick = (event) => {
     event.preventDefault();
 
     const existingPlayer = allPlayers.find(
-      (player) => player.name === newPlayerToBeAdded
+      (player) => player.name === newPlayer
     );
 
     if (!existingPlayer) {
-      postNewPlayer(newPlayerToBeAdded);
-      setActivePlayer(newPlayerToBeAdded);
-      // navigate("/playerAccount");
+      postNewPlayer(newPlayer);
+      setActivePlayer(newPlayer);
+      navigate("/playerAccount");
     
     } else {
       setErrorMessage(
@@ -54,7 +54,7 @@ const LoginModal = ({ closeModal }) => {
             type="text"
             placeholder="enter your name"
             name="name"
-            value={newPlayerToBeAdded}
+            value={newPlayer}
             onChange={handleChange}
           />
         </div>

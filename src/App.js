@@ -123,7 +123,7 @@ function App() {
     <>
       {/* <LandingContainer />
     <GameContainer /> */}
-    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer , fetchPlayerById }}>
+    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, setNewPlayer, postNewPlayer , fetchPlayerById }}>
 
       <Navbar />
       <RouterProvider router={router} />

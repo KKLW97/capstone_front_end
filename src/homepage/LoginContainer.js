@@ -25,9 +25,9 @@ const LoginContainer = () => {
         fetchPlayerById(parseInt(selectedPlayer));
       };
 
-      
-    const navigate = useNavigate();
 
+    const navigate = useNavigate();
+    // navigate to playerAccount page once a player selects their name and click login 
     const handleFormSubmit = (event) => {
         event.preventDefault();
         navigate("/playerAccount");
@@ -53,7 +53,6 @@ const LoginContainer = () => {
             <option disabled-value="Select your username to login">
                 Select your username
             </option>
-      
             {existingPlayers}
           </select>
           <button type="submit">Login!</button>
