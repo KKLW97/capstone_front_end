@@ -4,11 +4,13 @@ import PaintingListContainer from "../containers/PaintingListContainer";
 
 const GameContainer = (activePlayer, currentGame, setCurrentGame, artworksInGame) => {
 
-  const [gameContainerWidth, setGameContainerWidth] = useState(600);
-  const [gameContainerHeight, setGameContainerHeight] = useState(600);
-
-  const [paintingPositionX, setPaintingPositionX] = useState(270);
-  const [paintingPositionY, setPaintingPositionY] = useState(255);  
+  // const [gameContainerWidth, setGameContainerWidth] = useState(600);
+  // const [gameContainerHeight, setGameContainerHeight] = useState(600);
+  const [gameContainerWidth, setGameContainerWidth] = useState(1082);
+  const [gameContainerHeight, setGameContainerHeight] = useState(800);
+  
+  // const [paintingPositionX, setPaintingPositionX] = useState(270);
+  // const [paintingPositionY, setPaintingPositionY] = useState(255);  
   
   // const [artworksInGame, setArtworksInGame] = useState(null);
 
@@ -19,9 +21,6 @@ const GameContainer = (activePlayer, currentGame, setCurrentGame, artworksInGame
   const displayMultipleChoiceQuestion = () => {
       console.log("Displays modal for Multiple Choice Question / Displays info about painting, giving the option for the player to select this painting");
   }
-
-
-    
   
   // const fetchArtworkInGameByGameId = async () => {
   //   const response = await fetch("http://localhost:8080/artworksInGame?game_id=2")
@@ -36,11 +35,11 @@ const GameContainer = (activePlayer, currentGame, setCurrentGame, artworksInGame
 
   // find the corresponding game for player 
 
-    const fetchGameForPlayer = async () => {
-      const response = await fetch("https://opentdb.com/api.php?amount=1&category=25&difficulty=easy&type=multiple");
-      const jsonData = await response.json();
-      setFirstQuestion(jsonData);
-    };
+  const fetchGameForPlayer = async () => {
+    const response = await fetch("https://opentdb.com/api.php?amount=1&category=25&difficulty=easy&type=multiple");
+    const jsonData = await response.json();
+    setFirstQuestion(jsonData);
+  };
 
   useEffect(() => {
     fetchGameForPlayer();
@@ -73,19 +72,12 @@ const GameContainer = (activePlayer, currentGame, setCurrentGame, artworksInGame
 //   setFirstQuestion(fetchQuestion(firstArtworkRarity));
 
 
-
-
-
-
-  
   return (
-    <>
-      <h3> This is the game container !!!</h3>
-
-      <MapContainer containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayMultipleChoiceQuestion={displayMultipleChoiceQuestion} paintingPositionX={paintingPositionX} paintingPositionY={paintingPositionY}/>
-      <PaintingListContainer />
-    </>
-  );
+      <div className="game-and-stolen-art-list">
+        <MapContainer containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayMultipleChoiceQuestion={displayMultipleChoiceQuestion}/>
+        <PaintingListContainer />
+      </div>
+    );
 };
 
 export default GameContainer;
