@@ -1,50 +1,42 @@
 import { useEffect, useState } from "react";
 import MapContainer from "./MapContainer";
 import PaintingListContainer from "../containers/PaintingListContainer";
-import "../CSSfiles/App.css";
-const GameContainer = (activePlayer, currentGame, setCurrentGame, artworksInGame) => {
 
-  const [gameContainerWidth, setGameContainerWidth] = useState(600);
-  const [gameContainerHeight, setGameContainerHeight] = useState(600);
+const GameContainer = (activePlayer, currentGame, setCurrentGame) => {
 
-  const [paintingPositionX, setPaintingPositionX] = useState(270);
-  const [paintingPositionY, setPaintingPositionY] = useState(255);  
-  
-  // const [artworksInGame, setArtworksInGame] = useState(null);
+  const [gameContainerWidth, setGameContainerWidth] = useState(1082);
+  const [gameContainerHeight, setGameContainerHeight] = useState(800);
+  const [artworksInGame, setArtworksInGame] = useState([]);
+  const [paintingInfo, setPaintingInfo] = useState([]);
 
-  const [fistQuestion, setFirstQuestion] = useState(null);
+  const fetchArtworkInGameByGameId = async () => {
+    // gameId is hard-coded for now
+    const response = await fetch(`http://localhost:8080/artworksInGame?game_id=2`)
+    const jsonData = await response.json();
+    const artworks = jsonData.map((artworkGame)=>artworkGame.artwork)
+    setArtworksInGame(artworks);
+  };
 
-  const [rarity, setRarity] = useState("");
+  useEffect(() => {
+    fetchArtworkInGameByGameId();
+  }, []);
 
-  const displayMultipleChoiceQuestion = () => {
-      console.log("Displays modal for Multiple Choice Question / Displays info about painting, giving the option for the player to select this painting");
-  }
+  const displayPaintingInfo = (index) => {
+    // console.log("Displays modal for Multiple Choice Question / Displays info about painting, giving the option for the player to select this painting");
+    console.log(`${artworksInGame[index].title}, ${artworksInGame[index].artist}`);
+    setPaintingInfo(<>{artworksInGame[index].title}, {artworksInGame[index].artist}<br/>Value: £{artworksInGame[index].value}<br/>Rarity: {artworksInGame[index].rarityLevel}</>);
+}
+  // find the corresponding game for player 
 
-
-    
-  
-  // const fetchArtworkInGameByGameId = async () => {
-  //   const response = await fetch("http://localhost:8080/artworksInGame?game_id=2")
+  // const fetchGameForPlayer = async () => {
+  //   const response = await fetch("https://opentdb.com/api.php?amount=1&category=25&difficulty=easy&type=multiple");
   //   const jsonData = await response.json();
-  //   setArtworksInGame(jsonData);
+  //   setFirstQuestion(jsonData);
   // };
 
   // useEffect(() => {
-  
-  //   fetchArtworkInGameByGameId();
+  //   fetchGameForPlayer();
   // }, []);
-
-  // find the corresponding game for player 
-
-    const fetchGameForPlayer = async () => {
-      const response = await fetch("https://opentdb.com/api.php?amount=1&category=25&difficulty=easy&type=multiple");
-      const jsonData = await response.json();
-      setFirstQuestion(jsonData);
-    };
-
-  useEffect(() => {
-    fetchGameForPlayer();
-  }, []);
 
   // const firstArtworkRarity = artworksInGame.length > 0 ? artworksInGame[0].artwork.rarityLevel : "";
   // console.log(firstArtworkRarity);
@@ -73,19 +65,12 @@ const GameContainer = (activePlayer, currentGame, setCurrentGame, artworksInGame
 //   setFirstQuestion(fetchQuestion(firstArtworkRarity));
 
 
-
-
-
-
-  
   return (
-    <>
-      <h3> This is the game container !!!</h3>
-
-      <MapContainer containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayMultipleChoiceQuestion={displayMultipleChoiceQuestion} paintingPositionX={paintingPositionX} paintingPositionY={paintingPositionY}/>
-      <PaintingListContainer />
-    </>
-  );
+      <div className="game-and-stolen-art-list">
+        <MapContainer containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo}/>
+        <PaintingListContainer paintingInfo={paintingInfo}/>
+      </div>
+    );
 };
 
 export default GameContainer;

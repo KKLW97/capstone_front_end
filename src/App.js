@@ -14,6 +14,7 @@ export const UserContext = createContext();
 function App() {
 
 
+  const [allPlayers, setAllPlayers] = useState([]);
   const [activePlayer, setActivePlayer] = useState(null);
   const [newPlayer, setNewPlayer] = useState("");
   const [allPlayers, setAllPlayers] = useState([]);
@@ -29,6 +30,22 @@ function App() {
       const jsonData = await response.json();
       setAllPlayers(jsonData)
   }
+  // fetch all the player data
+  const fetchPlayers = async () => {
+    const response = await fetch("http://localhost:8080/players");
+    const jsonData = await response.json();
+    setAllPlayers(jsonData);
+  };
+
+  // get player by id 
+  const fetchPlayerById = async (playerId) => {
+    const response = await fetch(`http://localhost:8080/players/${playerId}`)
+    const jsonData = await response.json();
+    setActivePlayer(jsonData);
+  };
+
+
+  //called function when page loads
   useEffect(() => {
     fetchAllPlayers();
   }, [])
@@ -43,6 +60,42 @@ function App() {
       setAllPlayers([...allPlayers, savedPlayer]);
   }
 
+    fetchPlayers();
+    // note: for now, fetching and hard-coding playerId 2 when page loads
+    fetchPlayerById(1);
+  }, []);
+
+
+  // get artworks in game by game id 
+  // const fetchArtworkInGameByGameId = async () => {
+  //   const response = await fetch("http://localhost:8080/artworksInGame?game_id=2")
+  //   const jsonData = await response.json();
+  //   console.log(jsonData); // Check the retrieved data in the browser console
+  //   setArtworksInGame(jsonData);
+  // };
+
+  // useEffect(() => {
+  //   fetchArtworkInGameByGameId();
+  // }, []);
+
+  // const fetchGameForPlayer = async () => {
+  //   const response = await fetch("http://localhost:8080/games/2");
+  //   const jsonData = await response.json();
+  //   setCurrentGame(jsonData);
+  // };
+  
+  // useEffect(() => {
+  //   fetchGameForPlayer();
+  // }, []);
+
+
+
+
+
+  // const mapArtworksIngGame = artworksInGame.map((artworkInGame , index) => 
+  //       { return (key=index , artworkInGame)});
+  // setArtworksInGameList(mapArtworksIngGame);
+  // console.log(artworksInGameList);
 
   const router = createBrowserRouter([
     {
