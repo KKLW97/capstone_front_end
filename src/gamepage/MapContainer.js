@@ -4,19 +4,19 @@ import PaintingComponent from "./PaintingComponent";
 import mapImage from "../assets/unnamed-1.png";
 
 const MapContainer = ({containerWidth, containerHeight, displayPaintingInfo}) => {
-    const [paintingPosition1X, setPaintingPosition1X] = useState(150);
-    const [paintingPosition1Y, setPaintingPosition1Y] = useState(40);    
-    const [paintingPosition2X, setPaintingPosition2X] = useState(790);
-    const [paintingPosition2Y, setPaintingPosition2Y] = useState(40);    
-    const [paintingPosition3X, setPaintingPosition3X] = useState(190);
-    const [paintingPosition3Y, setPaintingPosition3Y] = useState(720);    
-    const [paintingPosition4X, setPaintingPosition4X] = useState(750);
-    const [paintingPosition4Y, setPaintingPosition4Y] = useState(720); 
-
 
     const [thiefPositionX, setThiefPositionX] = useState(480);
     const [thiefPositionY, setThiefPositionY] = useState(0);
     const [thiefImage, setThiefImage] = useState("heading down");
+
+    const paintingPosition1X = 150;
+    const paintingPosition1Y = 40;    
+    const paintingPosition2X = 790;
+    const paintingPosition2Y = 40;    
+    const paintingPosition3X = 190;
+    const paintingPosition3Y = 720;    
+    const paintingPosition4X = 750;
+    const paintingPosition4Y = 720; 
     
     const theifSpeed = 5;
 
@@ -209,11 +209,10 @@ const MapContainer = ({containerWidth, containerHeight, displayPaintingInfo}) =>
     return ( 
         <div className="map-container" style={{height: `${containerHeight}px`, width: `${containerWidth}px`, backgroundImage: `url(${mapImage})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundColor: `black`, backgroundPosition: "center"}}>
             <ThiefComponent  containerHeight={containerHeight} containerWidth={containerWidth} thiefPositionX={thiefPositionX} thiefPositionY={thiefPositionY} thiefImage={thiefImage}/>
-            {/* <Paintings containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPositionX} paintingPositionY={paintingPositionY} displayPaintingInfo={displayPaintingInfo}/> */}
-            <PaintingComponent containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPosition1X} paintingPositionY={paintingPosition1Y} displayPaintingInfo={displayPaintingInfo}/>
-            <PaintingComponent containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPosition2X} paintingPositionY={paintingPosition2Y} displayPaintingInfo={displayPaintingInfo}/>
-            <PaintingComponent containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPosition3X} paintingPositionY={paintingPosition3Y} displayPaintingInfo={displayPaintingInfo}/>
-            <PaintingComponent containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPosition4X} paintingPositionY={paintingPosition4Y} displayPaintingInfo={displayPaintingInfo}/>
+            <PaintingComponent paintingPositionX={paintingPosition1X} paintingPositionY={paintingPosition1Y}/>
+            <PaintingComponent paintingPositionX={paintingPosition2X} paintingPositionY={paintingPosition2Y}/>
+            <PaintingComponent paintingPositionX={paintingPosition3X} paintingPositionY={paintingPosition3Y}/>
+            <PaintingComponent paintingPositionX={paintingPosition4X} paintingPositionY={paintingPosition4Y}/>
         </div>
      );
 }

@@ -1,8 +1,9 @@
-const PaintingListContainer = () => {
+const PaintingListContainer = ({paintingInfo}) => {
     return ( 
         <>
 
-        <h3> This is the PaintingListContainer</h3>        
+        <h3> This is the PaintingListContainer</h3> 
+        {paintingInfo}       
         
         </>
      );

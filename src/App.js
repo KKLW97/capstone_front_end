@@ -11,16 +11,11 @@ import { useEffect, useState } from "react";
 
 function App() {
 
+  const [allPlayers, setAllPlayers] = useState([]);
   const [activePlayer, setActivePlayer] = useState(null);
   const [newPlayer, setNewPlayer] = useState("");
-  const [allPlayers, setAllPlayers] = useState([]);
   const [currentGame, setCurrentGame] = useState(null);
   const [isNewGame, setIsNewGame] = useState(false);
-
-  // const [artworksInGame, setArtworksInGame] = useState([]);
-  // const [artworksInGameList, setArtworksInGameList] = useState([]);
-
-
 
   // fetch all the player data
   const fetchPlayers = async () => {
@@ -28,7 +23,6 @@ function App() {
     const jsonData = await response.json();
     setAllPlayers(jsonData);
   };
-
 
   // get player by id 
   const fetchPlayerById = async (playerId) => {
@@ -41,6 +35,7 @@ function App() {
   //called function when page loads
   useEffect(() => {
     fetchPlayers();
+    // note: for now, fetching and hard-coding playerId 2 when page loads
     fetchPlayerById(2);
   }, []);
 
