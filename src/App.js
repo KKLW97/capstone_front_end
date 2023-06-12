@@ -19,6 +19,11 @@ function App() {
   const [newPlayer, setNewPlayer] = useState("");
   const [currentGame, setCurrentGame] = useState(null);
   const [isNewGame, setIsNewGame] = useState(false);
+  const [incompleteGamesForPlayer, setIncompleteGamesForPlayer] = useState([]);
+  const [allGamesForPlayer, setAllGamesForPlayer] = useState([]);
+  const [allGames, setAllGames] = useState([]);
+  const [allCompleteGames, setAllCompleteGames] = useState([]);
+
   
 
   // initialise context for different states
@@ -86,11 +91,22 @@ function App() {
   //   fetchArtworkInGameByGameId();
   // }, []);
 
-  // const fetchGameForPlayer = async () => {
-  //   const response = await fetch("http://localhost:8080/games/2");
-  //   const jsonData = await response.json();
-  //   setCurrentGame(jsonData);
-  // };
+  const fetchGameById = async (gameId) => {
+    const response = await fetch(`http://localhost:8080/games/${gameId}`);
+    const jsonData = await response.json();
+    setCurrentGame(jsonData);
+  };
+
+  const fetchIncompleteGamesForPlayer = async (playerId) => {
+    const response = await fetch(`http://localhost:8080/games?player_id=${playerId}&complete=false`);
+    const jsonData = await response.json();
+    setIncompleteGamesForPlayer(jsonData);
+
+  };
+
+  const setActiveCurrentGame = (selectedGame) => {
+    setCurrentGame(selectedGame)
+  }
   
   // useEffect(() => {
   //   fetchGameForPlayer();
@@ -118,12 +134,19 @@ function App() {
       element: <PlayerContainer  
       createNewGame = {createNewGame}
       activePlayer={activePlayer}
+      incompleteGamesForPlayer={incompleteGamesForPlayer}
+      fetchIncompleteGamesForPlayer={fetchIncompleteGamesForPlayer}
+      currentGame={currentGame}
+      fetchGameById={fetchGameById}
+      setCurrentGame={setCurrentGame}
+      setActiveCurrentGame={setActiveCurrentGame}
       />,
     },
     {
       path: "gamePage",
       element: <GameContainer
       activePlayer = {activePlayer}
+      currentGame={currentGame}
    />,
     },
   ]);
