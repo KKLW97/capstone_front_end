@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 import { UserContext } from "../App";
 
-const LoginContainer = ({ postNewPlayer }) => {
+const LoginContainer = () => {
   const [openRegisterModal, setRegisterModal] = useState(false);
 
-  const {setActivePlayer, allPlayers} = useContext(UserContext);
+  const {allPlayers, setActivePlayer } = useContext(UserContext);
 
   const existingPlayers = allPlayers.map((player) => {
       return (
@@ -58,7 +58,7 @@ const LoginContainer = ({ postNewPlayer }) => {
   
 
       {/* if open modeal is true then render the LoginModal component */}
-    {openRegisterModal && <LoginModal closeModal={setRegisterModal} postNewPlayer ={postNewPlayer}  allPlayers = {allPlayers}/>} 
+    {openRegisterModal && <LoginModal closeModal={setRegisterModal} />} 
     </div>
   );
 };

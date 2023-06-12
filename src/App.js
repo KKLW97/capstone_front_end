@@ -49,7 +49,6 @@ function App() {
       path: "/",
       element: (
         <LandingContainer
-        postNewPlayer = {postNewPlayer} 
         />
       )
     },
@@ -70,7 +69,7 @@ function App() {
     <>
       {/* <LandingContainer />
     <GameContainer /> */}
-    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer }}>
+    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer }}>
 
       <Navbar />
       <RouterProvider router={router} />
