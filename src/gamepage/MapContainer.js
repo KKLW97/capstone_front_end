@@ -3,7 +3,7 @@ import ThiefComponent from "./ThiefComponent";
 import PaintingComponent from "./PaintingComponent";
 import mapImage from "../assets/unnamed-1.png";
 
-const MapContainer = ({containerWidth, containerHeight, displayMultipleChoiceQuestion, paintingPositionX, paintingPositionY}) => {
+const MapContainer = ({containerWidth, containerHeight, displayPaintingInfo}) => {
     const [paintingPosition1X, setPaintingPosition1X] = useState(150);
     const [paintingPosition1Y, setPaintingPosition1Y] = useState(40);    
     const [paintingPosition2X, setPaintingPosition2X] = useState(790);
@@ -24,7 +24,7 @@ const MapContainer = ({containerWidth, containerHeight, displayMultipleChoiceQue
         const proximityLimit = 40;
         const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition1X, 2) + Math.pow(thiefPositionY - paintingPosition1Y, 2));
         if (distance <= proximityLimit) {
-            displayMultipleChoiceQuestion(0);
+            displayPaintingInfo(0);
           }
     }
 
@@ -32,21 +32,21 @@ const MapContainer = ({containerWidth, containerHeight, displayMultipleChoiceQue
         const proximityLimit = 40;
         const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition2X, 2) + Math.pow(thiefPositionY - paintingPosition2Y, 2));
         if (distance <= proximityLimit) {
-            displayMultipleChoiceQuestion(1);
+            displayPaintingInfo(1);
           }
     }
     const checkIfNearPainting3 = () => {
         const proximityLimit = 40;
         const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition3X, 2) + Math.pow(thiefPositionY - paintingPosition3Y, 2));
         if (distance <= proximityLimit) {
-            displayMultipleChoiceQuestion(2);
+            displayPaintingInfo(2);
           }
     }
     const checkIfNearPainting4 = () => {
         const proximityLimit = 40;
         const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition4X, 2) + Math.pow(thiefPositionY - paintingPosition4Y, 2));
         if (distance <= proximityLimit) {
-            displayMultipleChoiceQuestion(3);
+            displayPaintingInfo(3);
           }
     }
 
@@ -209,11 +209,11 @@ const MapContainer = ({containerWidth, containerHeight, displayMultipleChoiceQue
     return ( 
         <div className="map-container" style={{height: `${containerHeight}px`, width: `${containerWidth}px`, backgroundImage: `url(${mapImage})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundColor: `black`, backgroundPosition: "center"}}>
             <ThiefComponent  containerHeight={containerHeight} containerWidth={containerWidth} thiefPositionX={thiefPositionX} thiefPositionY={thiefPositionY} thiefImage={thiefImage}/>
-            {/* <Paintings containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPositionX} paintingPositionY={paintingPositionY} displayMultipleChoiceQuestion={displayMultipleChoiceQuestion}/> */}
-            <PaintingComponent containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPosition1X} paintingPositionY={paintingPosition1Y} displayMultipleChoiceQuestion={displayMultipleChoiceQuestion}/>
-            <PaintingComponent containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPosition2X} paintingPositionY={paintingPosition2Y} displayMultipleChoiceQuestion={displayMultipleChoiceQuestion}/>
-            <PaintingComponent containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPosition3X} paintingPositionY={paintingPosition3Y} displayMultipleChoiceQuestion={displayMultipleChoiceQuestion}/>
-            <PaintingComponent containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPosition4X} paintingPositionY={paintingPosition4Y} displayMultipleChoiceQuestion={displayMultipleChoiceQuestion}/>
+            {/* <Paintings containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPositionX} paintingPositionY={paintingPositionY} displayPaintingInfo={displayPaintingInfo}/> */}
+            <PaintingComponent containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPosition1X} paintingPositionY={paintingPosition1Y} displayPaintingInfo={displayPaintingInfo}/>
+            <PaintingComponent containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPosition2X} paintingPositionY={paintingPosition2Y} displayPaintingInfo={displayPaintingInfo}/>
+            <PaintingComponent containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPosition3X} paintingPositionY={paintingPosition3Y} displayPaintingInfo={displayPaintingInfo}/>
+            <PaintingComponent containerHeight={containerHeight} containerWidth={containerWidth} paintingPositionX={paintingPosition4X} paintingPositionY={paintingPosition4Y} displayPaintingInfo={displayPaintingInfo}/>
         </div>
      );
 }
