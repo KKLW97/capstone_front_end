@@ -6,31 +6,26 @@ const GameContainer = (activePlayer, currentGame, setCurrentGame) => {
 
   const [gameContainerWidth, setGameContainerWidth] = useState(1082);
   const [gameContainerHeight, setGameContainerHeight] = useState(800);
-  
-  // const [artworksInGame, setArtworksInGame] = useState(null);
-
-  // TEMPORARILY USING THIS BECAUSE I CAN'T GET/POST GAMES ETC.
-  // const [artworkForGameList, setArtworkForGameList] = useState(["painting 1", "painting 2", "painting 3", "painting 4"]);
   const [artworksInGame, setArtworksInGame] = useState([]);
-  // const [fistQuestion, setFirstQuestion] = useState(null);
+  const [paintingInfo, setPaintingInfo] = useState([]);
 
-  // const [rarity, setRarity] = useState("");
-
-  const displayPaintingInfo = (index) => {
-      // console.log("Displays modal for Multiple Choice Question / Displays info about painting, giving the option for the player to select this painting");
-      console.log(artworksInGame[index]);
-  }
-  
   const fetchArtworkInGameByGameId = async () => {
-    const response = await fetch(`http://localhost:8080/artworksInGame?game_id=${2}`)
+    // gameId is hard-coded for now
+    const response = await fetch(`http://localhost:8080/artworksInGame?game_id=2`)
     const jsonData = await response.json();
-    setArtworksInGame(jsonData);
+    const artworks = jsonData.map((artworkGame)=>artworkGame.artwork)
+    setArtworksInGame(artworks);
   };
 
   useEffect(() => {
     fetchArtworkInGameByGameId();
   }, []);
 
+  const displayPaintingInfo = (index) => {
+    // console.log("Displays modal for Multiple Choice Question / Displays info about painting, giving the option for the player to select this painting");
+    console.log(`${artworksInGame[index].title}, ${artworksInGame[index].artist}`);
+    setPaintingInfo(<>{artworksInGame[index].title}, {artworksInGame[index].artist}<br/>£{artworksInGame[index].value}</>);
+}
   // find the corresponding game for player 
 
   // const fetchGameForPlayer = async () => {
@@ -73,7 +68,7 @@ const GameContainer = (activePlayer, currentGame, setCurrentGame) => {
   return (
       <div className="game-and-stolen-art-list">
         <MapContainer containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo}/>
-        <PaintingListContainer />
+        <PaintingListContainer paintingInfo={paintingInfo}/>
       </div>
     );
 };
