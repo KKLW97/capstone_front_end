@@ -1,17 +1,21 @@
 import Navbar from "../components/Navbar";
 import LoginContainer from "./LoginContainer";
-import { useNavigate, Outlet } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useInRouterContext, useNavigate } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../App";
 
-const LandingContainer = () => {
+const LandingContainer = ({ postNewPlayer}) => {
 
+
+    const { activePlayer, setActivePlayer, allPlayers , newPlayer } = useContext(UserContext);
 
 
 
     return ( 
 
         <>
-        <Outlet />
+        <LoginContainer postNewPlayer = {postNewPlayer}/>
+
         <h1> This is the landing page</h1>
     
         </>

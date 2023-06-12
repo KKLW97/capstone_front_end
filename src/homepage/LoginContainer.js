@@ -1,11 +1,14 @@
 import LoginModal from "../components/LoginModal";
 import "../CSSfiles/Login.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-const LoginContainer = ( {postNewPlayer ,  allPlayers, activePlayer, setActivePlayer}) => {
+import { UserContext } from "../App";
+
+const LoginContainer = ({ postNewPlayer }) => {
   const [openRegisterModal, setRegisterModal] = useState(false);
 
+  const {setActivePlayer, allPlayers} = useContext(UserContext);
 
   const existingPlayers = allPlayers.map((player) => {
       return (
@@ -22,9 +25,10 @@ const LoginContainer = ( {postNewPlayer ,  allPlayers, activePlayer, setActivePl
       };
 
     const navigate = useNavigate();
+
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        navigate("/playersAccount");
+        navigate("/playerAccount");
       };
 
 

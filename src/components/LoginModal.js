@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../CSSfiles/Login.css";
 
 const LoginModal = ({ closeModal, postNewPlayer, allPlayers }) => {
+  
   const [newPlayer, setNewPlayer] = useState("");
   const [erroMessage, setErrorMessage] = useState("");
 
