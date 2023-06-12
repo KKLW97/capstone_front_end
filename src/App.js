@@ -36,7 +36,7 @@ function App() {
   useEffect(() => {
     fetchPlayers();
     // note: for now, fetching and hard-coding playerId 2 when page loads
-    fetchPlayerById(2);
+    fetchPlayerById(1);
   }, []);
 
 
