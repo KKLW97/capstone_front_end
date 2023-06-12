@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import MapContainer from "./MapContainer";
 import PaintingListContainer from "../containers/PaintingListContainer";
 
-const GameContainer = (activePlayer, currentGame, setCurrentGame, artworksInGame) => {
+const GameContainer = (activePlayer, currentGame, setCurrentGame) => {
 
   const [gameContainerWidth, setGameContainerWidth] = useState(1082);
   const [gameContainerHeight, setGameContainerHeight] = useState(800);
@@ -10,39 +10,38 @@ const GameContainer = (activePlayer, currentGame, setCurrentGame, artworksInGame
   // const [artworksInGame, setArtworksInGame] = useState(null);
 
   // TEMPORARILY USING THIS BECAUSE I CAN'T GET/POST GAMES ETC.
-  const [artworkForGameList, setArtworkForGameList] = useState(["painting 1", "painting 2", "painting 3", "painting 4"]);
+  // const [artworkForGameList, setArtworkForGameList] = useState(["painting 1", "painting 2", "painting 3", "painting 4"]);
+  const [artworksInGame, setArtworksInGame] = useState([]);
+  // const [fistQuestion, setFirstQuestion] = useState(null);
 
-  const [fistQuestion, setFirstQuestion] = useState(null);
-
-  const [rarity, setRarity] = useState("");
+  // const [rarity, setRarity] = useState("");
 
   const displayPaintingInfo = (index) => {
       // console.log("Displays modal for Multiple Choice Question / Displays info about painting, giving the option for the player to select this painting");
-      console.log(artworkForGameList[index]);
+      console.log(artworksInGame[index]);
   }
   
-  // const fetchArtworkInGameByGameId = async () => {
-  //   const response = await fetch("http://localhost:8080/artworksInGame?game_id=2")
-  //   const jsonData = await response.json();
-  //   setArtworksInGame(jsonData);
-  // };
-
-  // useEffect(() => {
-  
-  //   fetchArtworkInGameByGameId();
-  // }, []);
-
-  // find the corresponding game for player 
-
-  const fetchGameForPlayer = async () => {
-    const response = await fetch("https://opentdb.com/api.php?amount=1&category=25&difficulty=easy&type=multiple");
+  const fetchArtworkInGameByGameId = async () => {
+    const response = await fetch(`http://localhost:8080/artworksInGame?game_id=${2}`)
     const jsonData = await response.json();
-    setFirstQuestion(jsonData);
+    setArtworksInGame(jsonData);
   };
 
   useEffect(() => {
-    fetchGameForPlayer();
+    fetchArtworkInGameByGameId();
   }, []);
+
+  // find the corresponding game for player 
+
+  // const fetchGameForPlayer = async () => {
+  //   const response = await fetch("https://opentdb.com/api.php?amount=1&category=25&difficulty=easy&type=multiple");
+  //   const jsonData = await response.json();
+  //   setFirstQuestion(jsonData);
+  // };
+
+  // useEffect(() => {
+  //   fetchGameForPlayer();
+  // }, []);
 
   // const firstArtworkRarity = artworksInGame.length > 0 ? artworksInGame[0].artwork.rarityLevel : "";
   // console.log(firstArtworkRarity);

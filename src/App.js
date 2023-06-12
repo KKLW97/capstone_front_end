@@ -17,8 +17,8 @@ function App() {
   const [currentGame, setCurrentGame] = useState(null);
   const [isNewGame, setIsNewGame] = useState(false);
 
-  const [artworksInGame, setArtworksInGame] = useState([]);
-  const [artworksInGameList, setArtworksInGameList] = useState([]);
+  // const [artworksInGame, setArtworksInGame] = useState([]);
+  // const [artworksInGameList, setArtworksInGameList] = useState([]);
 
 
 
@@ -31,11 +31,11 @@ function App() {
 
 
   // get player by id 
-    const fetchPlayerById = async (playerId) => {
-      const response = await fetch(`http://localhost:8080/players/${playerId}`)
-      const jsonData = await response.json();
-      setActivePlayer(jsonData);
-    };
+  const fetchPlayerById = async (playerId) => {
+    const response = await fetch(`http://localhost:8080/players/${playerId}`)
+    const jsonData = await response.json();
+    setActivePlayer(jsonData);
+  };
 
 
   //called function when page loads
@@ -46,27 +46,26 @@ function App() {
 
 
   // get artworks in game by game id 
-  const fetchArtworkInGameByGameId = async () => {
-    const response = await fetch("http://localhost:8080/artworksInGame?game_id=2")
-    const jsonData = await response.json();
-    console.log(jsonData); // Check the retrieved data in the browser console
-    setArtworksInGame(jsonData);
-  };
+  // const fetchArtworkInGameByGameId = async () => {
+  //   const response = await fetch("http://localhost:8080/artworksInGame?game_id=2")
+  //   const jsonData = await response.json();
+  //   console.log(jsonData); // Check the retrieved data in the browser console
+  //   setArtworksInGame(jsonData);
+  // };
 
-  useEffect(() => {
-  
-    fetchArtworkInGameByGameId();
-  }, []);
+  // useEffect(() => {
+  //   fetchArtworkInGameByGameId();
+  // }, []);
 
-  const fetchGameForPlayer = async () => {
-    const response = await fetch("http://localhost:8080/games/2");
-    const jsonData = await response.json();
-    setCurrentGame(jsonData);
-  };
+  // const fetchGameForPlayer = async () => {
+  //   const response = await fetch("http://localhost:8080/games/2");
+  //   const jsonData = await response.json();
+  //   setCurrentGame(jsonData);
+  // };
   
-  useEffect(() => {
-    fetchGameForPlayer();
-  }, []);
+  // useEffect(() => {
+  //   fetchGameForPlayer();
+  // }, []);
 
 
 
@@ -116,7 +115,8 @@ function App() {
       activePlayer = {activePlayer}
       currentGame={currentGame}
       setCurrentGame={setCurrentGame} 
-      artworksInGame = {artworksInGame}/>,
+      // artworksInGame = {artworksInGame}
+      />,
     },
   ]);
 
