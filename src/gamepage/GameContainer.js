@@ -24,7 +24,7 @@ const GameContainer = (activePlayer, currentGame, setCurrentGame) => {
   const displayPaintingInfo = (index) => {
     // console.log("Displays modal for Multiple Choice Question / Displays info about painting, giving the option for the player to select this painting");
     console.log(`${artworksInGame[index].title}, ${artworksInGame[index].artist}`);
-    setPaintingInfo(<>{artworksInGame[index].title}, {artworksInGame[index].artist}<br/>£{artworksInGame[index].value}</>);
+    setPaintingInfo(<>{artworksInGame[index].title}, {artworksInGame[index].artist}<br/>Value: £{artworksInGame[index].value}<br/>Rarity: {artworksInGame[index].rarityLevel}</>);
 }
   // find the corresponding game for player 
 
