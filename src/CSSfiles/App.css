@@ -1,4 +1,4 @@
-/* body {
+/* /body {
   background-color: black;
   color: white;
   font-family: 'Courier New', Courier, monospace;
@@ -7,13 +7,13 @@
 .navbar{
   grid-area: a;
   text-align: center;
-}
+} */
 
 .game-and-stolen-art-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-}
+} 
 .map-container {
   grid-column: 1 / 2;
   margin: 30px;
@@ -41,8 +41,8 @@ button {
 }
 
 
-
-/* body {
+/* 
+ body {
   background-color: black;
   color: white;
   font-family: 'Courier New', Courier, monospace;
@@ -82,4 +82,4 @@ button {
   background-color: transparent;
   border: none;
   cursor: pointer;
-} */
+}  */

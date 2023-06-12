@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import MapContainer from "./MapContainer";
 import PaintingListContainer from "../containers/PaintingListContainer";
 
+
+import "../CSSfiles/App.css";
 const GameContainer = (activePlayer, currentGame, setCurrentGame) => {
 
   const [gameContainerWidth, setGameContainerWidth] = useState(1082);
