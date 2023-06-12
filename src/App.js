@@ -15,7 +15,7 @@ function App() {
 
 
   const [allPlayers, setAllPlayers] = useState([]);
-  const [activePlayer, setActivePlayer] = useState(null);
+  const [activePlayer, setActivePlayer] = useState("");
   const [newPlayer, setNewPlayer] = useState("");
   const [currentGame, setCurrentGame] = useState(null);
   const [isNewGame, setIsNewGame] = useState(false);
@@ -40,17 +40,17 @@ function App() {
   // };
 
   // get player by id 
-  const fetchPlayerById = async (playerId) => {
-    const response = await fetch(`http://localhost:8080/players/${playerId}`)
-    const jsonData = await response.json();
-    setActivePlayer(jsonData);
-  };
+  // const fetchPlayerById = async (playerId) => {
+  //   const response = await fetch(`http://localhost:8080/players/${playerId}`)
+  //   const jsonData = await response.json();
+  //   setActivePlayer(jsonData);
+  // };
 
 
   //called function when page loads
   useEffect(() => {
     fetchAllPlayers();  
-    fetchPlayerById(1);
+
   }, [])
 
   const postNewPlayer = async (newPlayer) => {
@@ -108,6 +108,7 @@ function App() {
     {
       path: "playerAccount",
       element: <PlayerContainer 
+      activePlayer={activePlayer}
       />,
     },
     {

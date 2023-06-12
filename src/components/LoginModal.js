@@ -11,7 +11,7 @@ const LoginModal = ({ closeModal }) => {
   const [erroMessage, setErrorMessage] = useState("");
   const [confirmationMessage] = useState("Your username has now been registered");
 
-  const { allPlayers, postNewPlayer} = useContext(UserContext);
+  const { allPlayers, postNewPlayer, setActivePlayer} = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -28,8 +28,8 @@ const LoginModal = ({ closeModal }) => {
 
     if (!existingPlayer) {
       postNewPlayer(newPlayerToBeAdded);
+      setActivePlayer(newPlayerToBeAdded);
       navigate("/playerAccount");
-     
     
     } else {
       setErrorMessage(
