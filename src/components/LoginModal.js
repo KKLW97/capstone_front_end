@@ -28,7 +28,7 @@ const LoginModal = ({ closeModal }) => {
 
     if (!existingPlayer) {
       postNewPlayer(newPlayer);
-      setActivePlayer(newPlayer);
+      // setActivePlayer(newPlayer);
       navigate("/playerAccount");
     
     } else {

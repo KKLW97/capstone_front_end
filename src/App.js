@@ -66,6 +66,7 @@ function App() {
       })
       const savedPlayer = await response.json();
       setAllPlayers([...allPlayers, savedPlayer]);
+      setActivePlayer(savedPlayer)
   }
 
   const createNewGame = async (playerId) => {
@@ -152,7 +153,7 @@ function App() {
     <>
       {/* <LandingContainer />
     <GameContainer /> */}
-    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById }}>
+    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById, setNewPlayer }}>
 
       <Navbar />
       <RouterProvider router={router} />
