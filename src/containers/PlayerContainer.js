@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react'
-const PlayerContainer = ({ activePlayer, createNewGame, incompleteGamesForPlayer, fetchIncompleteGamesForPlayer, currentGame, fetchGameById, setCurrentGame, setActiveCurrentGame }) => {
+const PlayerContainer = ({ activePlayer, createNewGame, incompleteGamesForPlayer, fetchIncompleteGamesForPlayer, currentGame, fetchGameById, setCurrentGame,  }) => {
 
 
 
@@ -21,12 +21,13 @@ const incompleteGameList = incompleteGamesForPlayer.map((incompleteGame) => {
 
 const handleFormSubmit = (event) => {
     event.preventDefault()
-    fetchGameById(currentGame.id)
+    fetchGameById(parseInt(currentGame))
+    navigate("/gamePage")
 }
 
 const handleGameChange = (event) => {
     const selectedGame = event.target.value;
-    setActiveCurrentGame(selectedGame); 
+    setCurrentGame(selectedGame); 
 }
 
 useEffect(() => {
@@ -42,12 +43,12 @@ useEffect(() => {
         <>
         <h1> This is the player's account !! </h1>
         <button onClick={handleClick}>New Game</button>
-        <form>
+        <form onSubmit={handleFormSubmit}>
             <select onChange={handleGameChange}>
                 <option disabled-value="Select-existing-game">Select Existing Game</option>
                 {incompleteGameList}
             </select>
-            <button type="submit">Load Game</button>
+            <button type="submit" >Load Game</button>
         </form>
         </>
      );

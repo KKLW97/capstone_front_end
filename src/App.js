@@ -104,9 +104,7 @@ function App() {
 
   };
 
-  const setActiveCurrentGame = (selectedGame) => {
-    setCurrentGame(selectedGame)
-  }
+
   
   // useEffect(() => {
   //   fetchGameForPlayer();
@@ -139,7 +137,6 @@ function App() {
       currentGame={currentGame}
       fetchGameById={fetchGameById}
       setCurrentGame={setCurrentGame}
-      setActiveCurrentGame={setActiveCurrentGame}
       />,
     },
     {
