@@ -17,7 +17,9 @@ function App() {
   const [allPlayers, setAllPlayers] = useState([]);
   const [activePlayer, setActivePlayer] = useState(null);
   const [newPlayer, setNewPlayer] = useState("");
-  const [allPlayers, setAllPlayers] = useState([]);
+  const [currentGame, setCurrentGame] = useState(null);
+  const [isNewGame, setIsNewGame] = useState(false);
+  
 
   // initialise context for different states
   
@@ -31,11 +33,11 @@ function App() {
       setAllPlayers(jsonData)
   }
   // fetch all the player data
-  const fetchPlayers = async () => {
-    const response = await fetch("http://localhost:8080/players");
-    const jsonData = await response.json();
-    setAllPlayers(jsonData);
-  };
+  // const fetchPlayers = async () => {
+  //   const response = await fetch("http://localhost:8080/players");
+  //   const jsonData = await response.json();
+  //   setAllPlayers(jsonData);
+  // };
 
   // get player by id 
   const fetchPlayerById = async (playerId) => {
@@ -47,7 +49,8 @@ function App() {
 
   //called function when page loads
   useEffect(() => {
-    fetchAllPlayers();
+    fetchAllPlayers();  
+    fetchPlayerById(1);
   }, [])
 
   const postNewPlayer = async (newPlayer) => {
@@ -60,10 +63,7 @@ function App() {
       setAllPlayers([...allPlayers, savedPlayer]);
   }
 
-    fetchPlayers();
-    // note: for now, fetching and hard-coding playerId 2 when page loads
-    fetchPlayerById(1);
-  }, []);
+
 
 
   // get artworks in game by game id 
