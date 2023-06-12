@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 import GameContainer from "./gamepage/GameContainer";
 import LandingContainer from "./homepage/LandingContainer";
 
@@ -7,22 +7,37 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PlayerContainer from "./containers/PlayerContainer";
 import LoginContainer from "./homepage/LoginContainer";
 import Navbar from "./components/Navbar";
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext, useContext } from "react";
+
+export const UserContext = createContext();
 
 function App() {
+
 
   const [allPlayers, setAllPlayers] = useState([]);
   const [activePlayer, setActivePlayer] = useState(null);
   const [newPlayer, setNewPlayer] = useState("");
   const [currentGame, setCurrentGame] = useState(null);
   const [isNewGame, setIsNewGame] = useState(false);
+  
 
+  // initialise context for different states
+  
+
+
+
+  // get all players 
+  const fetchAllPlayers = async () => {
+      const response = await fetch("http://localhost:8080/players");
+      const jsonData = await response.json();
+      setAllPlayers(jsonData)
+  }
   // fetch all the player data
-  const fetchPlayers = async () => {
-    const response = await fetch("http://localhost:8080/players");
-    const jsonData = await response.json();
-    setAllPlayers(jsonData);
-  };
+  // const fetchPlayers = async () => {
+  //   const response = await fetch("http://localhost:8080/players");
+  //   const jsonData = await response.json();
+  //   setAllPlayers(jsonData);
+  // };
 
   // get player by id 
   const fetchPlayerById = async (playerId) => {
@@ -34,10 +49,21 @@ function App() {
 
   //called function when page loads
   useEffect(() => {
-    fetchPlayers();
-    // note: for now, fetching and hard-coding playerId 2 when page loads
+    fetchAllPlayers();  
     fetchPlayerById(1);
-  }, []);
+  }, [])
+
+  const postNewPlayer = async (newPlayer) => {
+      const response = await fetch("http://localhost:8080/players", {
+          method: "POST",
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(newPlayer)
+      })
+      const savedPlayer = await response.json();
+      setAllPlayers([...allPlayers, savedPlayer]);
+  }
+
+
 
 
   // get artworks in game by game id 
@@ -76,42 +102,19 @@ function App() {
       path: "/",
       element: (
         <LandingContainer
-        allPlayers = {allPlayers} 
-        newPlayer = {newPlayer}
-        activePlayer = {activePlayer} 
-       
-
         />
-      ),
-      children: [
-        {
-          path:"/logIn",
-          element: (
-            <LoginContainer
-            allPlayers = {allPlayers} 
-            newPlayer = {newPlayer}
-            activePlayer = {activePlayer} 
-            />
-          ),
-        },
-      ],
+      )
     },
     {
-      path: "playersAccount",
+      path: "playerAccount",
       element: <PlayerContainer 
-      currentGame={currentGame}
-      isNewGame={isNewGame}
-      setIsNewGame={setIsNewGame}
       />,
     },
     {
       path: "gamePage",
       element: <GameContainer
       activePlayer = {activePlayer}
-      currentGame={currentGame}
-      setCurrentGame={setCurrentGame} 
-      // artworksInGame = {artworksInGame}
-      />,
+   />,
     },
   ]);
 
@@ -119,8 +122,13 @@ function App() {
     <>
       {/* <LandingContainer />
     <GameContainer /> */}
+    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer }}>
+
       <Navbar />
       <RouterProvider router={router} />
+
+    </UserContext.Provider>
+
     </>
   );
 }
