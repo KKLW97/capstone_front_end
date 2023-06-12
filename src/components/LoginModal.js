@@ -29,7 +29,7 @@ const LoginModal = ({ closeModal }) => {
     if (!existingPlayer) {
       postNewPlayer(newPlayerToBeAdded);
       setActivePlayer(newPlayerToBeAdded);
-      navigate("/playerAccount");
+      // navigate("/playerAccount");
     
     } else {
       setErrorMessage(

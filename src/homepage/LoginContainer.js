@@ -8,7 +8,7 @@ import { UserContext } from "../App";
 const LoginContainer = () => {
   const [openRegisterModal, setRegisterModal] = useState(false);
 
-  const {allPlayers, setActivePlayer } = useContext(UserContext);
+  const {allPlayers, setActivePlayer , fetchPlayerById } = useContext(UserContext);
 
   const existingPlayers = allPlayers.map((player) => {
       return (
@@ -21,14 +21,17 @@ const LoginContainer = () => {
 
     const handlePlayerSelection = (event) => {
         const selectedPlayer = event.target.value;
-        setActivePlayer(selectedPlayer);
+        setActivePlayer(selectedPlayer); 
+        fetchPlayerById(parseInt(selectedPlayer));
       };
 
+      
     const navigate = useNavigate();
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
         navigate("/playerAccount");
+       
       };
 
 

@@ -40,17 +40,17 @@ function App() {
   // };
 
   // get player by id 
-  // const fetchPlayerById = async (playerId) => {
-  //   const response = await fetch(`http://localhost:8080/players/${playerId}`)
-  //   const jsonData = await response.json();
-  //   setActivePlayer(jsonData);
-  // };
+  const fetchPlayerById = async (playerId) => {
+    const response = await fetch(`http://localhost:8080/players/${playerId}`)
+    const jsonData = await response.json();
+    setActivePlayer(jsonData);
+  };
 
 
   //called function when page loads
   useEffect(() => {
     fetchAllPlayers();  
-
+    // fetchPlayerById(1);
   }, [])
 
   const postNewPlayer = async (newPlayer) => {
@@ -123,7 +123,7 @@ function App() {
     <>
       {/* <LandingContainer />
     <GameContainer /> */}
-    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer }}>
+    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer , fetchPlayerById }}>
 
       <Navbar />
       <RouterProvider router={router} />
