@@ -3,7 +3,7 @@ import GameContainer from "./gamepage/GameContainer";
 import LandingContainer from "./homepage/LandingContainer";
 
 //react router imports
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, json, RouterProvider } from "react-router-dom";
 import PlayerContainer from "./containers/PlayerContainer";
 import LoginContainer from "./homepage/LoginContainer";
 import Navbar from "./components/Navbar";
@@ -24,7 +24,7 @@ function App() {
   const [allGames, setAllGames] = useState([]);
   const [allCompleteGames, setAllCompleteGames] = useState([]);
   const [artworksInGame, setArtworksInGame] = useState([]);
-
+  const [artworkInGame, setArtworkInGame] = useState([]);
 
   
 
@@ -114,7 +114,8 @@ const fetchArtworkInGameByGameId = async (gameId) => {
     })
     .then((response) => response.json())
     .then((responseGame) => {
-      const updatedGameList = games.map((game) => {
+
+      const updatedGameList = activePlayer.games.map((game) => {
         if(game.id === responseGame.id){
           return responseGame;
         }else{
@@ -125,6 +126,22 @@ const fetchArtworkInGameByGameId = async (gameId) => {
     })
     setGameToUpdate(null);
   }
+
+    // patch request for artwork in game
+
+    const updateArtworkInGame = (updatedArtworkInGame) => {
+        fetch(`${SERVER_URL}/artworkInGame/${artworkInGame.id}`, {
+              method: "PATCH",
+              headers: {"Content-Type": "application/json",}}
+        )
+        .then ((response) => response.json())
+        .then ((jsonData) => {
+              const artworkInGameToKeep = artworksInGame.filter((artworkInGame) => 
+              artworkInGame.id != updatedArtworkInGame)
+              setArtworksInGame([...artworkInGameToKeep, jsonData])
+        })
+        setArtworkInGameToUpdate(null);
+    }
 
   // get artworks in game by game id 
   // const fetchArtworkInGameByGameId = async () => {
