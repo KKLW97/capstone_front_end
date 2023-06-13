@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import MapContainer from "./MapContainer";
 import PaintingListContainer from "../containers/PaintingListContainer";
+import {decode} from 'html-entities';
 
 
 import "../CSSfiles/App.css";
@@ -48,12 +49,14 @@ const GameContainer = ({activePlayer, currentGame, setCurrentGame, artworksInGam
     // 4) then set the question being displayed to be the variable the map is saved to
     setQuestionBeingDisplayed
     (<>
-      <h1>{currentQuestion.question}</h1>
+      <h1>{decode(currentQuestion.question)}</h1>
       <br/>
-      <button className="question__btn">{shuffledAnswers[0]}</button>
-      <button className="question__btn">{shuffledAnswers[1]}</button>
-      <button className="question__btn">{shuffledAnswers[2]}</button>
-      <button className="question__btn">{shuffledAnswers[3]}</button>
+
+      <button className="question__btn">{decode(shuffledAnswers[0])}</button>
+      <button className="question__btn">{decode(shuffledAnswers[1])}</button>
+      <button className="question__btn">{decode(shuffledAnswers[2])}</button>
+      <button className="question__btn">{decode(shuffledAnswers[3])}</button>
+
     </>);
   }
 
