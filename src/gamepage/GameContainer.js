@@ -41,7 +41,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
 
   const handleClick = (e) => {
     // console.log(e.target.innerText == currentQuestion.correct_answer);
-    const updatedCurrentGame = currentGame;
+    let updatedCurrentGame = currentGame;
 
     if(e.target.innerText == currentQuestion.correct_answer){
       // 1) set relevant artwork in artworksInGame (change stolen boolean in artwork game to true)
@@ -64,7 +64,8 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       updatedCurrentGame.penalty = currentGame.penalty + 1;
       // setCurrentGame({updatedCurrentGame});
     }
-    // updateGame(updatedCurrentGame);
+    updateGame(updatedCurrentGame);    
+
   }
 
 

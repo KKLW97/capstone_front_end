@@ -130,18 +130,19 @@ const fetchArtworkInGameByGameId = async (gameId) => {
 
   };
 
-    //NOTE: UNDO COMMENT
-  // // update a penalty etc. in a game (general)
-  // const updateGame = async (updatedCurrentGame) => {
-  //   const response = await fetch(`localhost:8080/games/${updatedCurrentGame.id}`, {
-  //       method: "PUT",
-  //       headers: {"Content-Type": "application/json"},
-  //       body: JSON.stringify(updatedCurrentGame)
-  //     })
-  //   const data = await response.json();
-  //   setCurrentGame(data);
-  //   // fetchGameById(currentGame.id);
-  // }
+  // update a penalty etc. in a game (general)
+  const updateGame = async (updatedCurrentGame) => {
+    const response = await fetch(`localhost:8080/games/${updatedCurrentGame.id}`, {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(updatedCurrentGame)
+      })
+    const data = await response.json();
+    setCurrentGame(data);
+    fetchGameById(data.id);
+    console.log(currentGame);
+
+  }
 
   // updateArtworkInGame
   const updateArtworkInGame = (updatedArtworkInGame) => {
@@ -186,8 +187,7 @@ const fetchArtworkInGameByGameId = async (gameId) => {
       activePlayer = {activePlayer}
       currentGame={currentGame}
       artworksInGame={artworksInGame}
-          //NOTE: UNDO COMMENT
-      // updateGame={updateGame}
+      updateGame={updateGame}
       updateArtworkInGame={updateArtworkInGame}
    />,
     },
