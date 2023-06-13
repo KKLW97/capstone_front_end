@@ -1,3 +1,7 @@
+.vertical_painting{
+  transform: rotate(90deg);
+}
+
 /* /body {
   background-color: black;
   color: white;

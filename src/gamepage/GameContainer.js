@@ -3,7 +3,6 @@ import MapContainer from "./MapContainer";
 import PaintingListContainer from "../containers/PaintingListContainer";
 import {decode} from 'html-entities';
 
-
 import "../CSSfiles/App.css";
 const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame}) => {
 

@@ -10,26 +10,34 @@ const MapContainer = ({hideDisplayPaintingInfoStatus, displayPaintingInfoStatus,
     const [thiefImage, setThiefImage] = useState("heading down");
 
     const paintingPosition1X = 150;
-    const paintingPosition1Y = 40;    
+    const paintingPosition1Y = 40;
+
     const paintingPosition2X = 790;
-    const paintingPosition2Y = 40;    
+    const paintingPosition2Y = 40; 
+
     const paintingPosition3X = 190;
-    const paintingPosition3Y = 720;    
+    const paintingPosition3Y = 720;
+
     const paintingPosition4X = 750;
     const paintingPosition4Y = 720; 
 
-    const paintingPosition5X = 200;
-    const paintingPosition5Y = 200; 
-    const paintingPosition6X = 300;
-    const paintingPosition6Y = 300; 
-    const paintingPosition7X = 400;
-    const paintingPosition7Y = 400; 
-    const paintingPosition8X = 500;
-    const paintingPosition8Y = 500; 
-    const paintingPosition9X = 600;
-    const paintingPosition9Y = 600; 
-    const paintingPosition10X = 700;
-    const paintingPosition10Y = 400; 
+    const paintingPosition5X = 10;
+    const paintingPosition5Y = 100;
+
+    const paintingPosition6X = 90;
+    const paintingPosition6Y = 615; 
+
+    const paintingPosition7X = 290;
+    const paintingPosition7Y = 485; 
+
+    const paintingPosition8X = 650;
+    const paintingPosition8Y = 485; 
+
+    const paintingPosition9X = 940;
+    const paintingPosition9Y = 100;
+
+    const paintingPosition10X = 855;
+    const paintingPosition10Y = 615; 
     
     const theifSpeed = 5;
 
@@ -283,16 +291,16 @@ const MapContainer = ({hideDisplayPaintingInfoStatus, displayPaintingInfoStatus,
     return ( 
         <div className="map-container" style={{height: `${containerHeight}px`, width: `${containerWidth}px`, backgroundImage: `url(${mapImage})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundColor: `black`, backgroundPosition: "center"}}>
             <ThiefComponent displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerHeight={containerHeight} containerWidth={containerWidth} thiefPositionX={thiefPositionX} thiefPositionY={thiefPositionY} thiefImage={thiefImage} questionBeingDisplayed={questionBeingDisplayed}/>
-            <PaintingComponent paintingPositionX={paintingPosition1X} paintingPositionY={paintingPosition1Y}/>
-            <PaintingComponent paintingPositionX={paintingPosition2X} paintingPositionY={paintingPosition2Y}/>
-            <PaintingComponent paintingPositionX={paintingPosition3X} paintingPositionY={paintingPosition3Y}/>
-            <PaintingComponent paintingPositionX={paintingPosition4X} paintingPositionY={paintingPosition4Y}/>
-            <PaintingComponent paintingPositionX={paintingPosition5X} paintingPositionY={paintingPosition5Y}/>
-            <PaintingComponent paintingPositionX={paintingPosition6X} paintingPositionY={paintingPosition6Y}/>
-            <PaintingComponent paintingPositionX={paintingPosition7X} paintingPositionY={paintingPosition7Y}/>
-            <PaintingComponent paintingPositionX={paintingPosition8X} paintingPositionY={paintingPosition8Y}/>
-            <PaintingComponent paintingPositionX={paintingPosition9X} paintingPositionY={paintingPosition9Y}/>
-            <PaintingComponent paintingPositionX={paintingPosition10X} paintingPositionY={paintingPosition10Y}/>
+            <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition1X} paintingPositionY={paintingPosition1Y}/>
+            <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition2X} paintingPositionY={paintingPosition2Y}/>
+            <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition3X} paintingPositionY={paintingPosition3Y}/>
+            <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition4X} paintingPositionY={paintingPosition4Y}/>
+            <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition5X} paintingPositionY={paintingPosition5Y}/>
+            <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition6X} paintingPositionY={paintingPosition6Y}/>
+            <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition7X} paintingPositionY={paintingPosition7Y}/>
+            <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition8X} paintingPositionY={paintingPosition8Y}/>
+            <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition9X} paintingPositionY={paintingPosition9Y}/>
+            <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition10X} paintingPositionY={paintingPosition10Y}/>
             {/* {paintingInfo ? <button style={{position: "absolute", left: "0px", bottom: "100px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null} */}
         </div>
      );
