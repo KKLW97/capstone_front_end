@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import MapContainer from "./MapContainer";
 import PaintingListContainer from "../containers/PaintingListContainer";
+import {decode} from 'html-entities';
 
 
 import "../CSSfiles/App.css";
@@ -18,10 +19,18 @@ const GameContainer = ({activePlayer, currentGame, setCurrentGame, artworksInGam
   const [currentQuestion, setCurrentQuestion] = useState({});
   const [questionBeingDisplayed, setQuestionBeingDisplayed] = useState();
 
+  const [displayPaintingInfoStatus, setDisplayPaintingInfoStatus] = useState("hidden");
+
+
   const displayPaintingInfo = (index) => {
     // console.log("Displays modal for Multiple Choice Question / Displays info about painting, giving the option for the player to select this painting");
     // console.log(`${artworksInGame[index].title}, ${artworksInGame[index].artist}`);
     setPaintingInfo(<>{artworksInGame[index].title}, {artworksInGame[index].artist}<br/>£{artworksInGame[index].value}<br/>{artworksInGame[index].rarityLevel.substring(0, 1) + artworksInGame[index].rarityLevel.substring(1).toLowerCase()}</>);
+    setDisplayPaintingInfoStatus("visible");
+  }
+
+  const hideDisplayPaintingInfoStatus = () => {
+    setDisplayPaintingInfoStatus("hidden");
   }
 
   const displayCurrentQuestion = () => {
@@ -38,7 +47,17 @@ const GameContainer = ({activePlayer, currentGame, setCurrentGame, artworksInGam
     }
     const shuffledAnswers = shuffleArray(answers);
     // 4) then set the question being displayed to be the variable the map is saved to
-    setQuestionBeingDisplayed(<>{currentQuestion.question}<br/><button>{shuffledAnswers[0]}</button><button>{shuffledAnswers[1]}</button><button>{shuffledAnswers[2]}</button><button>{shuffledAnswers[3]}</button></>);
+    setQuestionBeingDisplayed
+    (<>
+      <h1>{decode(currentQuestion.question)}</h1>
+      <br/>
+
+      <button className="question__btn">{decode(shuffledAnswers[0])}</button>
+      <button className="question__btn">{decode(shuffledAnswers[1])}</button>
+      <button className="question__btn">{decode(shuffledAnswers[2])}</button>
+      <button className="question__btn">{decode(shuffledAnswers[3])}</button>
+
+    </>);
   }
 
   useEffect(()=>{
@@ -70,6 +89,7 @@ const GameContainer = ({activePlayer, currentGame, setCurrentGame, artworksInGam
     fetchEasyQuestions();
     fetchMediumQuestions();
     fetchHardQuestions();
+    setDisplayPaintingInfoStatus("hidden");
   }, [])
 
   const getEasyQuestion = (index) => {
@@ -84,9 +104,10 @@ const GameContainer = ({activePlayer, currentGame, setCurrentGame, artworksInGam
 
   return (
       <div className="game-and-stolen-art-list">
-        <MapContainer displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion}/>
+        <MapContainer hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed}/>
         <PaintingListContainer questionBeingDisplayed={questionBeingDisplayed}/>
         {/* {questionBeingDisplayed} */}
+
       </div>
     );
 };

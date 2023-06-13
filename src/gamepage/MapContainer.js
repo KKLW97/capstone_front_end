@@ -3,7 +3,7 @@ import ThiefComponent from "./ThiefComponent";
 import PaintingComponent from "./PaintingComponent";
 import mapImage from "../assets/unnamed-1.png";
 
-const MapContainer = ({displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion}) => {
+const MapContainer = ({hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed}) => {
 
     const [thiefPositionX, setThiefPositionX] = useState(480);
     const [thiefPositionY, setThiefPositionY] = useState(0);
@@ -39,6 +39,9 @@ const MapContainer = ({displayCurrentQuestion, paintingInfo, containerWidth, con
         if (distance <= proximityLimit) {
             displayPaintingInfo(0);
             getEasyQuestion(0);
+          }
+          else {
+            hideDisplayPaintingInfoStatus(0);
           }
     }
 
@@ -279,7 +282,7 @@ const MapContainer = ({displayCurrentQuestion, paintingInfo, containerWidth, con
     }
     return ( 
         <div className="map-container" style={{height: `${containerHeight}px`, width: `${containerWidth}px`, backgroundImage: `url(${mapImage})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundColor: `black`, backgroundPosition: "center"}}>
-            <ThiefComponent displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerHeight={containerHeight} containerWidth={containerWidth} thiefPositionX={thiefPositionX} thiefPositionY={thiefPositionY} thiefImage={thiefImage}/>
+            <ThiefComponent displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerHeight={containerHeight} containerWidth={containerWidth} thiefPositionX={thiefPositionX} thiefPositionY={thiefPositionY} thiefImage={thiefImage} questionBeingDisplayed={questionBeingDisplayed}/>
             <PaintingComponent paintingPositionX={paintingPosition1X} paintingPositionY={paintingPosition1Y}/>
             <PaintingComponent paintingPositionX={paintingPosition2X} paintingPositionY={paintingPosition2Y}/>
             <PaintingComponent paintingPositionX={paintingPosition3X} paintingPositionY={paintingPosition3Y}/>

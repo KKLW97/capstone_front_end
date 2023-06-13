@@ -56,6 +56,7 @@
     justify-content: flex-end;
 
   }
+  /*  */
 
   .titleClostBtn button {
     background-color: transparent;
@@ -80,7 +81,9 @@
     align-items: center;
   }
 
-  .modalBackground .footer button {
+  /* add button back */
+
+  .modalBackground .footer button{
 
     width: 150px;
     height: 45px;

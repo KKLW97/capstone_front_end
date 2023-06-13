@@ -83,3 +83,20 @@ button {
   border: none;
   cursor: pointer;
 }  */
+
+.question__btn {
+  border: solid black 1px;;
+  padding: 24px;
+
+}
+
+.btn__wrapper {
+  display: grid;
+  grid-template-columns: auto auto; 
+  gap: 10px; 
+  /* grid-template:  */
+}
+
+.questionModalBackground{
+  z-index: 1;
+}
