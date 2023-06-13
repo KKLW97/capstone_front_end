@@ -5,7 +5,7 @@ import {decode} from 'html-entities';
 
 
 import "../CSSfiles/App.css";
-const GameContainer = ({activePlayer, currentGame, setCurrentGame, artworksInGame}) => {
+const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame}) => {
 
   const [gameContainerWidth, setGameContainerWidth] = useState(1082);
   const [gameContainerHeight, setGameContainerHeight] = useState(800);
@@ -21,17 +21,52 @@ const GameContainer = ({activePlayer, currentGame, setCurrentGame, artworksInGam
 
   const [displayPaintingInfoStatus, setDisplayPaintingInfoStatus] = useState("hidden");
 
+  const [currentArtworkInGame, setCurrentArtworkInGame] = useState(null);
+
+  // const [guess, setGuess] = useState();
+
 
   const displayPaintingInfo = (index) => {
     // console.log("Displays modal for Multiple Choice Question / Displays info about painting, giving the option for the player to select this painting");
     // console.log(`${artworksInGame[index].title}, ${artworksInGame[index].artist}`);
     setPaintingInfo(<>{artworksInGame[index].title}, {artworksInGame[index].artist}<br/>£{artworksInGame[index].value}<br/>{artworksInGame[index].rarityLevel.substring(0, 1) + artworksInGame[index].rarityLevel.substring(1).toLowerCase()}</>);
     setDisplayPaintingInfoStatus("visible");
+    setCurrentArtworkInGame(artworksInGame[index]);
   }
 
   const hideDisplayPaintingInfoStatus = () => {
     setDisplayPaintingInfoStatus("hidden");
   }
+
+
+  const handleClick = (e) => {
+    // console.log(e.target.innerText == currentQuestion.correct_answer);
+    const updatedCurrentGame = currentGame;
+
+    if(e.target.innerText == currentQuestion.correct_answer){
+      // 1) set relevant artwork in artworksInGame (change stolen boolean in artwork game to true)
+      let updatedArtworkInGame = currentArtworkInGame;
+      updatedArtworkInGame.stolen = true;
+      updateArtworkInGame(updatedArtworkInGame);
+      console.log(updatedArtworkInGame);
+                              //change to current painting object
+      let valueOfPainting = currentArtworkInGame.value;
+      // 2) set current game with updated score
+                                    //change to current painting object value
+      updatedCurrentGame.score = currentGame.score + valueOfPainting;
+
+      // setCurrentGame({updatedCurrentGame});
+
+      // remove painting sprite?
+
+    } else {
+      // 3) set current game with updated penalty
+      updatedCurrentGame.penalty = currentGame.penalty + 1;
+      // setCurrentGame({updatedCurrentGame});
+    }
+    // updateGame(updatedCurrentGame);
+  }
+
 
   const displayCurrentQuestion = () => {
     const incorrectAnswers = currentQuestion.incorrect_answers;
@@ -52,10 +87,10 @@ const GameContainer = ({activePlayer, currentGame, setCurrentGame, artworksInGam
       <h1>{decode(currentQuestion.question)}</h1>
       <br/>
 
-      <button className="question__btn">{decode(shuffledAnswers[0])}</button>
-      <button className="question__btn">{decode(shuffledAnswers[1])}</button>
-      <button className="question__btn">{decode(shuffledAnswers[2])}</button>
-      <button className="question__btn">{decode(shuffledAnswers[3])}</button>
+      <button className="question__btn" onClick={handleClick} name={shuffledAnswers[0]} >{decode(shuffledAnswers[0])}</button>
+      <button className="question__btn" onClick={handleClick} name={shuffledAnswers[1]}>{decode(shuffledAnswers[1])}</button>
+      <button className="question__btn" onClick={handleClick} name={shuffledAnswers[2]}>{decode(shuffledAnswers[2])}</button>
+      <button className="question__btn" onClick={handleClick} name={shuffledAnswers[3]}>{decode(shuffledAnswers[3])}</button>
 
     </>);
   }

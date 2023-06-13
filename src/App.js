@@ -9,6 +9,9 @@ import LoginContainer from "./homepage/LoginContainer";
 import Navbar from "./components/Navbar";
 import { useEffect, useState, createContext, useContext } from "react";
 
+
+const SERVER_URL = "http://localhost:8080";
+
 export const UserContext = createContext();
 
 function App() {
@@ -90,8 +93,6 @@ const fetchArtworkInGameByGameId = async (gameId) => {
       const artworks = jsonData.map((artworkGame) => artworkGame.artwork);
       setArtworksInGame(artworks);
       console.log(artworks);
-    } else {
-      console.log("Invalid data received:", jsonData);
     }
     // const artworks = await jsonData.map((artworkGame)=> 
     // { return artworkGame.artwork})
@@ -129,20 +130,33 @@ const fetchArtworkInGameByGameId = async (gameId) => {
 
   };
 
+    //NOTE: UNDO COMMENT
+  // // update a penalty etc. in a game (general)
+  // const updateGame = async (updatedCurrentGame) => {
+  //   const response = await fetch(`localhost:8080/games/${updatedCurrentGame.id}`, {
+  //       method: "PUT",
+  //       headers: {"Content-Type": "application/json"},
+  //       body: JSON.stringify(updatedCurrentGame)
+  //     })
+  //   const data = await response.json();
+  //   setCurrentGame(data);
+  //   // fetchGameById(currentGame.id);
+  // }
 
-  
-  // useEffect(() => {
-  //   fetchGameForPlayer();
-  // }, []);
+  // updateArtworkInGame
+  const updateArtworkInGame = (updatedArtworkInGame) => {
+    fetch(`${SERVER_URL}/artworksInGame/${updatedArtworkInGame.id}?stolen=true`, {
+          method: "PATCH",
+          headers: {"Content-Type": "application/json",}}
+    )
+    .then ((response) => response.json())
+    .then ((jsonData) => {
+          const artworkInGameToKeep = artworksInGame.filter((artworkInGame) => 
+          artworkInGame.id != updatedArtworkInGame)
+          setArtworksInGame([...artworkInGameToKeep, jsonData])
+    })
+}
 
-
-
-
-
-  // const mapArtworksIngGame = artworksInGame.map((artworkInGame , index) => 
-  //       { return (key=index , artworkInGame)});
-  // setArtworksInGameList(mapArtworksIngGame);
-  // console.log(artworksInGameList);
 
   const router = createBrowserRouter([
     {
@@ -172,6 +186,9 @@ const fetchArtworkInGameByGameId = async (gameId) => {
       activePlayer = {activePlayer}
       currentGame={currentGame}
       artworksInGame={artworksInGame}
+          //NOTE: UNDO COMMENT
+      // updateGame={updateGame}
+      updateArtworkInGame={updateArtworkInGame}
    />,
     },
   ]);
