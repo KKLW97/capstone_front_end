@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react'
-const PlayerContainer = ({ activePlayer, createNewGame, incompleteGamesForPlayer, fetchIncompleteGamesForPlayer, currentGame, fetchGameById, setCurrentGame,  }) => {
+const PlayerContainer = ({ activePlayer, createNewGame, incompleteGamesForPlayer, fetchIncompleteGamesForPlayer, currentGame, fetchGameById, setCurrentGame, fetchArtworkInGameByGameId,  }) => {
 
 
 
@@ -27,7 +27,8 @@ const handleFormSubmit = (event) => {
 
 const handleGameChange = (event) => {
     const selectedGame = event.target.value;
-    setCurrentGame(selectedGame); 
+    setCurrentGame(selectedGame)
+    fetchArtworkInGameByGameId(selectedGame.id)  
 }
 
 useEffect(() => {

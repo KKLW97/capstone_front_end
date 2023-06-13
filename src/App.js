@@ -23,6 +23,8 @@ function App() {
   const [allGamesForPlayer, setAllGamesForPlayer] = useState([]);
   const [allGames, setAllGames] = useState([]);
   const [allCompleteGames, setAllCompleteGames] = useState([]);
+  const [artworksInGame, setArtworksInGame] = useState([]);
+
 
   
 
@@ -76,8 +78,22 @@ function App() {
     });
     const savedGame = await response.json();
     setCurrentGame(savedGame);
+    fetchArtworkInGameByGameId(savedGame.id) 
   }
 
+
+const fetchArtworkInGameByGameId = async (gameId) => {
+    // gameId is hard-coded for now
+    const response = await fetch(`http://localhost:8080/artworksInGame?game_id=${gameId}`)
+    const jsonData = await response.json();
+    const artworks = await jsonData.map((artworkGame)=>artworkGame.artwork)
+    setArtworksInGame(artworks);
+    console.log(artworks);
+  };
+
+  useEffect(() => {
+    currentGame && fetchArtworkInGameByGameId(parseInt(currentGame?.id));
+  }, [currentGame]);
 
 
   // get artworks in game by game id 
@@ -145,6 +161,7 @@ function App() {
       element: <GameContainer
       activePlayer = {activePlayer}
       currentGame={currentGame}
+      artworksInGame={artworksInGame}
    />,
     },
   ]);
@@ -153,7 +170,7 @@ function App() {
     <>
       {/* <LandingContainer />
     <GameContainer /> */}
-    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById, setNewPlayer }}>
+    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById, setNewPlayer, fetchArtworkInGameByGameId }}>
 
       <Navbar />
       <RouterProvider router={router} />

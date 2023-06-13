@@ -4,11 +4,11 @@ import PaintingListContainer from "../containers/PaintingListContainer";
 
 
 import "../CSSfiles/App.css";
-const GameContainer = (activePlayer, currentGame, setCurrentGame) => {
+const GameContainer = ({activePlayer, currentGame, setCurrentGame, artworksInGame}) => {
 
   const [gameContainerWidth, setGameContainerWidth] = useState(1082);
   const [gameContainerHeight, setGameContainerHeight] = useState(800);
-  const [artworksInGame, setArtworksInGame] = useState([]);
+  // const [artworksInGame, setArtworksInGame] = useState([]);
   const [paintingInfo, setPaintingInfo] = useState([]);
 
   const [easyQuestions, setEasyQuestions] = useState([]);
@@ -17,17 +17,18 @@ const GameContainer = (activePlayer, currentGame, setCurrentGame) => {
 
   const [currentQuestion, setCurrentQuestion] = useState({});
 
-  const fetchArtworkInGameByGameId = async () => {
-    // gameId is hard-coded for now
-    const response = await fetch(`http://localhost:8080/artworksInGame?game_id=2`)
-    const jsonData = await response.json();
-    const artworks = jsonData.map((artworkGame)=>artworkGame.artwork)
-    setArtworksInGame(artworks);
-  };
+  // const fetchArtworkInGameByGameId = async (gameId) => {
+  //   // gameId is hard-coded for now
+  //   const response = await fetch(`http://localhost:8080/artworksInGame?game_id=${gameId}`)
+  //   const jsonData = await response.json();
+  //   // const artworks = jsonData.map((artworkGame)=>artworkGame.artwork)
+  //   setArtworksInGame(jsonData);
+  //   console.log(jsonData);
+  // };
 
-  useEffect(() => {
-    fetchArtworkInGameByGameId();
-  }, []);
+  // useEffect(() => {
+  //   fetchArtworkInGameByGameId(parseInt(currentGame.id));
+  // }, []);
 
   const displayPaintingInfo = (index) => {
     // console.log("Displays modal for Multiple Choice Question / Displays info about painting, giving the option for the player to select this painting");
