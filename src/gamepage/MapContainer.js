@@ -3,7 +3,7 @@ import ThiefComponent from "./ThiefComponent";
 import PaintingComponent from "./PaintingComponent";
 import mapImage from "../assets/unnamed-1.png";
 
-const MapContainer = ({containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion}) => {
+const MapContainer = ({displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion}) => {
 
     const [thiefPositionX, setThiefPositionX] = useState(480);
     const [thiefPositionY, setThiefPositionY] = useState(0);
@@ -279,7 +279,7 @@ const MapContainer = ({containerWidth, containerHeight, displayPaintingInfo, get
     }
     return ( 
         <div className="map-container" style={{height: `${containerHeight}px`, width: `${containerWidth}px`, backgroundImage: `url(${mapImage})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundColor: `black`, backgroundPosition: "center"}}>
-            <ThiefComponent  containerHeight={containerHeight} containerWidth={containerWidth} thiefPositionX={thiefPositionX} thiefPositionY={thiefPositionY} thiefImage={thiefImage}/>
+            <ThiefComponent displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerHeight={containerHeight} containerWidth={containerWidth} thiefPositionX={thiefPositionX} thiefPositionY={thiefPositionY} thiefImage={thiefImage}/>
             <PaintingComponent paintingPositionX={paintingPosition1X} paintingPositionY={paintingPosition1Y}/>
             <PaintingComponent paintingPositionX={paintingPosition2X} paintingPositionY={paintingPosition2Y}/>
             <PaintingComponent paintingPositionX={paintingPosition3X} paintingPositionY={paintingPosition3Y}/>
@@ -290,6 +290,7 @@ const MapContainer = ({containerWidth, containerHeight, displayPaintingInfo, get
             <PaintingComponent paintingPositionX={paintingPosition8X} paintingPositionY={paintingPosition8Y}/>
             <PaintingComponent paintingPositionX={paintingPosition9X} paintingPositionY={paintingPosition9Y}/>
             <PaintingComponent paintingPositionX={paintingPosition10X} paintingPositionY={paintingPosition10Y}/>
+            {/* {paintingInfo ? <button style={{position: "absolute", left: "0px", bottom: "100px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null} */}
         </div>
      );
 }
