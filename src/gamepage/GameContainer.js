@@ -16,25 +16,36 @@ const GameContainer = ({activePlayer, currentGame, setCurrentGame, artworksInGam
   const [hardQuestions, setHardQuestions] = useState([]);
 
   const [currentQuestion, setCurrentQuestion] = useState({});
-
-  // const fetchArtworkInGameByGameId = async (gameId) => {
-  //   // gameId is hard-coded for now
-  //   const response = await fetch(`http://localhost:8080/artworksInGame?game_id=${gameId}`)
-  //   const jsonData = await response.json();
-  //   // const artworks = jsonData.map((artworkGame)=>artworkGame.artwork)
-  //   setArtworksInGame(jsonData);
-  //   console.log(jsonData);
-  // };
-
-  // useEffect(() => {
-  //   fetchArtworkInGameByGameId(parseInt(currentGame.id));
-  // }, []);
+  const [questionBeingDisplayed, setQuestionBeingDisplayed] = useState();
 
   const displayPaintingInfo = (index) => {
     // console.log("Displays modal for Multiple Choice Question / Displays info about painting, giving the option for the player to select this painting");
-    console.log(`${artworksInGame[index].title}, ${artworksInGame[index].artist}`);
-    setPaintingInfo(<>{artworksInGame[index].title}, {artworksInGame[index].artist}<br/>Value: £{artworksInGame[index].value}<br/>Rarity: {artworksInGame[index].rarityLevel}</>);
+    // console.log(`${artworksInGame[index].title}, ${artworksInGame[index].artist}`);
+    setPaintingInfo(<>{artworksInGame[index].title}, {artworksInGame[index].artist}<br/>£{artworksInGame[index].value}<br/>{artworksInGame[index].rarityLevel.substring(0, 1) + artworksInGame[index].rarityLevel.substring(1).toLowerCase()}</>);
   }
+
+  const displayCurrentQuestion = () => {
+    const incorrectAnswers = currentQuestion.incorrect_answers;
+    const answers = []
+    answers.push(currentQuestion.correct_answer, incorrectAnswers[0], incorrectAnswers[1], incorrectAnswers[2]);
+    // 3) shuffle, map and in the map create the answer buttons
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+           const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+    const shuffledAnswers = shuffleArray(answers);
+    // 4) then set the question being displayed to be the variable the map is saved to
+    setQuestionBeingDisplayed(<>{currentQuestion.question}<br/><button>{shuffledAnswers[0]}</button><button>{shuffledAnswers[1]}</button><button>{shuffledAnswers[2]}</button><button>{shuffledAnswers[3]}</button></>);
+  }
+
+  useEffect(()=>{
+    if(currentQuestion && currentQuestion.correct_answer){
+      displayCurrentQuestion();
+    }
+  }, [currentQuestion])
 
 
   const fetchEasyQuestions = async () => {
@@ -71,52 +82,11 @@ const GameContainer = ({activePlayer, currentGame, setCurrentGame, artworksInGam
     setCurrentQuestion(hardQuestions[index]);
   }
 
-
-
-
-  // find the corresponding game for player 
-
-  // const fetchGameForPlayer = async () => {
-  //   const response = await fetch("https://opentdb.com/api.php?amount=1&category=25&difficulty=easy&type=multiple");
-  //   const jsonData = await response.json();
-  //   setFirstQuestion(jsonData);
-  // };
-
-  // useEffect(() => {
-  //   fetchGameForPlayer();
-  // }, []);
-
-  // const firstArtworkRarity = artworksInGame.length > 0 ? artworksInGame[0].artwork.rarityLevel : "";
-  // console.log(firstArtworkRarity);
-
-
-//   const fetchQuestion = async(rarity) => {
-//     let question = ""
-//     if(rarity === "LEGENDARY"){
-//       question = await fetch("https://opentdb.com/api.php?amount=1&category=25&difficulty=hard&type=multiple")
-      
-
-//     } else if (rarity === "COMMON"){
-//       question = await fetch("https://opentdb.com/api.php?amount=1&category=25&difficulty=easy&type=multiple")
-
-//     }else{
-//      question = await fetch("https://opentdb.com/api.php?amount=1&category=25&difficulty=medium&type=multiple")
-//     }
-
-//     const jsonData = await question.json();
-//     console.log(jsonData);
-
-//     return jsonData;
-    
-//   }
-
-//   setFirstQuestion(fetchQuestion(firstArtworkRarity));
-
-
   return (
       <div className="game-and-stolen-art-list">
-        <MapContainer containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion}/>
-        <PaintingListContainer paintingInfo={paintingInfo}/>
+        <MapContainer displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion}/>
+        <PaintingListContainer questionBeingDisplayed={questionBeingDisplayed}/>
+        {/* {questionBeingDisplayed} */}
       </div>
     );
 };
