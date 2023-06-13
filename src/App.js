@@ -104,6 +104,28 @@ const fetchArtworkInGameByGameId = async (gameId) => {
   }, [currentGame]);
 
 
+  // update a penalty in a game 
+
+  const updateGame = (game) => {
+    fetch(`${SERVER_URL}/games/${game.id}`, {
+      method: "PUT",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(game)
+    })
+    .then((response) => response.json())
+    .then((responseGame) => {
+      const updatedGameList = games.map((game) => {
+        if(game.id === responseGame.id){
+          return responseGame;
+        }else{
+          return game;
+        }
+      })
+      setGames(updatedGameList);
+    })
+    setGameToUpdate(null);
+  }
+
   // get artworks in game by game id 
   // const fetchArtworkInGameByGameId = async () => {
   //   const response = await fetch("http://localhost:8080/artworksInGame?game_id=2")
