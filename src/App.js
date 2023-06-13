@@ -86,9 +86,17 @@ const fetchArtworkInGameByGameId = async (gameId) => {
     // gameId is hard-coded for now
     const response = await fetch(`http://localhost:8080/artworksInGame?game_id=${gameId}`)
     const jsonData = await response.json();
-    const artworks = await jsonData.map((artworkGame)=>artworkGame.artwork)
-    setArtworksInGame(artworks);
-    console.log(artworks);
+    if (Array.isArray(jsonData)) {
+      const artworks = jsonData.map((artworkGame) => artworkGame.artwork);
+      setArtworksInGame(artworks);
+      console.log(artworks);
+    } else {
+      console.log("Invalid data received:", jsonData);
+    }
+    // const artworks = await jsonData.map((artworkGame)=> 
+    // { return artworkGame.artwork})
+    // setArtworksInGame(artworks);
+    // console.log(artworks);
   };
 
   useEffect(() => {
@@ -154,6 +162,8 @@ const fetchArtworkInGameByGameId = async (gameId) => {
       currentGame={currentGame}
       fetchGameById={fetchGameById}
       setCurrentGame={setCurrentGame}
+      fetchArtworkInGameByGameId = {fetchArtworkInGameByGameId}
+
       />,
     },
     {
