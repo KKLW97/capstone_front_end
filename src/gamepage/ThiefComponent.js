@@ -6,7 +6,7 @@ import thief_sprite_back from '../assets/thief_sprite_back.png';
 import QuestionModal from './QuestionModal';
 import { useState } from 'react';
 
-const ThiefComponent = ({displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerHeight, containerWidth, thiefPositionX, thiefPositionY, thiefImage}) => {
+const ThiefComponent = ({displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerHeight, containerWidth, thiefPositionX, thiefPositionY, thiefImage, questionBeingDisplayed}) => {
 
     const [questionModal, setQuestionModal] = useState(false);
 
@@ -39,7 +39,7 @@ const ThiefComponent = ({displayPaintingInfoStatus, displayCurrentQuestion, pain
             {paintingInfo ? <button onClick={() => {setQuestionModal(true)}} style={{visibility: `${displayPaintingInfoStatus}`, width: "200px", position: "absolute", left: "-55px", bottom: "70px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null}
             {/* {paintingInfo ? <button onClick={handleClick} style={{width: "200px", position: "absolute", left: "-55px", bottom: "70px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null} */}
             
-            {questionModal && <QuestionModal closeModal={setQuestionModal} />} 
+            {questionModal && <QuestionModal closeModal={setQuestionModal} questionBeingDisplayed={questionBeingDisplayed} />} 
 
         </div>
       );

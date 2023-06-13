@@ -2,7 +2,7 @@ import { useState, useContext, useNavigate } from "react";
 import { UserContext } from "../App";
 
 
-const QuestionModal = ({closeModal}) => {
+const QuestionModal = ({closeModal, questionBeingDisplayed}) => {
     
     // const [newPlayerToBeAdded, setNewPlayerToBeAdded] = useState("");
   const [erroMessage, setErrorMessage] = useState("");
@@ -38,32 +38,14 @@ const QuestionModal = ({closeModal}) => {
     
     
     return ( 
-        <div className="modalBackground">
+        <div className="questionModalBackground">
         <div className="modalContainer">
           <div className="titleClostBtn">
             <button onClick={() => closeModal(false)}> X </button>
           </div>
   
           <div className="title">
-            <h1> Enter your username to register </h1>
-          </div>
-          <div className="body">
-            <input
-              className="textboxid"
-              type="text"
-              placeholder="enter your name"
-              name="name"
-              value={newPlayer}
-              onChange={handleChange}
-            />
-          </div>
-          {erroMessage}
-          <div className="footer">
-            <button onClick={() => closeModal(false)} id="cancelBtn">
-              Cancel
-            </button>
-            <button onClick={handleClick}> Register </button>
-           
+            <div> {questionBeingDisplayed} </div>
           </div>
         </div>
       </div>

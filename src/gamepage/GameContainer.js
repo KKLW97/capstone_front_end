@@ -46,7 +46,15 @@ const GameContainer = ({activePlayer, currentGame, setCurrentGame, artworksInGam
     }
     const shuffledAnswers = shuffleArray(answers);
     // 4) then set the question being displayed to be the variable the map is saved to
-    setQuestionBeingDisplayed(<>{currentQuestion.question}<br/><button>{shuffledAnswers[0]}</button><button>{shuffledAnswers[1]}</button><button>{shuffledAnswers[2]}</button><button>{shuffledAnswers[3]}</button></>);
+    setQuestionBeingDisplayed
+    (<>
+      <h1>{currentQuestion.question}</h1>
+      <br/>
+      <button className="question__btn">{shuffledAnswers[0]}</button>
+      <button className="question__btn">{shuffledAnswers[1]}</button>
+      <button className="question__btn">{shuffledAnswers[2]}</button>
+      <button className="question__btn">{shuffledAnswers[3]}</button>
+    </>);
   }
 
   useEffect(()=>{
@@ -93,9 +101,10 @@ const GameContainer = ({activePlayer, currentGame, setCurrentGame, artworksInGam
 
   return (
       <div className="game-and-stolen-art-list">
-        <MapContainer hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion}/>
+        <MapContainer hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed}/>
         <PaintingListContainer questionBeingDisplayed={questionBeingDisplayed}/>
         {/* {questionBeingDisplayed} */}
+
       </div>
     );
 };
