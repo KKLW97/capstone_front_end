@@ -1,10 +1,13 @@
 const PaintingListContainer = ({stolenArtworkList, questionBeingDisplayed}) => {
     return ( 
-        <div className="caught-fish">
-            <h3> This is the PaintingListContainer</h3>
+       <div>
+       <div> <h3> These are the cool paintings you stole</h3> </div>
+
+       <div className="caught-fish">
             {/* <img src={thisPainting}/> */}
-            {stolenArtworkList.map(stolenArtwork => <div><img src={stolenArtwork.artwork.url} height="100px"/><p>"{stolenArtwork.artwork.title}", {stolenArtwork.artwork.artist}
+            {stolenArtworkList.map(stolenArtwork => <div><div classname="caught-fish-image"><img src={stolenArtwork.artwork.url} height="100px"/></div> <p>"{stolenArtwork.artwork.title}", {stolenArtwork.artwork.artist}
             </p></div>)}
+        </div>
         </div>
      );
 }

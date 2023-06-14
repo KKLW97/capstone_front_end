@@ -28,14 +28,22 @@ body {
   margin: 30px;
   position: relative;
 }
+
 .caught-fish {
   grid-column: 2 / 3;
-  background-color: rgb(132, 132, 132);
+  height: 750px;
+  background-color: rgb(255, 117, 246);
   padding: 20px;
   margin: 30px;
   color: black;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: auto;
+}
+
+.caught-fish img {
+  border: 5px solid brown;
+  padding: 10px; 
+  background-color: goldenrod;
 }
 
 .table td {
@@ -48,15 +56,6 @@ button {
   border: none;
   cursor: pointer;
   color: white;
-}
-
-.caught-fish{
-  background-color: rgb(132, 132, 132);
-  padding: 20px;
-  margin: 30px;
-  color: black;
-  overflow-y: auto;
-  overflow-x: auto;
 }
 
 /* 
