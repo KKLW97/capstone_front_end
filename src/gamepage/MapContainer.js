@@ -3,7 +3,7 @@ import ThiefComponent from "./ThiefComponent";
 import PaintingComponent from "./PaintingComponent";
 import mapImage from "../assets/unnamed-1.png";
 
-const MapContainer = ({hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed}) => {
+const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed}) => {
 
     const [thiefPositionX, setThiefPositionX] = useState(480);
     const [thiefPositionY, setThiefPositionY] = useState(0);
@@ -297,7 +297,8 @@ const MapContainer = ({hideDisplayPaintingInfoStatus, displayPaintingInfoStatus,
             <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition4X} paintingPositionY={paintingPosition4Y}/>
             <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition5X} paintingPositionY={paintingPosition5Y}/>
             <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition6X} paintingPositionY={paintingPosition6Y}/>
-            <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition7X} paintingPositionY={paintingPosition7Y}/>
+            {artworksInGame[6]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingPosition7X} paintingPositionY={paintingPosition7Y}/>
+            : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition7X} paintingPositionY={paintingPosition7Y}/>}
             <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition8X} paintingPositionY={paintingPosition8Y}/>
             <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition9X} paintingPositionY={paintingPosition9Y}/>
             <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition10X} paintingPositionY={paintingPosition10Y}/>

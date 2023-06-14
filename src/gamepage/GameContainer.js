@@ -43,6 +43,34 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   }
 
 
+  //CONDITIONS FOR COMPLETING THE GAME
+
+
+
+  // 2: FORFEIT/ ESCAPE!
+  // user manually clicks end game, Game set to complete, message "you forfeit" (separate handleClick)
+
+
+
+  const checkGameStatus = () => {
+
+  let updatedGame = currentGame  
+  // 1: LOSE 
+  // PENALTY = 3, Game set to complete, message"you lose"
+  
+  if (updatedGame.penalty===3) {
+    
+    updatedGame.complete = true;
+    updatedGame.score = 0;
+    setCurrentGame(updatedGame)
+    // add modal/message saying "you lose everything... crime doesn't pay apparently"
+  }
+
+  // else if ()
+    // 3: WIN!!! 
+  // all 10 paintings = stolen.true, game set to complete, message "you won"
+  }
+  
   const handleClick = async(e) => {
     // console.log(e.target.innerText == currentQuestion.correct_answer);
     let updatedCurrentGame = currentGame;
@@ -144,7 +172,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
 
   return (
       <div className="game-and-stolen-art-list">
-        <MapContainer hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed}/>
+        <MapContainer artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed}/>
         <PaintingListContainer questionBeingDisplayed={questionBeingDisplayed}/>
         {/* {questionBeingDisplayed} */}
 
