@@ -158,6 +158,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     fetchMediumQuestions();
     fetchHardQuestions();
     setDisplayPaintingInfoStatus("hidden");
+    fetchStolenArtwork(parseInt(currentGame.id));
   }, [])
 
   const getEasyQuestion = (index) => {

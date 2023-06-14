@@ -22,6 +22,7 @@ const incompleteGameList = incompleteGamesForPlayer.map((incompleteGame) => {
 const handleFormSubmit = (event) => {
     event.preventDefault()
     fetchGameById(parseInt(currentGame))
+    fetchArtworkInGameByGameId(parseInt(currentGame)); 
     navigate("/gamePage")
 }
 
@@ -29,7 +30,6 @@ const handleGameChange = (event) => {
     const selectedGame = event.target.value;
     console.log(selectedGame);
     setCurrentGame(selectedGame)
-    fetchArtworkInGameByGameId(parseInt(selectedGame)); 
 }
 
 useEffect(() => {
