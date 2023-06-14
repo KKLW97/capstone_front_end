@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import MapContainer from "./MapContainer";
 import PaintingListContainer from "../containers/PaintingListContainer";
 import {decode} from 'html-entities';
+import "../CSSfiles/PenaltyList.css"
 
 import "../CSSfiles/App.css";
+
+import PenaltyList from "./PenaltyList";
 const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame, fetchStolenArtwork, fetchArtworkInGameByGameId, stolenArtworkList}) => {
+
 
   const [gameContainerWidth, setGameContainerWidth] = useState(1082);
   const [gameContainerHeight, setGameContainerHeight] = useState(800);
@@ -181,11 +185,16 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   }
 
   return (
-      <div className="game-and-stolen-art-list">
-        <MapContainer artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed} />
-        <PaintingListContainer stolenArtworkList={stolenArtworkList} questionBeingDisplayed={questionBeingDisplayed}/>
-        {/* {questionBeingDisplayed} */}
-
+      <div >
+        {/* <section className="alarm-container"> */}
+          {/* <PenaltyList currentGame={currentGame}/> */}
+        {/* </section> */}
+        <section className="game-and-stolen-art-list">
+          <PenaltyList currentGame={currentGame}/>
+          <MapContainer artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed}/>
+          <PaintingListContainer stolenArtworkList={stolenArtworkList} questionBeingDisplayed={questionBeingDisplayed}/>
+          {/* {questionBeingDisplayed} */}
+        </section>
       </div>
     );
 };
