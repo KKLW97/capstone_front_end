@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 const PlayerContainer = ({ activePlayer, createNewGame, incompleteGamesForPlayer, fetchIncompleteGamesForPlayer, currentGame, fetchGameById, setCurrentGame, fetchArtworkInGameByGameId  }) => {
 
+const [selectedId, setSelectedId] = useState(null);
 
-
-const handleClick = () => {
-    createNewGame(activePlayer.id);
+const handleClick = async() => {
+    await createNewGame(activePlayer.id);
     console.log(activePlayer)
     navigate("/gamePage");
 }
@@ -19,17 +19,16 @@ const incompleteGameList = incompleteGamesForPlayer.map((incompleteGame) => {
     )
 });
 
-const handleFormSubmit = (event) => {
+const handleFormSubmit = async (event) => {
     event.preventDefault()
-    fetchGameById(parseInt(currentGame))
+    await fetchGameById(selectedId)
+    // await fetchArtworkInGameByGameId(selectedId); 
     navigate("/gamePage")
 }
 
 const handleGameChange = (event) => {
-    const selectedGame = event.target.value;
-    console.log(selectedGame);
-    setCurrentGame(selectedGame)
-    fetchArtworkInGameByGameId(selectedGame.id); 
+    setSelectedId(event.target.value);
+ 
 }
 
 useEffect(() => {

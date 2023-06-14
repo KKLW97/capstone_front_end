@@ -3,7 +3,7 @@ import ThiefComponent from "./ThiefComponent";
 import PaintingComponent from "./PaintingComponent";
 import mapImage from "../assets/unnamed-1.png";
 
-const MapContainer = ({hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed}) => {
+const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed}) => {
 
     const [thiefPositionX, setThiefPositionX] = useState(480);
     const [thiefPositionY, setThiefPositionY] = useState(0);
@@ -39,7 +39,7 @@ const MapContainer = ({hideDisplayPaintingInfoStatus, displayPaintingInfoStatus,
     const paintingPosition10X = 855;
     const paintingPosition10Y = 615; 
     
-    const theifSpeed = 5;
+    const theifSpeed = 10;
 
     const checkIfNearPainting1 = () => {
         const proximityLimit = 40;
@@ -291,16 +291,37 @@ const MapContainer = ({hideDisplayPaintingInfoStatus, displayPaintingInfoStatus,
     return ( 
         <div className="map-container" style={{height: `${containerHeight}px`, width: `${containerWidth}px`, backgroundImage: `url(${mapImage})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundColor: `black`, backgroundPosition: "center"}}>
             <ThiefComponent displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerHeight={containerHeight} containerWidth={containerWidth} thiefPositionX={thiefPositionX} thiefPositionY={thiefPositionY} thiefImage={thiefImage} questionBeingDisplayed={questionBeingDisplayed}/>
-            <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition1X} paintingPositionY={paintingPosition1Y}/>
-            <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition2X} paintingPositionY={paintingPosition2Y}/>
-            <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition3X} paintingPositionY={paintingPosition3Y}/>
-            <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition4X} paintingPositionY={paintingPosition4Y}/>
-            <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition5X} paintingPositionY={paintingPosition5Y}/>
-            <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition6X} paintingPositionY={paintingPosition6Y}/>
-            <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition7X} paintingPositionY={paintingPosition7Y}/>
-            <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition8X} paintingPositionY={paintingPosition8Y}/>
-            <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition9X} paintingPositionY={paintingPosition9Y}/>
-            <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition10X} paintingPositionY={paintingPosition10Y}/>
+            
+            {artworksInGame[0]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingPosition1X} paintingPositionY={paintingPosition1Y}/>
+            : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition1X} paintingPositionY={paintingPosition1Y}/>}
+            
+            {artworksInGame[1]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingPosition2X} paintingPositionY={paintingPosition2Y}/>
+            : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition2X} paintingPositionY={paintingPosition2Y}/>}
+            
+            {artworksInGame[2]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingPosition3X} paintingPositionY={paintingPosition3Y}/>
+            : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition3X} paintingPositionY={paintingPosition3Y}/>}
+            
+            {artworksInGame[3]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingPosition4X} paintingPositionY={paintingPosition4Y}/>
+            : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition4X} paintingPositionY={paintingPosition4Y}/>}       
+            
+            {artworksInGame[4]?.stolen ? <PaintingComponent paintingClass={"vertical_painting stolen"} paintingPositionX={paintingPosition5X} paintingPositionY={paintingPosition5Y}/>
+            : <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition5X} paintingPositionY={paintingPosition5Y}/>}
+            
+            {artworksInGame[5]?.stolen ? <PaintingComponent paintingClass={"vertical_painting stolen"} paintingPositionX={paintingPosition6X} paintingPositionY={paintingPosition6Y}/>
+                :  <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition6X} paintingPositionY={paintingPosition6Y}/>}
+            
+            {artworksInGame[6]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingPosition7X} paintingPositionY={paintingPosition7Y}/>
+                : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition7X} paintingPositionY={paintingPosition7Y}/>}
+            
+            {artworksInGame[7]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingPosition8X} paintingPositionY={paintingPosition8Y}/>
+                : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition8X} paintingPositionY={paintingPosition8Y}/>}
+            
+            {artworksInGame[8]?.stolen ? <PaintingComponent paintingClass={"vertical_painting stolen"} paintingPositionX={paintingPosition9X} paintingPositionY={paintingPosition9Y}/>
+                : <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition9X} paintingPositionY={paintingPosition9Y}/>}
+            
+            {artworksInGame[9]?.stolen ? <PaintingComponent paintingClass={"vertical_painting stolen"} paintingPositionX={paintingPosition10X} paintingPositionY={paintingPosition10Y}/>
+            : <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition10X} paintingPositionY={paintingPosition10Y}/>}
+            
             {/* {paintingInfo ? <button style={{position: "absolute", left: "0px", bottom: "100px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null} */}
         </div>
      );

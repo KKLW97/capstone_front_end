@@ -27,6 +27,7 @@ function App() {
   const [allGames, setAllGames] = useState([]);
   const [allCompleteGames, setAllCompleteGames] = useState([]);
   const [artworksInGame, setArtworksInGame] = useState([]);
+  const [stolenArtworkList, setStolenArtworkList] = useState([]);
 
 
   
@@ -89,20 +90,19 @@ const fetchArtworkInGameByGameId = async (gameId) => {
     // gameId is hard-coded for now
     const response = await fetch(`http://localhost:8080/artworksInGame?game_id=${gameId}`)
     const jsonData = await response.json();
-    if (Array.isArray(jsonData)) {
-      const artworks = jsonData.map((artworkGame) => artworkGame);
-      setArtworksInGame(artworks);
-      console.log(artworks);
-    }
+    // const artworks = jsonData.map((artworkGame) => artworkGame);
+    setArtworksInGame(jsonData);
+    
+    
     // const artworks = await jsonData.map((artworkGame)=> 
     // { return artworkGame.artwork})
     // setArtworksInGame(artworks);
     // console.log(artworks);
   };
 
-  // useEffect(() => {
-  //   currentGame && fetchArtworkInGameByGameId(parseInt(currentGame?.id));
-  // }, [currentGame]);
+  useEffect(() => {
+    console.log(currentGame);  
+  }, [currentGame]);
 
 
   // get artworks in game by game id 
@@ -144,25 +144,58 @@ const fetchArtworkInGameByGameId = async (gameId) => {
 
   }
 
+
   // updateArtworkInGame
-  const updateArtworkInGame = (updatedArtworkInGame) => {
-    fetch(`${SERVER_URL}/artworksInGame/${updatedArtworkInGame.id}?stolen=true`, {
-          method: "PATCH",
-          headers: {"Content-Type": "application/json",}}
-    )
-    .then ((response) => response.json())
-    .then ((jsonData) => {
-          const updatedArtworksInGame = artworksInGame.map((artworkInGame) => {
-            if(artworkInGame.id != updatedArtworkInGame.id){
-              return artworkInGame
-            } else {
-              return jsonData
-            }
-          })
-          console.log(updatedArtworksInGame)
-          setArtworksInGame(updatedArtworksInGame)
-    })
+//   const updateArtworkInGame = (updatedArtworkInGame) => {
+//     fetch(`${SERVER_URL}/artworksInGame/${updatedArtworkInGame.id}?stolen=true`, {
+//           method: "PATCH",
+//           headers: {"Content-Type": "application/json",}}
+//     )
+//     .then ((response) => response.json())
+//     .then ((jsonData) => {
+//           const updatedArtworksInGame = artworksInGame.map((artworkInGame) => {
+//             if(artworkInGame.id != updatedArtworkInGame.id){
+//               return artworkInGame
+//             } else {
+//               return jsonData
+//             }
+//           })
+//           console.log(updatedArtworksInGame)
+//           setArtworksInGame(updatedArtworksInGame)
+//     })
+// }
+
+const updateArtworkInGame = async(updatedArtworkInGame) => {
+  const response = await fetch(`${SERVER_URL}/artworksInGame/${updatedArtworkInGame.id}?stolen=true`, {
+      method: "PATCH",
+      headers: {"Content-Type": "application/json",}}
+  )
+  const data = await response.json()
+  const updatedArtworksInGame = artworksInGame.map((artworkInGame) => {
+    if(artworkInGame.id != updatedArtworkInGame.id){
+      return artworkInGame
+    } else {
+      return data
+    }
+  })
+  console.log(updatedArtworksInGame)
+  setArtworksInGame(updatedArtworksInGame)
 }
+
+
+const fetchStolenArtwork = async () => {
+  const response = await fetch(`${SERVER_URL}/artworksInGame?game_id=${currentGame.id}&stolen=true`)
+  const jsonData = await response.json()
+  if (Array.isArray(jsonData)) {
+    const stolenArtworks = jsonData.map((artworkGame) => artworkGame);
+    setStolenArtworkList(stolenArtworks)
+    console.log("stolen artwork", stolenArtworks);
+  } else {
+    setStolenArtworkList(jsonData);
+  }
+}
+
+
 
 
   const router = createBrowserRouter([
@@ -192,9 +225,14 @@ const fetchArtworkInGameByGameId = async (gameId) => {
       element: <GameContainer
       activePlayer = {activePlayer}
       currentGame={currentGame}
+      setCurrentGame={setCurrentGame}
       artworksInGame={artworksInGame}
       updateGame={updateGame}
       updateArtworkInGame={updateArtworkInGame}
+      fetchStolenArtwork={fetchStolenArtwork}
+      fetchArtworkInGameByGameId={fetchArtworkInGameByGameId}
+      stolenArtworkList={stolenArtworkList}
+
    />,
     },
   ]);
@@ -207,6 +245,7 @@ const fetchArtworkInGameByGameId = async (gameId) => {
 
       <Navbar />
       <RouterProvider router={router} />
+      
 
     </UserContext.Provider>
 
