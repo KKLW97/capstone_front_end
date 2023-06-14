@@ -4,9 +4,10 @@ import PaintingListContainer from "../containers/PaintingListContainer";
 import {decode} from 'html-entities';
 import { useNavigate } from "react-router-dom";
 
-import forfeit_picture from '../assets/forfeit_game.png';
+import door from '../assets/door.png';
 
 import "../CSSfiles/App.css";
+import "../CSSfiles/Forfeit.css";
 const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame, fetchStolenArtwork, fetchArtworkInGameByGameId, stolenArtworkList}) => {
 
   const [gameContainerWidth, setGameContainerWidth] = useState(1082);
@@ -58,7 +59,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     event.preventDefault();
     currentGame.complete = true;
     await updateGame(currentGame);
-    navigate("/playerAccount");
+   navigate("/playerAccount");
   }
 
 
@@ -197,7 +198,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
         <MapContainer artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed} />
         <PaintingListContainer stolenArtworkList={stolenArtworkList} questionBeingDisplayed={questionBeingDisplayed}/>
         {/* {questionBeingDisplayed} */}
-        <button onClick={handleForfeitGame}> <img src={forfeit_picture} /></button>
+        <button className="forfeit" onClick={handleForfeitGame}> <img src={door} /></button>
 
       </div>
     );
