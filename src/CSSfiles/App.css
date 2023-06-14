@@ -29,7 +29,7 @@ body {
   position: relative;
 }
 .caught-fish {
-  grid-column: 2 / 3;
+  grid-column: 4 / 4;
   background-color: rgb(132, 132, 132);
   padding: 20px;
   margin: 30px;
@@ -109,4 +109,17 @@ button {
 
 .questionModalBackground{
   z-index: 1;
+}
+
+/* PaintingListContainer */
+
+.text__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.PLC__container {
+  width: 100%;
+  max-width: 550px;
 }
