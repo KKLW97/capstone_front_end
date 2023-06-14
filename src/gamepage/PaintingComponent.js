@@ -1,8 +1,8 @@
 import paintingSprite from '../assets/PaintingSprite.png';
 
-const PaintingComponent = ({paintingPositionX, paintingPositionY}) => {
+const PaintingComponent = ({paintingClass, paintingPositionX, paintingPositionY}) => {
     return ( 
-        <><img src={paintingSprite}
+        <img className={paintingClass} src={paintingSprite}
             style={{
                 height: "40px", 
                 width: "100px", 
@@ -11,7 +11,6 @@ const PaintingComponent = ({paintingPositionX, paintingPositionY}) => {
                 left: `${paintingPositionX}px`,
                 top: `${paintingPositionY}px`,
                 }}/>
-        </>
      );
 }
  

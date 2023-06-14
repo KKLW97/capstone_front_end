@@ -1,17 +1,23 @@
-/* /body {
+.vertical_painting{
+  transform: rotate(90deg);
+}
+
+body {
   background-color: black;
   color: white;
   font-family: 'Courier New', Courier, monospace;
   margin: 30px;
 }
+/*
 .navbar{
   grid-area: a;
   text-align: center;
 } */
 
 .game-and-stolen-art-list {
+  justify-items: center;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   gap: 10px;
 } 
 .map-container {
@@ -38,6 +44,7 @@ button {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  color: white;
 }
 
 
@@ -85,14 +92,14 @@ button {
 }  */
 
 .question__btn {
-  border: solid black 1px;;
+  border: solid black 1px;
   padding: 24px;
-
+  color: black;
 }
 
 .btn__wrapper {
   display: grid;
-  grid-template-columns: auto auto; 
+  grid-template-columns: 1fr 1fr; 
   gap: 10px; 
   /* grid-template:  */
 }
