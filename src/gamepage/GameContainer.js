@@ -76,9 +76,9 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     // all 10 paintings = stolen.true, game set to complete, message "you won"
   }
   
-  useEffect(()=>{
+  // useEffect(()=>{
 
-  },[])
+  // },[])
   
   const handleClick = async(e) => {
     // console.log(e.target.innerText == currentQuestion.correct_answer);
