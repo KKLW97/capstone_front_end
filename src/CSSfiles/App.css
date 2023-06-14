@@ -127,9 +127,36 @@ button {
 /* LOSE/WIN MODALS */
 
 .LM__background {
-  width: 50%;
-  height: 50%; 
+  /* width: 50%;
+  height: 50%;  */
   /* background-color: rgba(200, 200, 200);  */
   position: fixed;
-  margin:0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LM__container {
+  color: black;
+  height: 800px;
+  width: 1500px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0,0,0,0.35) 0px 5px 15px;
+  padding: 25px;
+}
+
+.LM__title {
+  text-align: center;
+  font-size: 80px;
+  height: 400px;
+}
+
+.LM__button {
+  background-color: red;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 18px;
 }

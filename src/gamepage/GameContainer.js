@@ -23,7 +23,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
 
   const [currentArtworkInGame, setCurrentArtworkInGame] = useState(null);
 
-  const [loseGameModal, setLoseGameModal] = useState(false);
+  const [openloseGameModal, setLoseGameModal] = useState(false);
 
   // const [guess, setGuess] = useState();
 
@@ -189,7 +189,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
         <MapContainer artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed} />
         <PaintingListContainer questionBeingDisplayed={questionBeingDisplayed} currentGame={currentGame}/>
         {/* {questionBeingDisplayed} */}
-        {loseGameModal && <LoseGameModal setLoseGameModal={setLoseGameModal} />} 
+        {openloseGameModal && <LoseGameModal setLoseGameModal={setLoseGameModal} />} 
       </div>
     );
 };
