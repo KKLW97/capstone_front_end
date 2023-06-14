@@ -39,7 +39,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   }
 
 
-  const handleClick = (e) => {
+  const handleClick = async(e) => {
     // console.log(e.target.innerText == currentQuestion.correct_answer);
     let updatedCurrentGame = currentGame;
 
@@ -47,10 +47,10 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       // 1) set relevant artwork in artworksInGame (change stolen boolean in artwork game to true)
       let updatedArtworkInGame = currentArtworkInGame;
       updatedArtworkInGame.stolen = true;
-      updateArtworkInGame(updatedArtworkInGame);
+      await updateArtworkInGame(updatedArtworkInGame);
       console.log(updatedArtworkInGame);
                               //change to current painting object
-      let valueOfPainting = currentArtworkInGame.value;
+      let valueOfPainting = currentArtworkInGame.artwork.value;
       // 2) set current game with updated score
                                     //change to current painting object value
       updatedCurrentGame.score = currentGame.score + valueOfPainting;
@@ -64,7 +64,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       updatedCurrentGame.penalty = currentGame.penalty + 1;
       // setCurrentGame({updatedCurrentGame});
     }
-    // updateGame(updatedCurrentGame);    
+    updateGame(updatedCurrentGame);    
 
   }
 

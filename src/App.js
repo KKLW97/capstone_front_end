@@ -100,9 +100,9 @@ const fetchArtworkInGameByGameId = async (gameId) => {
     // console.log(artworks);
   };
 
-  useEffect(() => {
-    currentGame && fetchArtworkInGameByGameId(parseInt(currentGame?.id));
-  }, [currentGame]);
+  // useEffect(() => {
+  //   currentGame && fetchArtworkInGameByGameId(parseInt(currentGame?.id));
+  // }, [currentGame]);
 
 
   // get artworks in game by game id 
@@ -118,13 +118,13 @@ const fetchArtworkInGameByGameId = async (gameId) => {
   // }, []);
 
   const fetchGameById = async (gameId) => {
-    const response = await fetch(`http://localhost:8080/games/${gameId}`);
+    const response = await fetch(`${SERVER_URL}/games/${gameId}`);
     const jsonData = await response.json();
     setCurrentGame(jsonData);
   };
 
   const fetchIncompleteGamesForPlayer = async (playerId) => {
-    const response = await fetch(`http://localhost:8080/games?player_id=${playerId}&complete=false`);
+    const response = await fetch(`${SERVER_URL}/games?player_id=${playerId}&complete=false`);
     const jsonData = await response.json();
     setIncompleteGamesForPlayer(jsonData);
 
@@ -132,14 +132,14 @@ const fetchArtworkInGameByGameId = async (gameId) => {
 
   // update a penalty etc. in a game (general)
   const updateGame = async (updatedCurrentGame) => {
-    const response = await fetch(`localhost:8080/games/${updatedCurrentGame.id}`, {
+    const response = await fetch(`${SERVER_URL}/games/${updatedCurrentGame.id}`, {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(updatedCurrentGame)
       })
     const data = await response.json();
     setCurrentGame(data);
-    fetchGameById(data.id);
+    // fetchGameById(data.id);
     console.log(currentGame);
 
   }
@@ -152,9 +152,15 @@ const fetchArtworkInGameByGameId = async (gameId) => {
     )
     .then ((response) => response.json())
     .then ((jsonData) => {
-          const artworkInGameToKeep = artworksInGame.filter((artworkInGame) => 
-          artworkInGame.id != updatedArtworkInGame)
-          setArtworksInGame([...artworkInGameToKeep, jsonData])
+          const updatedArtworksInGame = artworksInGame.map((artworkInGame) => {
+            if(artworkInGame.id != updatedArtworkInGame.id){
+              return artworkInGame
+            } else {
+              return jsonData
+            }
+          })
+          console.log(updatedArtworksInGame)
+          setArtworksInGame(updatedArtworksInGame)
     })
 }
 
