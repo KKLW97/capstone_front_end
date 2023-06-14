@@ -43,7 +43,7 @@ body {
 .caught-fish img {
   border: 5px solid brown;
   padding: 10px; 
-  background-color: goldenrod;
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(253,187,45,1) 100%);
 }
 
 .table td {
