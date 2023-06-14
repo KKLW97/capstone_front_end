@@ -39,7 +39,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     const paintingPosition10X = 855;
     const paintingPosition10Y = 615; 
     
-    const theifSpeed = 5;
+    const theifSpeed = 10;
 
     const checkIfNearPainting1 = () => {
         const proximityLimit = 40;

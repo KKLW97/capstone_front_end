@@ -27,6 +27,7 @@ function App() {
   const [allGames, setAllGames] = useState([]);
   const [allCompleteGames, setAllCompleteGames] = useState([]);
   const [artworksInGame, setArtworksInGame] = useState([]);
+  const [stolenArtworkList, setStolenArtworkList] = useState([]);
 
 
   
@@ -164,6 +165,18 @@ const fetchArtworkInGameByGameId = async (gameId) => {
     })
 }
 
+const fetchStolenArtwork = async () => {
+  const response = await fetch(`${SERVER_URL}/artworksInGame?game_id=${currentGame.id}&stolen=true`)
+  const jsonData = await response.json()
+  if (Array.isArray(jsonData)) {
+    const stolenArtworks = jsonData.map((artworkGame) => artworkGame);
+    setStolenArtworkList(stolenArtworks)
+    console.log("stolen artwork", stolenArtworks);
+  } else {
+    setStolenArtworkList(jsonData);
+  }
+}
+
 
   const router = createBrowserRouter([
     {
@@ -195,6 +208,8 @@ const fetchArtworkInGameByGameId = async (gameId) => {
       artworksInGame={artworksInGame}
       updateGame={updateGame}
       updateArtworkInGame={updateArtworkInGame}
+      fetchStolenArtwork={fetchStolenArtwork}
+
    />,
     },
   ]);
@@ -207,6 +222,7 @@ const fetchArtworkInGameByGameId = async (gameId) => {
 
       <Navbar />
       <RouterProvider router={router} />
+      
 
     </UserContext.Provider>
 

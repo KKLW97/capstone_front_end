@@ -4,7 +4,7 @@ import PaintingListContainer from "../containers/PaintingListContainer";
 import {decode} from 'html-entities';
 
 import "../CSSfiles/App.css";
-const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame}) => {
+const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame, fetchStolenArtwork}) => {
 
   const [gameContainerWidth, setGameContainerWidth] = useState(1082);
   const [gameContainerHeight, setGameContainerHeight] = useState(800);
@@ -86,17 +86,17 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       // 2) set current game with updated score
                                     //change to current painting object value
       updatedCurrentGame.score = currentGame.score + valueOfPainting;
-
       // setCurrentGame({updatedCurrentGame});
-
+      
       // remove painting sprite?
-
+      
     } else {
       // 3) set current game with updated penalty
       updatedCurrentGame.penalty = currentGame.penalty + 1;
       // setCurrentGame({updatedCurrentGame});
     }
-    updateGame(updatedCurrentGame);    
+    await updateGame(updatedCurrentGame);    
+    fetchStolenArtwork();
 
   }
 
@@ -172,7 +172,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
 
   return (
       <div className="game-and-stolen-art-list">
-        <MapContainer artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed}/>
+        <MapContainer artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed} />
         <PaintingListContainer questionBeingDisplayed={questionBeingDisplayed}/>
         {/* {questionBeingDisplayed} */}
 

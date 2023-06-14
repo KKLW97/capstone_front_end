@@ -29,7 +29,7 @@ const handleGameChange = (event) => {
     const selectedGame = event.target.value;
     console.log(selectedGame);
     setCurrentGame(selectedGame)
-    fetchArtworkInGameByGameId(selectedGame.id); 
+    fetchArtworkInGameByGameId(parseInt(selectedGame)); 
 }
 
 useEffect(() => {
