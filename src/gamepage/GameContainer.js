@@ -85,12 +85,12 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     (<>
       <h1>{decode(currentQuestion.question)}</h1>
       <br/>
-
-      <button className="question__btn" onClick={handleClick} name={shuffledAnswers[0]} >{decode(shuffledAnswers[0])}</button>
-      <button className="question__btn" onClick={handleClick} name={shuffledAnswers[1]}>{decode(shuffledAnswers[1])}</button>
-      <button className="question__btn" onClick={handleClick} name={shuffledAnswers[2]}>{decode(shuffledAnswers[2])}</button>
-      <button className="question__btn" onClick={handleClick} name={shuffledAnswers[3]}>{decode(shuffledAnswers[3])}</button>
-
+      <div className="btn__wrapper">
+        <button className="question__btn" onClick={handleClick} name={shuffledAnswers[0]} >{decode(shuffledAnswers[0])}</button>
+        <button className="question__btn" onClick={handleClick} name={shuffledAnswers[1]}>{decode(shuffledAnswers[1])}</button>
+        <button className="question__btn" onClick={handleClick} name={shuffledAnswers[2]}>{decode(shuffledAnswers[2])}</button>
+        <button className="question__btn" onClick={handleClick} name={shuffledAnswers[3]}>{decode(shuffledAnswers[3])}</button>
+      </div>
     </>);
   }
 

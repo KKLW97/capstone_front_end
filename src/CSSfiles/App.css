@@ -92,14 +92,14 @@ button {
 }  */
 
 .question__btn {
-  border: solid black 1px;;
+  border: solid black 1px;
   padding: 24px;
-
+  color: black;
 }
 
 .btn__wrapper {
   display: grid;
-  grid-template-columns: auto auto; 
+  grid-template-columns: 1fr 1fr; 
   gap: 10px; 
   /* grid-template:  */
 }
