@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import MapContainer from "./MapContainer";
 import PaintingListContainer from "../containers/PaintingListContainer";
 import {decode} from 'html-entities';
+import InstructionModal from "./InstructionModal";
 
 import "../CSSfiles/App.css";
 const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame, fetchStolenArtwork, fetchArtworkInGameByGameId, stolenArtworkList}) => {
@@ -21,6 +22,8 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   const [displayPaintingInfoStatus, setDisplayPaintingInfoStatus] = useState("hidden");
 
   const [currentArtworkInGame, setCurrentArtworkInGame] = useState(null);
+
+  const [instructionModal, setInstructionModal] = useState(false);
 
   // const [guess, setGuess] = useState();
 
@@ -168,6 +171,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     setDisplayPaintingInfoStatus("hidden");
     fetchStolenArtwork(parseInt(currentGame.id));
     fetchArtworkInGameByGameId(parseInt(currentGame.id)); 
+    setInstructionModal(true);
   }, [])
 
   const getEasyQuestion = (index) => {
@@ -182,10 +186,10 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
 
   return (
       <div className="game-and-stolen-art-list">
+        {instructionModal && <InstructionModal closeModal={setInstructionModal}/>}
         <MapContainer artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed} />
         <PaintingListContainer stolenArtworkList={stolenArtworkList} questionBeingDisplayed={questionBeingDisplayed}/>
         {/* {questionBeingDisplayed} */}
-
       </div>
     );
 };
