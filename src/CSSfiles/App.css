@@ -123,3 +123,13 @@ button {
   width: 100%;
   max-width: 550px;
 }
+
+/* LOSE/WIN MODALS */
+
+.LM__background {
+  width: 50%;
+  height: 50%; 
+  /* background-color: rgba(200, 200, 200);  */
+  position: fixed;
+  margin:0 auto;
+}

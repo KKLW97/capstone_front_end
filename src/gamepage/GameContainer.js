@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import MapContainer from "./MapContainer";
+import LoseGameModal from "./LoseGameModal";
 import PaintingListContainer from "../containers/PaintingListContainer";
 import {decode} from 'html-entities';
 
@@ -21,6 +22,8 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   const [displayPaintingInfoStatus, setDisplayPaintingInfoStatus] = useState("hidden");
 
   const [currentArtworkInGame, setCurrentArtworkInGame] = useState(null);
+
+  const [loseGameModal, setLoseGameModal] = useState(false);
 
   // const [guess, setGuess] = useState();
 
@@ -58,11 +61,12 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     // 1: LOSE 
     // PENALTY = 3, Game set to complete, message"you lose"
     
+    const modalHandle = () => setLoseGameModal(true) 
     if (updatedCurrentGame.penalty===3) {
       
       updatedCurrentGame.complete = true;
       updatedCurrentGame.score = 0;
-      
+      modalHandle();
       // add modal/message saying "you lose everything... crime doesn't pay apparently"
     }else if (stolenArtworkList.length === artworksInGame.length-1){
       updatedCurrentGame.complete = true;
@@ -185,7 +189,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
         <MapContainer artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed} />
         <PaintingListContainer questionBeingDisplayed={questionBeingDisplayed} currentGame={currentGame}/>
         {/* {questionBeingDisplayed} */}
-
+        {loseGameModal && <LoseGameModal setLoseGameModal={setLoseGameModal} />} 
       </div>
     );
 };
