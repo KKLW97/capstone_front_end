@@ -42,6 +42,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
       };
 
     useEffect(()=>{
+        checkIfNearSecurityGuard();
         if(securityGuardPositionX <= 800 && securityGuardPositionY <= 280){
             const intervalId = setInterval(moveSecurityGuardRight, 100);
             return () => {
@@ -124,6 +125,14 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
             // displayPaintingInfo(0);
             // getEasyQuestion(0);
           }
+    }
+
+    const checkIfNearSecurityGuard = () => {
+        const proximityLimit = 40;
+        const distance = Math.sqrt(Math.pow(thiefPositionX - securityGuardPositionX, 2) + Math.pow(thiefPositionY - securityGuardPositionY, 2));
+        if (distance <= proximityLimit) {
+            console.log("penalty");
+            }
     }
 
     const checkIfNearPainting1 = () => {
