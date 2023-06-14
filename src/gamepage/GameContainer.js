@@ -29,7 +29,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   const displayPaintingInfo = (index) => {
     // console.log("Displays modal for Multiple Choice Question / Displays info about painting, giving the option for the player to select this painting");
     // console.log(`${artworksInGame[index].title}, ${artworksInGame[index].artist}`);
-    setPaintingInfo(<>{artworksInGame[index].title}, {artworksInGame[index].artist}<br/>£{artworksInGame[index].value}<br/>{artworksInGame[index].rarityLevel.substring(0, 1) + artworksInGame[index].rarityLevel.substring(1).toLowerCase()}</>);
+    setPaintingInfo(<>{artworksInGame[index].artwork.title}, {artworksInGame[index].artwork.artist}<br/>£{artworksInGame[index].artwork.value}<br/>{artworksInGame[index].artwork.rarityLevel.substring(0, 1) + artworksInGame[index].rarityLevel}</>);
     setDisplayPaintingInfoStatus("visible");
     setCurrentArtworkInGame(artworksInGame[index]);
   }
@@ -39,18 +39,18 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   }
 
 
-  const handleClick = (e) => {
+  const handleClick = async(e) => {
     // console.log(e.target.innerText == currentQuestion.correct_answer);
-    const updatedCurrentGame = currentGame;
+    let updatedCurrentGame = currentGame;
 
     if(e.target.innerText == currentQuestion.correct_answer){
       // 1) set relevant artwork in artworksInGame (change stolen boolean in artwork game to true)
       let updatedArtworkInGame = currentArtworkInGame;
       updatedArtworkInGame.stolen = true;
-      updateArtworkInGame(updatedArtworkInGame);
+      await updateArtworkInGame(updatedArtworkInGame);
       console.log(updatedArtworkInGame);
                               //change to current painting object
-      let valueOfPainting = currentArtworkInGame.value;
+      let valueOfPainting = currentArtworkInGame.artwork.value;
       // 2) set current game with updated score
                                     //change to current painting object value
       updatedCurrentGame.score = currentGame.score + valueOfPainting;
@@ -64,7 +64,8 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       updatedCurrentGame.penalty = currentGame.penalty + 1;
       // setCurrentGame({updatedCurrentGame});
     }
-    // updateGame(updatedCurrentGame);
+    updateGame(updatedCurrentGame);    
+
   }
 
 
