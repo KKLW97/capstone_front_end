@@ -28,7 +28,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   const displayPaintingInfo = (index) => {
     // console.log("Displays modal for Multiple Choice Question / Displays info about painting, giving the option for the player to select this painting");
     // console.log(`${artworksInGame[index].title}, ${artworksInGame[index].artist}`);
-    setPaintingInfo(<>{artworksInGame[index].artwork.title}, {artworksInGame[index].artwork.artist}<br/>£{artworksInGame[index].artwork.value}<br/>{artworksInGame[index].artwork.rarityLevel}</>);
+    setPaintingInfo(<>{artworksInGame[index].artwork.title}, {artworksInGame[index].artwork.artist}<br/>value: {artworksInGame[index].artwork.value}<br/>{artworksInGame[index].artwork.rarityLevel}</>);
     setDisplayPaintingInfoStatus("visible");
     if (artworksInGame[index].stolen===false){
            setCurrentArtworkInGame(artworksInGame[index]);
