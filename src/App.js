@@ -90,7 +90,7 @@ const fetchArtworkInGameByGameId = async (gameId) => {
     const response = await fetch(`http://localhost:8080/artworksInGame?game_id=${gameId}`)
     const jsonData = await response.json();
     if (Array.isArray(jsonData)) {
-      const artworks = jsonData.map((artworkGame) => artworkGame.artwork);
+      const artworks = jsonData.map((artworkGame) => artworkGame);
       setArtworksInGame(artworks);
       console.log(artworks);
     }
