@@ -1,0 +1,19 @@
+.penalty-list-container{
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 50px; */
+    grid-area: a;
+    min-height: 10px;
+    min-width: 1082px;
+}
+.penalty-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template: 
+    "alarm alarm alarm";
+}
+
+
+.alarm{
+    justify-self: center;
+}
