@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import MapContainer from "./MapContainer";
 import LoseGameModal from "./LoseGameModal";
+import WinGameModal from "./WinGameModal";
 import PaintingListContainer from "../containers/PaintingListContainer";
 import {decode} from 'html-entities';
 
@@ -24,6 +25,8 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   const [currentArtworkInGame, setCurrentArtworkInGame] = useState(null);
 
   const [openloseGameModal, setLoseGameModal] = useState(false);
+  const [openWinGameModal, setWinGameModal] = useState(false);
+
 
   // const [guess, setGuess] = useState();
 
@@ -60,16 +63,17 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     // let updatedGame = currentGame  
     // 1: LOSE 
     // PENALTY = 3, Game set to complete, message"you lose"
-    
-    const modalHandle = () => setLoseGameModal(true) 
+    const WModalHandle = () => setWinGameModal(true)
+    const LmodalHandle = () => setLoseGameModal(true) 
     if (updatedCurrentGame.penalty===3) {
       
       updatedCurrentGame.complete = true;
       updatedCurrentGame.score = 0;
-      modalHandle();
+      LmodalHandle();
       // add modal/message saying "you lose everything... crime doesn't pay apparently"
     }else if (stolenArtworkList.length === artworksInGame.length-1){
       updatedCurrentGame.complete = true;
+      WModalHandle();
       console.log("stolen art from check",stolenArtworkList)
       console.log(currentGame.complete)
 
@@ -190,6 +194,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
         <PaintingListContainer questionBeingDisplayed={questionBeingDisplayed} currentGame={currentGame}/>
         {/* {questionBeingDisplayed} */}
         {openloseGameModal && <LoseGameModal setLoseGameModal={setLoseGameModal} />} 
+        {openWinGameModal && <WinGameModal setWinGameModal={setWinGameModal} />} 
       </div>
     );
 };
