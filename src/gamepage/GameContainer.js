@@ -189,5 +189,5 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       </div>
     );
 };
-
+ 
 export default GameContainer;
