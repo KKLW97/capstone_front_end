@@ -3,3 +3,6 @@
     margin-top: 10%;
     z-index: 1;
 }
+.instructionModalBackground button{
+    color: black;
+}
