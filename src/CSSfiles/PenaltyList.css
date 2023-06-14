@@ -6,6 +6,7 @@
     min-height: 10px;
     min-width: 1082px;
 }
+
 .penalty-list{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -13,7 +14,10 @@
     "alarm alarm alarm";
 }
 
-
 .alarm{
     justify-self: center;
+}
+
+.alarm-on{
+    box-shadow: pink;
 }
