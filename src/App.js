@@ -90,11 +90,10 @@ const fetchArtworkInGameByGameId = async (gameId) => {
     // gameId is hard-coded for now
     const response = await fetch(`http://localhost:8080/artworksInGame?game_id=${gameId}`)
     const jsonData = await response.json();
-    if (Array.isArray(jsonData)) {
-      const artworks = jsonData.map((artworkGame) => artworkGame);
-      setArtworksInGame(artworks);
-      console.log(artworks);
-    }
+    // const artworks = jsonData.map((artworkGame) => artworkGame);
+    setArtworksInGame(jsonData);
+    
+    
     // const artworks = await jsonData.map((artworkGame)=> 
     // { return artworkGame.artwork})
     // setArtworksInGame(artworks);
@@ -178,6 +177,8 @@ const fetchStolenArtwork = async () => {
 }
 
 
+
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -209,6 +210,7 @@ const fetchStolenArtwork = async () => {
       updateGame={updateGame}
       updateArtworkInGame={updateArtworkInGame}
       fetchStolenArtwork={fetchStolenArtwork}
+      fetchArtworkInGameByGameId={fetchArtworkInGameByGameId}
 
    />,
     },

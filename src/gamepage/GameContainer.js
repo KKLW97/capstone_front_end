@@ -4,7 +4,7 @@ import PaintingListContainer from "../containers/PaintingListContainer";
 import {decode} from 'html-entities';
 
 import "../CSSfiles/App.css";
-const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame, fetchStolenArtwork}) => {
+const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame, fetchStolenArtwork, fetchArtworkInGameByGameId}) => {
 
   const [gameContainerWidth, setGameContainerWidth] = useState(1082);
   const [gameContainerHeight, setGameContainerHeight] = useState(800);
@@ -118,7 +118,6 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     setQuestionBeingDisplayed
     (<>
       <h1>{decode(currentQuestion.question)}</h1>
-      <br/>
       <div className="btn__wrapper">
         <button className="question__btn" onClick={handleClick} name={shuffledAnswers[0]} >{decode(shuffledAnswers[0])}</button>
         <button className="question__btn" onClick={handleClick} name={shuffledAnswers[1]}>{decode(shuffledAnswers[1])}</button>
@@ -159,6 +158,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     fetchHardQuestions();
     setDisplayPaintingInfoStatus("hidden");
     fetchStolenArtwork(parseInt(currentGame.id));
+    fetchArtworkInGameByGameId(parseInt(currentGame.id)); 
   }, [])
 
   const getEasyQuestion = (index) => {
