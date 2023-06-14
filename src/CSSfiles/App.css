@@ -2,6 +2,9 @@
   transform: rotate(90deg);
 }
 
+.stolen{
+  filter: grayscale(75%);
+}
 body {
   background-color: black;
   color: white;

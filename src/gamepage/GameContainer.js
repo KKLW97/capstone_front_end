@@ -5,8 +5,10 @@ import {decode} from 'html-entities';
 import "../CSSfiles/PenaltyList.css"
 
 import "../CSSfiles/App.css";
+
 import PenaltyList from "./PenaltyList";
-const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame}) => {
+const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame, fetchStolenArtwork, fetchArtworkInGameByGameId, stolenArtworkList}) => {
+
 
   const [gameContainerWidth, setGameContainerWidth] = useState(1082);
   const [gameContainerHeight, setGameContainerHeight] = useState(800);
@@ -32,19 +34,61 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     // console.log(`${artworksInGame[index].title}, ${artworksInGame[index].artist}`);
     setPaintingInfo(<>{artworksInGame[index].artwork.title}, {artworksInGame[index].artwork.artist}<br/>£{artworksInGame[index].artwork.value}<br/>{artworksInGame[index].artwork.rarityLevel.substring(0, 1) + artworksInGame[index].rarityLevel}</>);
     setDisplayPaintingInfoStatus("visible");
-    setCurrentArtworkInGame(artworksInGame[index]);
+    if (artworksInGame[index].stolen===false){
+           setCurrentArtworkInGame(artworksInGame[index]);
+    }
+    else {setDisplayPaintingInfoStatus("hidden")};
   }
+
+
 
   const hideDisplayPaintingInfoStatus = () => {
     setDisplayPaintingInfoStatus("hidden");
   }
 
 
+  //CONDITIONS FOR COMPLETING THE GAME
+
+
+
+  // 2: FORFEIT/ ESCAPE!
+  // user manually clicks end game, Game set to complete, message "you forfeit" (separate handleClick)
+
+
+
+  const checkGameStatus = (updatedCurrentGame) => {
+    console.log("stolen artworks" , stolenArtworkList)
+    // let updatedGame = currentGame  
+    // 1: LOSE 
+    // PENALTY = 3, Game set to complete, message"you lose"
+    
+    if (updatedCurrentGame.penalty===3) {
+      
+      updatedCurrentGame.complete = true;
+      updatedCurrentGame.score = 0;
+      
+      // add modal/message saying "you lose everything... crime doesn't pay apparently"
+    }else if (stolenArtworkList.length === artworksInGame.length-1){
+      updatedCurrentGame.complete = true;
+      console.log("stolen art from check",stolenArtworkList)
+      console.log(currentGame.complete)
+
+      // setCurrentGame(updatedCurrentGame)
+    }
+    return updatedCurrentGame
+    // 3: WIN!!! 
+    // all 10 paintings = stolen.true, game set to complete, message "you won"
+  }
+  
+  // useEffect(()=>{
+
+  // },[])
+  
   const handleClick = async(e) => {
     // console.log(e.target.innerText == currentQuestion.correct_answer);
     let updatedCurrentGame = currentGame;
 
-    if(e.target.innerText == currentQuestion.correct_answer){
+    if(e.target.value == currentQuestion.correct_answer){
       // 1) set relevant artwork in artworksInGame (change stolen boolean in artwork game to true)
       let updatedArtworkInGame = currentArtworkInGame;
       updatedArtworkInGame.stolen = true;
@@ -55,18 +99,18 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       // 2) set current game with updated score
                                     //change to current painting object value
       updatedCurrentGame.score = currentGame.score + valueOfPainting;
-
       // setCurrentGame({updatedCurrentGame});
-
+      
       // remove painting sprite?
-
+      
     } else {
       // 3) set current game with updated penalty
       updatedCurrentGame.penalty = currentGame.penalty + 1;
       // setCurrentGame({updatedCurrentGame});
     }
-    updateGame(updatedCurrentGame);    
-
+    const checkedGame = await checkGameStatus(updatedCurrentGame)
+    await updateGame(checkedGame);
+    fetchStolenArtwork();
   }
 
 
@@ -87,12 +131,11 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     setQuestionBeingDisplayed
     (<>
       <h1>{decode(currentQuestion.question)}</h1>
-      <br/>
       <div className="btn__wrapper">
-        <button className="question__btn" onClick={handleClick} name={shuffledAnswers[0]} >{decode(shuffledAnswers[0])}</button>
-        <button className="question__btn" onClick={handleClick} name={shuffledAnswers[1]}>{decode(shuffledAnswers[1])}</button>
-        <button className="question__btn" onClick={handleClick} name={shuffledAnswers[2]}>{decode(shuffledAnswers[2])}</button>
-        <button className="question__btn" onClick={handleClick} name={shuffledAnswers[3]}>{decode(shuffledAnswers[3])}</button>
+        <button className="question__btn" onClick={handleClick} value={shuffledAnswers[0]} >{decode(shuffledAnswers[0])}</button>
+        <button className="question__btn" onClick={handleClick} value={shuffledAnswers[1]}>{decode(shuffledAnswers[1])}</button>
+        <button className="question__btn" onClick={handleClick} value={shuffledAnswers[2]}>{decode(shuffledAnswers[2])}</button>
+        <button className="question__btn" onClick={handleClick} value={shuffledAnswers[3]}>{decode(shuffledAnswers[3])}</button>
       </div>
     </>);
   }
@@ -127,6 +170,8 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     fetchMediumQuestions();
     fetchHardQuestions();
     setDisplayPaintingInfoStatus("hidden");
+    fetchStolenArtwork(parseInt(currentGame.id));
+    fetchArtworkInGameByGameId(parseInt(currentGame.id)); 
   }, [])
 
   const getEasyQuestion = (index) => {
@@ -146,12 +191,12 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
         {/* </section> */}
         <section className="game-and-stolen-art-list">
           <PenaltyList currentGame={currentGame}/>
-          <MapContainer hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed}/>
-          <PaintingListContainer questionBeingDisplayed={questionBeingDisplayed}/>
+          <MapContainer artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed}/>
+          <PaintingListContainer stolenArtworkList={stolenArtworkList} questionBeingDisplayed={questionBeingDisplayed}/>
           {/* {questionBeingDisplayed} */}
         </section>
       </div>
     );
 };
-
+ 
 export default GameContainer;
