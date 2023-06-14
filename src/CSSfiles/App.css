@@ -50,6 +50,14 @@ button {
   color: white;
 }
 
+.caught-fish{
+  background-color: rgb(132, 132, 132);
+  padding: 20px;
+  margin: 30px;
+  color: black;
+  overflow-y: auto;
+  overflow-x: auto;
+}
 
 /* 
  body {
@@ -73,15 +81,7 @@ button {
   margin: 30px;
   position: relative;
 }
-.caught-fish{
-  grid-area: c;
-  background-color: rgb(132, 132, 132);
-  padding: 20px;
-  margin: 30px;
-  color: black;
-  overflow-y: auto;
-  overflow-x: auto;
-}
+
 
 .table td {
   text-align: center;
