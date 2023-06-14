@@ -100,9 +100,9 @@ const fetchArtworkInGameByGameId = async (gameId) => {
     // console.log(artworks);
   };
 
-  // useEffect(() => {
-  //   currentGame && fetchArtworkInGameByGameId(parseInt(currentGame?.id));
-  // }, [currentGame]);
+  useEffect(() => {
+    console.log(currentGame);  
+  }, [currentGame]);
 
 
   // get artworks in game by game id 
@@ -144,25 +144,44 @@ const fetchArtworkInGameByGameId = async (gameId) => {
 
   }
 
+
   // updateArtworkInGame
-  const updateArtworkInGame = (updatedArtworkInGame) => {
-    fetch(`${SERVER_URL}/artworksInGame/${updatedArtworkInGame.id}?stolen=true`, {
-          method: "PATCH",
-          headers: {"Content-Type": "application/json",}}
-    )
-    .then ((response) => response.json())
-    .then ((jsonData) => {
-          const updatedArtworksInGame = artworksInGame.map((artworkInGame) => {
-            if(artworkInGame.id != updatedArtworkInGame.id){
-              return artworkInGame
-            } else {
-              return jsonData
-            }
-          })
-          console.log(updatedArtworksInGame)
-          setArtworksInGame(updatedArtworksInGame)
-    })
+//   const updateArtworkInGame = (updatedArtworkInGame) => {
+//     fetch(`${SERVER_URL}/artworksInGame/${updatedArtworkInGame.id}?stolen=true`, {
+//           method: "PATCH",
+//           headers: {"Content-Type": "application/json",}}
+//     )
+//     .then ((response) => response.json())
+//     .then ((jsonData) => {
+//           const updatedArtworksInGame = artworksInGame.map((artworkInGame) => {
+//             if(artworkInGame.id != updatedArtworkInGame.id){
+//               return artworkInGame
+//             } else {
+//               return jsonData
+//             }
+//           })
+//           console.log(updatedArtworksInGame)
+//           setArtworksInGame(updatedArtworksInGame)
+//     })
+// }
+
+const updateArtworkInGame = async(updatedArtworkInGame) => {
+  const response = await fetch(`${SERVER_URL}/artworksInGame/${updatedArtworkInGame.id}?stolen=true`, {
+      method: "PATCH",
+      headers: {"Content-Type": "application/json",}}
+  )
+  const data = await response.json()
+  const updatedArtworksInGame = artworksInGame.map((artworkInGame) => {
+    if(artworkInGame.id != updatedArtworkInGame.id){
+      return artworkInGame
+    } else {
+      return data
+    }
+  })
+  console.log(updatedArtworksInGame)
+  setArtworksInGame(updatedArtworksInGame)
 }
+
 
 const fetchStolenArtwork = async () => {
   const response = await fetch(`${SERVER_URL}/artworksInGame?game_id=${currentGame.id}&stolen=true`)
@@ -206,11 +225,13 @@ const fetchStolenArtwork = async () => {
       element: <GameContainer
       activePlayer = {activePlayer}
       currentGame={currentGame}
+      setCurrentGame={setCurrentGame}
       artworksInGame={artworksInGame}
       updateGame={updateGame}
       updateArtworkInGame={updateArtworkInGame}
       fetchStolenArtwork={fetchStolenArtwork}
       fetchArtworkInGameByGameId={fetchArtworkInGameByGameId}
+      stolenArtworkList={stolenArtworkList}
 
    />,
     },

@@ -4,7 +4,7 @@ import PaintingListContainer from "../containers/PaintingListContainer";
 import {decode} from 'html-entities';
 
 import "../CSSfiles/App.css";
-const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame, fetchStolenArtwork, fetchArtworkInGameByGameId}) => {
+const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame, fetchStolenArtwork, fetchArtworkInGameByGameId, stolenArtworkList}) => {
 
   const [gameContainerWidth, setGameContainerWidth] = useState(1082);
   const [gameContainerHeight, setGameContainerHeight] = useState(800);
@@ -52,30 +52,39 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
 
 
 
-  const checkGameStatus = () => {
-
-  let updatedGame = currentGame  
-  // 1: LOSE 
-  // PENALTY = 3, Game set to complete, message"you lose"
-  
-  if (updatedGame.penalty===3) {
+  const checkGameStatus = (updatedCurrentGame) => {
+    console.log("stolen artworks" , stolenArtworkList)
+    // let updatedGame = currentGame  
+    // 1: LOSE 
+    // PENALTY = 3, Game set to complete, message"you lose"
     
-    updatedGame.complete = true;
-    updatedGame.score = 0;
-    setCurrentGame(updatedGame)
-    // add modal/message saying "you lose everything... crime doesn't pay apparently"
-  }
+    if (updatedCurrentGame.penalty===3) {
+      
+      updatedCurrentGame.complete = true;
+      updatedCurrentGame.score = 0;
+      
+      // add modal/message saying "you lose everything... crime doesn't pay apparently"
+    }else if (stolenArtworkList.length === artworksInGame.length-1){
+      updatedCurrentGame.complete = true;
+      console.log("stolen art from check",stolenArtworkList)
+      console.log(currentGame.complete)
 
-  // else if ()
+      // setCurrentGame(updatedCurrentGame)
+    }
+    return updatedCurrentGame
     // 3: WIN!!! 
-  // all 10 paintings = stolen.true, game set to complete, message "you won"
+    // all 10 paintings = stolen.true, game set to complete, message "you won"
   }
+  
+  useEffect(()=>{
+
+  },[])
   
   const handleClick = async(e) => {
     // console.log(e.target.innerText == currentQuestion.correct_answer);
     let updatedCurrentGame = currentGame;
 
-    if(e.target.innerText == currentQuestion.correct_answer){
+    if(e.target.value == currentQuestion.correct_answer){
       // 1) set relevant artwork in artworksInGame (change stolen boolean in artwork game to true)
       let updatedArtworkInGame = currentArtworkInGame;
       updatedArtworkInGame.stolen = true;
@@ -95,9 +104,9 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       updatedCurrentGame.penalty = currentGame.penalty + 1;
       // setCurrentGame({updatedCurrentGame});
     }
-    await updateGame(updatedCurrentGame);    
+    const checkedGame = await checkGameStatus(updatedCurrentGame)
+    await updateGame(checkedGame);
     fetchStolenArtwork();
-
   }
 
 
@@ -119,10 +128,10 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     (<>
       <h1>{decode(currentQuestion.question)}</h1>
       <div className="btn__wrapper">
-        <button className="question__btn" onClick={handleClick} name={shuffledAnswers[0]} >{decode(shuffledAnswers[0])}</button>
-        <button className="question__btn" onClick={handleClick} name={shuffledAnswers[1]}>{decode(shuffledAnswers[1])}</button>
-        <button className="question__btn" onClick={handleClick} name={shuffledAnswers[2]}>{decode(shuffledAnswers[2])}</button>
-        <button className="question__btn" onClick={handleClick} name={shuffledAnswers[3]}>{decode(shuffledAnswers[3])}</button>
+        <button className="question__btn" onClick={handleClick} value={shuffledAnswers[0]} >{decode(shuffledAnswers[0])}</button>
+        <button className="question__btn" onClick={handleClick} value={shuffledAnswers[1]}>{decode(shuffledAnswers[1])}</button>
+        <button className="question__btn" onClick={handleClick} value={shuffledAnswers[2]}>{decode(shuffledAnswers[2])}</button>
+        <button className="question__btn" onClick={handleClick} value={shuffledAnswers[3]}>{decode(shuffledAnswers[3])}</button>
       </div>
     </>);
   }
