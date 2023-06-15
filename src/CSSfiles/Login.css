@@ -155,7 +155,7 @@ b{
 }
 
 
-.cancelBtn, .registerBtn {
+.cancelBtn, .registerBtn, .instructionBtn {
   padding:  10px;
   border-radius: 12px;
   border: solid all black;

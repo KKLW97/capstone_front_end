@@ -30,6 +30,8 @@ const InstructionModal = ({closeModal}) => {
               </ul>
 
               <h3>Good luck!</h3>
+              <button className="instructionBtn" onClick={() => closeModal(false)}> Close </button>
+
             
           </div>
         </div>
