@@ -41,7 +41,7 @@ body {
   padding: 20px;
   margin: 30px;
   color: black;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: auto;
 }
 
@@ -139,7 +139,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* z-index: 1; */
+  z-index: 1;
 }
 
 .instructionModalBackground{
