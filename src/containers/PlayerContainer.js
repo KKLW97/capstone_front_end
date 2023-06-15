@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from 'react'
 
 import { UserContext } from "../App";
+import PersonalLeaderBoardComponent from "../components/PersonalLeaderBoardComponent";
 
 const PlayerContainer = ({createNewGame, incompleteGamesForPlayer, fetchIncompleteGamesForPlayer, currentGame, fetchGameById, setCurrentGame, fetchArtworkInGameByGameId  }) => {
 
@@ -58,6 +59,9 @@ useEffect(() => {
             </select>
             <button type="submit" >Load Game</button>
         </form>
+        <h2>Personal best for completed game: </h2>
+
+        <PersonalLeaderBoardComponent />
         </>
      );
 }
