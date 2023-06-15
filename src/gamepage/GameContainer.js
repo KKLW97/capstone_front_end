@@ -218,7 +218,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
         </section>
       </div>
        {/* forfeit game */}
-        <button className="forfeit" title="forfeit game" onClick={handleForfeitGame}> <img src={door} /></button>
+        <button className="forfeit" title="forfeit game" onClick={handleForfeitGame}> <img src={door} className="forfeit-image" /></button>
     </>
     
     );
