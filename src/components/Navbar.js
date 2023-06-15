@@ -1,9 +1,25 @@
+
+import "../CSSfiles/Navbar.css";
+
 const Navbar = () => {
+
+  
     return ( 
     
     <>
-
-    <h4> This is the Navbar component </h4>
+    <nav className="">
+      <ul className="navbar_list">
+        <li className="">
+          <a href="http://localhost:3000" className="#">Home</a>
+        </li>
+        <li className="">
+          <a href="http://localhost:3000/playerAccount" className="#">Account</a>
+        </li>
+        <li className="">
+          <a href="http://localhost:3000/gamePage" className="#">Game</a>
+        </li>
+      </ul>
+    </nav>
     
     
     
