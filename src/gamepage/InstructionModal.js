@@ -10,7 +10,7 @@ const InstructionModal = ({closeModal}) => {
   
           <div className="title">
             <h2>Instructions</h2>
-            <p><strong>1.</strong>Walk up to an artwork and click the info<br/> to answer an art history question</p>
+            <p><strong>1.</strong>Walk up to an artwork and answer an <br/> art history question to steal it</p>
             <p><strong>2.</strong>Rarer paintings get more points... <br/> but the questions are harder</p>
             <p><strong>3.</strong>Watch out for lasers and the guards.<br/> They'll slow you down.</p>
             <p><strong>4.</strong>Set off 3 alarms and you lose</p>
