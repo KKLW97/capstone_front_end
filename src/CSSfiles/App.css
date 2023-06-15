@@ -171,16 +171,42 @@ button {
   padding: 18px;
 }
 
-.forfeit {
-    display: flex;
-    justify-self: flex-end;
-    text-align: right;
-    position: relative;
-    bottom: 0;
-    /* left: 1600px; */
+.social-icons:hover{
+  filter: drop-shadow(0 0px 100px rgb(255, 117, 246)) drop-shadow(0 0px 20px rgb(255, 117, 246)) drop-shadow(0 0px 30px rgb(255, 117, 246));
+  transition: box-shadow 0.5s ease-in-out;
 }
 
-.forfeit img {
-    height: 50px;
-    width: 50px;
+.social-icons{
+  background-color: rgb(255, 117, 246);
+  box-shadow: 0 0 10px;
+  border-radius: 25px;
+}
+
+.footer{
+  margin-top: 100px;
+  display: grid;
+  grid-template:
+   "a b" 10vh
+   "a c" 10vh;
+}
+
+.footer-headers{
+  filter: drop-shadow(0px 0px 1px rgb(255, 117, 246)) drop-shadow(0 0px 2px rgb(255, 117, 246)) drop-shadow(0 0px 3px rgb(255, 117, 246));
+}
+
+.footer-left{
+  grid-area: a;
+
+}
+
+.footer-right{
+  grid-area: b;
+ 
+}
+
+.footer-right-images{
+  grid-area: c;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }

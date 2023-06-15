@@ -9,6 +9,11 @@ import LoginContainer from "./homepage/LoginContainer";
 import Navbar from "./components/Navbar";
 import { useEffect, useState, createContext, useContext } from "react";
 
+// footer image imports
+import github from "./assets/github.png"
+import instagram from "./assets/instagram.png"
+import linkedin from "./assets/linkedin.png"
+import twitter from "./assets/twitter.png"
 
 const SERVER_URL = "http://localhost:8080";
 
@@ -247,7 +252,34 @@ const fetchStolenArtwork = async () => {
       
 
     </UserContext.Provider>
-
+    <div className="footer">
+            <div className="footer-left">
+                <h2 className="footer-headers">Useful Links:</h2>
+                <ul className="footer-nav-list">
+                    <li className="">
+                    <div className="nav-text">
+                    <a href="http://localhost:3000" className="#">Home</a></div>
+                    </li>
+                    <li className="">
+                    <div className="nav-text">
+                    <a href="http://localhost:3000/playerAccount" className="#">Account</a></div>
+                    </li>
+                    <li className="">
+                    <div className="nav-text">
+                    <a href="http://localhost:3000/gamePage" className="#">Game</a></div>
+                    </li>
+                </ul>
+            </div>
+            <div className="footer-right">
+                <h2 className="footer-headers">Connect With Us</h2>
+                <div className="footer-right-images">
+                    <img className="social-icons" src={github} width={50} height={50}/>
+                    <img className="social-icons" src={twitter} width={50} height={50}/>
+                    <img className="social-icons" src={linkedin} width={50} height={50}/>
+                    <img className="social-icons" src={instagram} width={50} height={50}/>
+                </div>
+            </div>
+        </div>
     </>
   );
 }
