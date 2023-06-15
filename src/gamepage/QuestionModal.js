@@ -3,11 +3,7 @@ import { UserContext } from "../App";
 import "../CSSfiles/App.css";
 
 
-const QuestionModal = ({closeModal, questionBeingDisplayed, currentQuestion}) => {
-    
-
-    
-    
+const QuestionModal = ({closeModal, questionBeingDisplayed, }) => {
     return ( 
         <div className="question__modal--background">
         <div className="question__modal--container">

@@ -38,8 +38,8 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   const [openWinGameModal, setWinGameModal] = useState(false);
 
   const [questionModal, setQuestionModal] = useState(false);
-  const [correctModal, setCorrectModal] = useState(false)
-  const [incorrectModal, setIncorrectModal] = useState(false)
+  // const [correctModal, setCorrectModal] = useState(false)
+  // const [incorrectModal, setIncorrectModal] = useState(false)
 
 
 
@@ -97,7 +97,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       console.log("stolen art from check",stolenArtworkList)
       console.log(currentGame.complete)
       
-
+      
       // setCurrentGame(updatedCurrentGame)
     }
     return updatedCurrentGame
@@ -115,6 +115,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   const handleClick = async(e) => {
     // console.log(e.target.innerText == currentQuestion.correct_answer);
     let updatedCurrentGame = currentGame;
+
 
 
     if(e.target.value === currentQuestion.correct_answer){
