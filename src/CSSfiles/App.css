@@ -35,6 +35,7 @@ body {
 }
 
 .caught-fish {
+  height: 750px;
   grid-area: b;
   background-color: rgb(255, 117, 246);
   padding: 20px;
