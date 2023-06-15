@@ -12,6 +12,8 @@ import PenaltyList from "./PenaltyList";
 import { useNavigate } from "react-router-dom";
 import door from '../assets/door.png';
 import "../CSSfiles/Forfeit.css";
+import "../assets/correctsound.mp3";
+import "../assets/correctsound.mp3";
 
 const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame, fetchStolenArtwork, fetchArtworkInGameByGameId, stolenArtworkList}) => {
 
@@ -144,6 +146,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       updatedCurrentGame.penalty = currentGame.penalty + 1;
       console.log("switch to the incorrect message")
       setQuestionModal(false);
+      
       // setCurrentGame({updatedCurrentGame});
     }
 
