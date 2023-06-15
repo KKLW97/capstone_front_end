@@ -110,6 +110,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       updatedCurrentGame.complete = true;
       checkCompleteStopSound(updatedCurrentGame);
       updatedCurrentGame.score = 0;
+      booSound.play();
       LmodalHandle();
       // add modal/message saying "you lose everything... crime doesn't pay apparently"
     } else if (stolenArtworkList.length === artworksInGame.length-1){
