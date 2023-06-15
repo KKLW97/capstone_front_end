@@ -14,8 +14,8 @@ import door from '../assets/door.png';
 import "../CSSfiles/Forfeit.css";
 import scoreAudio from "../assets/correctsound.mp3";
 import penaltyAudio from "../assets/incorrectsound.mp3";
-import gameAudio from '../assets/game.mp3'
-import useSound from "use-sound";
+import boo from "../assets/boo.mp3"
+import laugh from "../assets/FrenchLaugh.mp3"
 import { UserContext } from "../App";
 
 
@@ -52,8 +52,8 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   //sounds
   const scoreSound = new Audio(scoreAudio);
   const penaltySound = new Audio(penaltyAudio);
-
-
+  const laughSound = new Audio(laugh);
+  const booSound = new Audio(boo);
 
   const displayPaintingInfo = (index) => {
     // console.log("Displays modal for Multiple Choice Question / Displays info about painting, giving the option for the player to select this painting");
@@ -86,7 +86,8 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     currentGame.complete = true;
     await updateGame(currentGame);
     checkCompleteStopSound(currentGame);
-   navigate("/playerAccount");
+    booSound.play();
+    navigate("/playerAccount");
   }
 
   const checkCompleteStopSound = (updatedCurrentGame) => {
@@ -109,6 +110,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       updatedCurrentGame.complete = true;
       checkCompleteStopSound(updatedCurrentGame);
       updatedCurrentGame.score = 0;
+      booSound.play();
       LmodalHandle();
       // add modal/message saying "you lose everything... crime doesn't pay apparently"
     } else if (stolenArtworkList.length === artworksInGame.length-1){
@@ -155,6 +157,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       updatedCurrentGame.score = currentGame.score + valueOfPainting;
       setQuestionModal(false);
       scoreSound.play()
+      laughSound.play()
       
       // setCurrentGame({updatedCurrentGame});
       

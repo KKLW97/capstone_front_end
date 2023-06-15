@@ -6,10 +6,12 @@ import mapImage from "../assets/unnamed-1.png";
 import Laser from "./Laser";
 import SecurityGuard from "./SecurityGuard";
 
+import squeak from "../assets/squeak.mp3"
 import zap from "../assets/zap.mp3";
+import hmm from "../assets/hmm.mp3"
+import ahem from "../assets/ahem.mp3"
 
 import paintingSpriteCoordinates from "../data/paintings.json";
-// import securityGuard from "../assets/security-guard.mp3"
 
 const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed, setQuestionModal, currentGame}) => {
 
@@ -30,7 +32,11 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
 
     // AUDIO FILES
     const zapAudio = new Audio(zap);
-    // const securityGuardAudio = new Audio(securityGuard);
+    let squeakAudio = new Audio(squeak);
+    squeakAudio.volume = 0.2;
+    const hmmAudio = new Audio(hmm);
+    const ahemAudio = new Audio(ahem);
+
 
     const laserPositions = [{x: 42, y: 195}, {x: 685, y: 195}];
 
@@ -146,13 +152,19 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
             if(currentGame.penalty == 0){
                 displaySecurityGuardSpeechBubble("Bonsoir, Monsieur.");
                 displayThiefSpeechBubble("Zut alors! Ahem... bonsoir");
+                squeakAudio.play();
             }
             if(currentGame.penalty == 1){
                 displaySecurityGuardSpeechBubble("Hmm... suspicious.");
                 displayThiefSpeechBubble("Bonsoir...");
+                squeakAudio.play();
+                hmmAudio.play();
+
             }
             if(currentGame.penalty == 2){
                 displaySecurityGuardSpeechBubble("I've got my eyes on you...");
+                squeakAudio.play();
+                ahemAudio.play();
             }
         }
     }
