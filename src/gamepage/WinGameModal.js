@@ -14,7 +14,7 @@ const WinGameModal = ({setWinGameModal}) => {
   const handleClick = (event) => {
     event.preventDefault();
     setWinGameModal(false);
-    navigate("/");
+    navigate("/playerAccount");
     }
 ;
 
@@ -29,7 +29,7 @@ const WinGameModal = ({setWinGameModal}) => {
           <h1 className="LM__title"> You Win!</h1>
         </div>
         
-          <button onClick={handleClick} className="LM__button">Back to home</button>
+          <button onClick={handleClick} className="LM__button">Back to Account</button>
          
       </div>
     </div>

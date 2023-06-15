@@ -16,7 +16,7 @@ const LandingContainer = () => {
         {/* <LeaderBoardComponent/> */}
 
 
-        <LoginContainer postNewPlayer = {postNewPlayer}/>
+        {/* <LoginContainer postNewPlayer = {postNewPlayer}/> */}
 
         <h1> This is the landing page</h1>
         

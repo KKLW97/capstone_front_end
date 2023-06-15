@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
 
 import { useEffect, useState, useContext } from 'react'
-
+import "../CSSfiles/PlayerContainer.css"
 import { UserContext } from "../App";
 import PersonalLeaderBoardComponent from "../components/PersonalLeaderBoardComponent";
 
 const PlayerContainer = ({createNewGame, incompleteGamesForPlayer, fetchIncompleteGamesForPlayer, currentGame, fetchGameById, setCurrentGame, fetchArtworkInGameByGameId  }) => {
 
 
-import "../CSSfiles/PlayerContainer.css"
+
 
 
 const [selectedId, setSelectedId] = useState(null);
