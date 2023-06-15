@@ -4,8 +4,12 @@ import LoseGameModal from "./LoseGameModal";
 import WinGameModal from "./WinGameModal";
 import PaintingListContainer from "../containers/PaintingListContainer";
 import {decode} from 'html-entities';
+import { useNavigate } from "react-router-dom";
+
+import door from '../assets/door.png';
 
 import "../CSSfiles/App.css";
+import "../CSSfiles/Forfeit.css";
 const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame, fetchStolenArtwork, fetchArtworkInGameByGameId, stolenArtworkList}) => {
 
   const [gameContainerWidth, setGameContainerWidth] = useState(1082);
@@ -55,6 +59,14 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
 
   // 2: FORFEIT/ ESCAPE!
   // user manually clicks end game, Game set to complete, message "you forfeit" (separate handleClick)
+  const navigate = useNavigate();
+
+  const handleForfeitGame = async (event) => {
+    event.preventDefault();
+    currentGame.complete = true;
+    await updateGame(currentGame);
+   navigate("/playerAccount");
+  }
 
 
 
@@ -82,6 +94,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     return updatedCurrentGame
     // 3: WIN!!! 
     // all 10 paintings = stolen.true, game set to complete, message "you won"
+
   }
   
   // useEffect(()=>{
@@ -92,7 +105,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     // console.log(e.target.innerText == currentQuestion.correct_answer);
     let updatedCurrentGame = currentGame;
 
-    if(e.target.value == currentQuestion.correct_answer){
+    if(e.target.value === currentQuestion.correct_answer){
       // 1) set relevant artwork in artworksInGame (change stolen boolean in artwork game to true)
       let updatedArtworkInGame = currentArtworkInGame;
       updatedArtworkInGame.stolen = true;
@@ -191,6 +204,12 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   return (
       <div className="game-and-stolen-art-list">
         <MapContainer artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed} />
+
+        <PaintingListContainer stolenArtworkList={stolenArtworkList} questionBeingDisplayed={questionBeingDisplayed} currentGame={currentGame}/>
+        {/* {questionBeingDisplayed} */}
+        <button className="forfeit" onClick={handleForfeitGame}> <img src={door} /></button>
+
+
 
         <PaintingListContainer stolenArtworkList={stolenArtworkList} questionBeingDisplayed={questionBeingDisplayed} currentGame={currentGame}/>
         {/* {questionBeingDisplayed} */}
