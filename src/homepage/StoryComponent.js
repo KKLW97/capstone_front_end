@@ -2,9 +2,9 @@ import { useState } from "react";
 
 const StoryComponent = () => {
 
-    const [show, setShow] = useState(false);
+const [show, setShow] = useState(false);
 
-    const handleClick = () => {setShow((prev) => !prev)}
+const handleClick = () => {setShow((prev) => !prev)}
  
         return (
             
@@ -26,6 +26,7 @@ const StoryComponent = () => {
                     :
                     <div>
                             You are Stephane, a famous art thief. Tonight you and your cat will break into the heavily guarded BNTA Gallery. Login if you dare... 
+
                             <button onDoubleClick={handleClick}>Back</button>
                     </div>}
                 
