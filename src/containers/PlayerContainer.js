@@ -1,9 +1,37 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from 'react'
+
+import { useEffect, useState, useContext } from 'react'
+
+import { UserContext } from "../App";
+import PersonalLeaderBoardComponent from "../components/PersonalLeaderBoardComponent";
+
+const PlayerContainer = ({createNewGame, incompleteGamesForPlayer, fetchIncompleteGamesForPlayer, currentGame, fetchGameById, setCurrentGame, fetchArtworkInGameByGameId  }) => {
+
+
 import "../CSSfiles/PlayerContainer.css"
-const PlayerContainer = ({ activePlayer, createNewGame, incompleteGamesForPlayer, fetchIncompleteGamesForPlayer, currentGame, fetchGameById, setCurrentGame, fetchArtworkInGameByGameId  }) => {
+
 
 const [selectedId, setSelectedId] = useState(null);
+
+const {activePlayer , allCompletedGamesForPlayer, setAllCompletedGamesForPlayer} = useContext(UserContext);
+
+
+
+
+const fetchAllCompletedGamesForPlayer = async (playerId) => {
+    const response = await fetch(`http://localhost:8080/games?player_id=${playerId}&complete=true`);
+    const jsonData = await response.json();
+    setAllCompletedGamesForPlayer(jsonData);
+  }
+
+
+
+  useEffect(() => {
+    fetchAllCompletedGamesForPlayer(activePlayer.id); 
+   }, [currentGame]);
+
+
+console.log(activePlayer);
 
 const handleClick = async() => {
     await createNewGame(activePlayer.id);
@@ -53,6 +81,9 @@ useEffect(() => {
             </select>
             <button className="buttonStyling" type="submit" >Load Game</button>
         </form>
+        <h2>Personal best for completed game: </h2>
+
+        <PersonalLeaderBoardComponent />
         </>
      );
 }

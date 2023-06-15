@@ -1,19 +1,20 @@
 import Navbar from "../components/Navbar";
-import LoginContainer from "./LoginContainer";
-import { useInRouterContext, useNavigate } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../App";
+import { Outlet} from "react-router-dom";
 
-const LandingContainer = ({ postNewPlayer}) => {
+import "../CSSfiles/App.css";
+import LeaderBoardComponent from "./LeaderBoardComponent";
 
-
-    const { activePlayer, setActivePlayer, allPlayers , newPlayer } = useContext(UserContext);
-
-
+const LandingContainer = () => {
 
     return ( 
 
         <>
+
+        <h1 className="title"> Art Heist </h1>
+        <Navbar />
+        <Outlet/>
+        {/* <LeaderBoardComponent/> */}
+
 
         <LoginContainer postNewPlayer = {postNewPlayer}/>
 
@@ -36,6 +37,7 @@ const LandingContainer = ({ postNewPlayer}) => {
             </ul>
         </div>
             
+
         </>
 
      );
