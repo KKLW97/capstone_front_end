@@ -1,8 +1,9 @@
 import Navbar from "../components/Navbar";
 import { Outlet} from "react-router-dom";
 
-import "../CSSfiles/App.css";
+
 import LeaderBoardComponent from "./LeaderBoardComponent";
+
 
 // footer image imports
 import github from "../assets/github.png"
@@ -10,11 +11,14 @@ import instagram from "../assets/instagram.png"
 import linkedin from "../assets/linkedin.png"
 import twitter from "../assets/twitter.png"
 import twitch from "../assets/twitch.png"
+
 const LandingContainer = () => {
     const year = new Date().getFullYear();
 
     return ( 
         <>
+            
+
             <Navbar />
             <Outlet/>
             <div className="footer">
@@ -40,6 +44,7 @@ const LandingContainer = () => {
         </div>
             {/* <LeaderBoardComponent/> */}
             {/* <LoginContainer postNewPlayer = {postNewPlayer}/> */} 
+
         </>
     );
 }

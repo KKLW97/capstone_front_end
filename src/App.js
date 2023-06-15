@@ -9,6 +9,17 @@ import LoginContainer from "./homepage/LoginContainer";
 import Navbar from "./components/Navbar";
 import { useEffect, useState, createContext, useContext } from "react";
 
+
+
+
+// audio useSound
+import useSound from "use-sound";
+import gameAudio from './assets/game.mp3'
+import audioOn from "./assets/audio-on.png"
+import audioMute from "./assets/mute.png"
+import "./CSSfiles/AudioButton.css"
+
+
 const SERVER_URL = "http://localhost:8080";
 
 export const UserContext = createContext({
@@ -17,7 +28,6 @@ export const UserContext = createContext({
 });
 
 function App() {
-
 
   const [allPlayers, setAllPlayers] = useState([]);
   const [activePlayer, setActivePlayer] = useState(null);
@@ -31,6 +41,11 @@ function App() {
   const [allCompleteGames, setAllCompleteGames] = useState([]);
   const [artworksInGame, setArtworksInGame] = useState([]);
   const [stolenArtworkList, setStolenArtworkList] = useState([]);
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [play, {stop}] = useSound(gameAudio, {
+    playbackRate: 0.75,
+    volume: 0.2
+  })
 
 
   // fetch all completed games for all players to be used for the leaderboard
@@ -92,7 +107,7 @@ function App() {
   }
 
 
-const fetchArtworkInGameByGameId = async (gameId) => {
+  const fetchArtworkInGameByGameId = async (gameId) => {
     // gameId is hard-coded for now
     const response = await fetch(`http://localhost:8080/artworksInGame?game_id=${gameId}`)
     const jsonData = await response.json();
@@ -172,38 +187,43 @@ const fetchArtworkInGameByGameId = async (gameId) => {
 //     })
 // }
 
-const updateArtworkInGame = async(updatedArtworkInGame) => {
-  const response = await fetch(`${SERVER_URL}/artworksInGame/${updatedArtworkInGame.id}?stolen=true`, {
-      method: "PATCH",
-      headers: {"Content-Type": "application/json",}}
-  )
-  const data = await response.json()
-  const updatedArtworksInGame = artworksInGame.map((artworkInGame) => {
-    if(artworkInGame.id != updatedArtworkInGame.id){
-      return artworkInGame
-    } else {
-      return data
-    }
-  })
-  console.log(updatedArtworksInGame)
-  setArtworksInGame(updatedArtworksInGame)
-}
-
-
-const fetchStolenArtwork = async () => {
-  const response = await fetch(`${SERVER_URL}/artworksInGame?game_id=${currentGame.id}&stolen=true`)
-  const jsonData = await response.json()
-  if (Array.isArray(jsonData)) {
-    const stolenArtworks = jsonData.map((artworkGame) => artworkGame);
-    setStolenArtworkList(stolenArtworks)
-    console.log("stolen artwork", stolenArtworks);
-  } else {
-    setStolenArtworkList(jsonData);
+  const updateArtworkInGame = async(updatedArtworkInGame) => {
+    const response = await fetch(`${SERVER_URL}/artworksInGame/${updatedArtworkInGame.id}?stolen=true`, {
+        method: "PATCH",
+        headers: {"Content-Type": "application/json",}}
+    )
+    const data = await response.json()
+    const updatedArtworksInGame = artworksInGame.map((artworkInGame) => {
+      if(artworkInGame.id != updatedArtworkInGame.id){
+        return artworkInGame
+      } else {
+        return data
+      }
+    })
+    console.log(updatedArtworksInGame)
+    setArtworksInGame(updatedArtworksInGame)
   }
-}
 
 
+  const fetchStolenArtwork = async () => {
+    const response = await fetch(`${SERVER_URL}/artworksInGame?game_id=${currentGame.id}&stolen=true`)
+    const jsonData = await response.json()
+    if (Array.isArray(jsonData)) {
+      const stolenArtworks = jsonData.map((artworkGame) => artworkGame);
+      setStolenArtworkList(stolenArtworks)
+      console.log("stolen artwork", stolenArtworks);
+    } else {
+      setStolenArtworkList(jsonData);
+    }
+  }
 
+  const handleClickAudio = () => {setIsPlaying((prev) => !prev)}
+
+  const checkAudioPlay = () => {
+      if(isPlaying){
+          stop()
+      }else{play()}
+  }
 
   const router = createBrowserRouter([
     {
@@ -253,18 +273,28 @@ const fetchStolenArtwork = async () => {
 
   return (
     <>
-      {/* <LandingContainer />
-    <GameContainer /> */}
+      <div className="header">
 
-      <h1 className="title"> Art Heist</h1>
+        <div className="header-title">
+          <h1 className="title"> Art Heist</h1>
+        </div>
 
-    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById, setNewPlayer, fetchArtworkInGameByGameId, setAllCompletedGamesForPlayer, allCompletedGamesForPlayer}}>
+        <div className="audio-image-container">
+          {isPlaying ? <button onClick={() =>{
+            handleClickAudio();
+            checkAudioPlay();}}>
+            <img className="audio-icon" src={audioOn} width={35} height={35}/></button> 
+            : <button onClick={() =>{
+            handleClickAudio();
+            checkAudioPlay();}}>
+            <img className="audio-icon" src={audioMute} width={35} height={35}/></button>}
+        </div>
 
+      </div>
 
-      
+    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById, setNewPlayer, fetchArtworkInGameByGameId, setAllCompletedGamesForPlayer, allCompletedGamesForPlayer, play, stop, isPlaying, setIsPlaying}}>
       
       <RouterProvider router={router}/>
-      
 
     </UserContext.Provider>
     </>

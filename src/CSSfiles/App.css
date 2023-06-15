@@ -125,6 +125,18 @@ button {
   z-index: 1;
 }
 
+/* header nav */
+.header{
+  display: grid;
+  grid-template: 
+  "a b" 5vh;
+}
+
+.audio-image-container{
+  grid-area: b;
+  justify-self: right;
+}
+
 /* PaintingListContainer */
 
 .text__wrapper {
@@ -192,7 +204,7 @@ button {
 }
 
 .LM__button {
-  background-color: red;
+  background-color: magenta;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -200,7 +212,7 @@ button {
   padding: 18px;
 }
 
-/* Footer CSS */
+
 .social-icons:hover{
   filter: drop-shadow(0 0px 100px rgb(255, 117, 246)) drop-shadow(0 0px 20px rgb(255, 117, 246)) drop-shadow(0 0px 30px rgb(255, 117, 246));
   transition: box-shadow 0.5s ease-in-out;

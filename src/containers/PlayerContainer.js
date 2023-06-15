@@ -5,7 +5,9 @@ import "../CSSfiles/PlayerContainer.css"
 import { UserContext } from "../App";
 import PersonalLeaderBoardComponent from "../components/PersonalLeaderBoardComponent";
 
-const PlayerContainer = ({createNewGame, incompleteGamesForPlayer, fetchIncompleteGamesForPlayer, currentGame, fetchGameById, setCurrentGame, fetchArtworkInGameByGameId  }) => {
+
+
+const PlayerContainer = ({createNewGame, incompleteGamesForPlayer, fetchIncompleteGamesForPlayer, currentGame, fetchGameById, setCurrentGame, fetchArtworkInGameByGameId}) => {
 
 
 
@@ -13,7 +15,7 @@ const PlayerContainer = ({createNewGame, incompleteGamesForPlayer, fetchIncomple
 
 const [selectedId, setSelectedId] = useState(null);
 
-const {activePlayer , allCompletedGamesForPlayer, setAllCompletedGamesForPlayer} = useContext(UserContext);
+const {activePlayer , allCompletedGamesForPlayer, setAllCompletedGamesForPlayer, play, stop, isPlaying, setIsPlaying} = useContext(UserContext);
 
 
 
@@ -22,19 +24,21 @@ const fetchAllCompletedGamesForPlayer = async (playerId) => {
     const response = await fetch(`http://localhost:8080/games?player_id=${playerId}&complete=true`);
     const jsonData = await response.json();
     setAllCompletedGamesForPlayer(jsonData);
-  }
+}
 
 
 
-  useEffect(() => {
+useEffect(() => {
     fetchAllCompletedGamesForPlayer(activePlayer.id); 
-   }, [currentGame]);
+}, [currentGame]);
 
 
 console.log(activePlayer);
 
 const handleClick = async() => {
     await createNewGame(activePlayer.id);
+    play();
+    setIsPlaying(true);
     console.log(activePlayer)
     navigate("/gamePage");
 }
@@ -51,6 +55,8 @@ const incompleteGameList = incompleteGamesForPlayer.map((incompleteGame) => {
 const handleFormSubmit = async (event) => {
     event.preventDefault()
     await fetchGameById(selectedId)
+    play();
+    setIsPlaying(true);
     // await fetchArtworkInGameByGameId(selectedId); 
     navigate("/gamePage")
 }

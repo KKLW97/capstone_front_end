@@ -27,7 +27,6 @@ const LoseGameModal = ({setLoseGameModal}) => {
     <div className="LM__background">
       <div className="LM__container">
         <div className="titleClostBtn">
-          <button onClick={handleClick}> X </button>
         </div>
 
         <div>
