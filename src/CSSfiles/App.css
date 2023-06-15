@@ -125,13 +125,8 @@ button {
 .header{
   display: grid;
   grid-template: 
-  "a b" 40vh;
+  "a b" 5vh;
 }
-
-/* .header-nav{
-  grid-area: a;
-  justify-self: left;
-} */
 
 .audio-image-container{
   grid-area: b;

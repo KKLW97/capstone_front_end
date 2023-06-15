@@ -18,6 +18,9 @@ import twitter from "./assets/twitter.png"
 // audio useSound
 import useSound from "use-sound";
 import gameAudio from './assets/game.mp3'
+import audioOn from "./assets/audio-on.png"
+import audioMute from "./assets/mute.png"
+import "./CSSfiles/AudioButton.css"
 
 const SERVER_URL = "http://localhost:8080";
 
@@ -217,8 +220,13 @@ function App() {
     }
   }
 
+  const handleClickAudio = () => {setIsPlaying((prev) => !prev)}
 
-
+  const checkAudioPlay = () => {
+      if(isPlaying){
+          stop()
+      }else{play()}
+  }
 
   const router = createBrowserRouter([
     {
@@ -268,18 +276,28 @@ function App() {
 
   return (
     <>
-      {/* <LandingContainer />
-    <GameContainer /> */}
+      <div className="header">
 
-      <h1 className="title"> Art Heist</h1>
+        <div className="header-title">
+          <h1 className="title"> Art Heist</h1>
+        </div>
+
+        <div className="audio-image-container">
+          {isPlaying ? <button onClick={() =>{
+            handleClickAudio();
+            checkAudioPlay();}}>
+            <img className="audio-icon" src={audioOn} width={35} height={35}/></button> 
+            : <button onClick={() =>{
+            handleClickAudio();
+            checkAudioPlay();}}>
+            <img className="audio-icon" src={audioMute} width={35} height={35}/></button>}
+        </div>
+
+      </div>
 
     <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById, setNewPlayer, fetchArtworkInGameByGameId, setAllCompletedGamesForPlayer, allCompletedGamesForPlayer, play, stop, isPlaying, setIsPlaying}}>
-
-
-      
       
       <RouterProvider router={router}/>
-      
 
     </UserContext.Provider>
     <div className="footer">
