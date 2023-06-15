@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import door from '../assets/door.png';
 import "../CSSfiles/Forfeit.css";
 import scoreAudio from "../assets/correctsound.mp3";
-import penaltyAudio from "../assets/correctsound.mp3";
+import penaltyAudio from "../assets/incorrectsound.mp3";
 
 const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame, fetchStolenArtwork, fetchArtworkInGameByGameId, stolenArtworkList}) => {
 
