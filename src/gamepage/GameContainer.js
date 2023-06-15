@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import MapContainer from "./MapContainer";
 import LoseGameModal from "./LoseGameModal";
 import WinGameModal from "./WinGameModal";
@@ -14,10 +14,15 @@ import door from '../assets/door.png';
 import "../CSSfiles/Forfeit.css";
 import scoreAudio from "../assets/correctsound.mp3";
 import penaltyAudio from "../assets/incorrectsound.mp3";
+import gameAudio from '../assets/game.mp3'
+import useSound from "use-sound";
+import { UserContext } from "../App";
+
 
 const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame, fetchStolenArtwork, fetchArtworkInGameByGameId, stolenArtworkList}) => {
 
-
+  const {play, stop} = useContext(UserContext);
+  
   const [gameContainerWidth, setGameContainerWidth] = useState(1082);
   const [gameContainerHeight, setGameContainerHeight] = useState(800);
   // const [artworksInGame, setArtworksInGame] = useState([]);
@@ -47,6 +52,10 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   //sounds
   const scoreSound = new Audio(scoreAudio);
   const penaltySound = new Audio(penaltyAudio);
+
+  // const [play, {stop}] = useSound(gameAudio, {
+  //   volume: 0.5
+  // })
 
 
   const displayPaintingInfo = (index) => {
@@ -79,9 +88,15 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     event.preventDefault();
     currentGame.complete = true;
     await updateGame(currentGame);
+    checkCompleteStopSound(currentGame);
    navigate("/playerAccount");
   }
 
+  const checkCompleteStopSound = (updatedCurrentGame) => {
+      if(updatedCurrentGame.complete){
+        stop();
+      }
+  }
 
 
   const checkGameStatus = (updatedCurrentGame) => {
@@ -94,11 +109,13 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     if (updatedCurrentGame.penalty===3) {
       
       updatedCurrentGame.complete = true;
+      checkCompleteStopSound(updatedCurrentGame);
       updatedCurrentGame.score = 0;
       LmodalHandle();
       // add modal/message saying "you lose everything... crime doesn't pay apparently"
     } else if (stolenArtworkList.length === artworksInGame.length-1){
       updatedCurrentGame.complete = true;
+      checkCompleteStopSound(updatedCurrentGame);
       WModalHandle();
       console.log("stolen art from check",stolenArtworkList)
       console.log(currentGame.complete)
@@ -121,8 +138,6 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   const handleClick = async(e) => {
     // console.log(e.target.innerText == currentQuestion.correct_answer);
     let updatedCurrentGame = currentGame;
-
-
 
     if(e.target.value === currentQuestion.correct_answer){
       // 1) set relevant artwork in artworksInGame (change stolen boolean in artwork game to true)

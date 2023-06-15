@@ -15,6 +15,10 @@ import instagram from "./assets/instagram.png"
 import linkedin from "./assets/linkedin.png"
 import twitter from "./assets/twitter.png"
 
+// audio useSound
+import useSound from "use-sound";
+import gameAudio from './assets/game.mp3'
+
 const SERVER_URL = "http://localhost:8080";
 
 export const UserContext = createContext({
@@ -23,7 +27,6 @@ export const UserContext = createContext({
 });
 
 function App() {
-
 
   const [allPlayers, setAllPlayers] = useState([]);
   const [activePlayer, setActivePlayer] = useState(null);
@@ -37,6 +40,10 @@ function App() {
   const [allCompleteGames, setAllCompleteGames] = useState([]);
   const [artworksInGame, setArtworksInGame] = useState([]);
   const [stolenArtworkList, setStolenArtworkList] = useState([]);
+  const [play, {stop}] = useSound(gameAudio, {
+    playbackRate: 0.75,
+    volume: 0.2
+  })
 
   const year = new Date().getFullYear();
 
@@ -179,35 +186,35 @@ const fetchArtworkInGameByGameId = async (gameId) => {
 //     })
 // }
 
-const updateArtworkInGame = async(updatedArtworkInGame) => {
-  const response = await fetch(`${SERVER_URL}/artworksInGame/${updatedArtworkInGame.id}?stolen=true`, {
-      method: "PATCH",
-      headers: {"Content-Type": "application/json",}}
-  )
-  const data = await response.json()
-  const updatedArtworksInGame = artworksInGame.map((artworkInGame) => {
-    if(artworkInGame.id != updatedArtworkInGame.id){
-      return artworkInGame
-    } else {
-      return data
-    }
-  })
-  console.log(updatedArtworksInGame)
-  setArtworksInGame(updatedArtworksInGame)
-}
-
-
-const fetchStolenArtwork = async () => {
-  const response = await fetch(`${SERVER_URL}/artworksInGame?game_id=${currentGame.id}&stolen=true`)
-  const jsonData = await response.json()
-  if (Array.isArray(jsonData)) {
-    const stolenArtworks = jsonData.map((artworkGame) => artworkGame);
-    setStolenArtworkList(stolenArtworks)
-    console.log("stolen artwork", stolenArtworks);
-  } else {
-    setStolenArtworkList(jsonData);
+  const updateArtworkInGame = async(updatedArtworkInGame) => {
+    const response = await fetch(`${SERVER_URL}/artworksInGame/${updatedArtworkInGame.id}?stolen=true`, {
+        method: "PATCH",
+        headers: {"Content-Type": "application/json",}}
+    )
+    const data = await response.json()
+    const updatedArtworksInGame = artworksInGame.map((artworkInGame) => {
+      if(artworkInGame.id != updatedArtworkInGame.id){
+        return artworkInGame
+      } else {
+        return data
+      }
+    })
+    console.log(updatedArtworksInGame)
+    setArtworksInGame(updatedArtworksInGame)
   }
-}
+
+
+  const fetchStolenArtwork = async () => {
+    const response = await fetch(`${SERVER_URL}/artworksInGame?game_id=${currentGame.id}&stolen=true`)
+    const jsonData = await response.json()
+    if (Array.isArray(jsonData)) {
+      const stolenArtworks = jsonData.map((artworkGame) => artworkGame);
+      setStolenArtworkList(stolenArtworks)
+      console.log("stolen artwork", stolenArtworks);
+    } else {
+      setStolenArtworkList(jsonData);
+    }
+  }
 
 
 
@@ -265,7 +272,7 @@ const fetchStolenArtwork = async () => {
 
       <h1 className="title"> Art Heist</h1>
 
-    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById, setNewPlayer, fetchArtworkInGameByGameId, setAllCompletedGamesForPlayer, allCompletedGamesForPlayer}}>
+    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById, setNewPlayer, fetchArtworkInGameByGameId, setAllCompletedGamesForPlayer, allCompletedGamesForPlayer, play, stop}}>
 
 
       
