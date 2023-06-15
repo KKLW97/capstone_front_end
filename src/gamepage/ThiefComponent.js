@@ -17,6 +17,7 @@ const ThiefComponent = ({speechBubble, displayPaintingInfoStatus, displayCurrent
     useEffect(()=>{
         const handleKeyDown = (e) => {
             if (e.code === 'Space'){
+                e.preventDefault();
                 setQuestionModal(true);
             }
         }
