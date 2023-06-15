@@ -6,6 +6,9 @@ import mapImage from "../assets/unnamed-1.png";
 import Laser from "./Laser";
 import SecurityGuard from "./SecurityGuard";
 
+import zap from "../assets/zap.mp3";
+// import securityGuard from "../assets/security-guard.mp3"
+
 const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed, setQuestionModal, currentGame}) => {
 
 
@@ -22,6 +25,10 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
 
     const [speechBubble, setSpeechBubble] = useState(null);
     const [guardSpeechBubble, setGuardSpeechBubble] = useState(null);
+
+    // AUDIO FILES
+    const zapAudio = new Audio(zap);
+    // const securityGuardAudio = new Audio(securityGuard);
 
     const laserPosition1X = 42;
     const laserPosition1Y = 195;
@@ -143,6 +150,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
             setThiefPositionX(400);
             setThiefPositionY(0);
             displayThiefSpeechBubble("Ouch!");
+            zapAudio.play();
           }
     }
 
