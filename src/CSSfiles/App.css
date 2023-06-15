@@ -42,6 +42,7 @@ body {
 
 .caught-fish img {
   border: 5px solid brown;
+  box-shadow: rgb(146, 19, 144) 5px 10px;
   padding: 10px; 
   background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(253,187,45,1) 100%);
 }
