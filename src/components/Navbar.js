@@ -10,13 +10,13 @@ const Navbar = () => {
     <nav className="">
       <ul className="navbar_list">
         <li className="">
-          <a href="/" className="">Home</a>
+          <a href="http://localhost:3000" className="#">Home</a>
         </li>
         <li className="">
-          <a href="/playerAccount" className="">Player Account</a>
+          <a href="http://localhost:3000/playerAccount" className="#">Account</a>
         </li>
         <li className="">
-          <a href="/gamePage" className="">Game Page</a>
+          <a href="http://localhost:3000/gamePage" className="#">Game</a>
         </li>
       </ul>
     </nav>
