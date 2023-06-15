@@ -34,17 +34,16 @@ const PersonalLeaderBoardComponent = () => {
   return (     
     <div className="leadboard">
 
-      <h3>Top 5 Game Scores</h3>
-     
-      <ul>
+      <h2>Top 5 Game Scores</h2>
+      <div className="score-list">
+      
         {sortedScores.map((game) => (
-          <li key={game.id}>
-            <p>
-              Game id: {game.id} - Score: {game.score}
-            </p>
-          </li>
+          <li>
+          <p className="score-entry" key={game.id}>
+            Game id: {game.id} - Score: {game.score}
+          </p></li>
         ))}
-      </ul>
+      </div>
     </div>  
   );
 }

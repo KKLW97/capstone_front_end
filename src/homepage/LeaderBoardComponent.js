@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react"; 
 
 import { UserContext } from "../App";
-
+import "../CSSfiles/LeaderBoard.css"
 const LeaderBoardComponent = () => {
 
     const { allPlayers } = useContext(UserContext);
@@ -19,24 +19,18 @@ const playersHighestScores = allPlayers.filter((player) => {
     
 })
 .sort((a,b) => b.highestScore - a.highestScore).slice(0, 10)
-.map((player) =>  <li> <p>{player.name} - {player.highestScore}</p></li>)
+.map((player) =>  <li> <p className="score-entry">{player.name} - {player.highestScore}</p></li>)
 
 console.log(playersHighestScores);
     
     return ( 
-        <>
-        <h2> Top 10 players </h2>
-        <ol>
-
-            {playersHighestScores}
-        </ol>
+        <div className="leadboard">
+            <h2> Top 10 players </h2>
+            <div className="score-list">
+                {playersHighestScores}
+            </div>
         
-        
-     
-
-      
-        
-        </>
+        </div>
      );
 }
  
