@@ -4,6 +4,7 @@ import thief_sprite_left from '../assets/thief_sprite_left.png';
 import thief_sprite_front from '../assets/thief_sprite_front.png';
 import thief_sprite_back from '../assets/thief_sprite_back.png';
 import QuestionModal from './QuestionModal';
+import cat from '../assets/cat.GIF';
 import { useState, useEffect } from 'react';
 
 const ThiefComponent = ({displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerHeight, containerWidth, thiefPositionX, thiefPositionY, thiefImage, questionBeingDisplayed}) => {

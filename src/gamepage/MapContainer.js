@@ -78,7 +78,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
 
     useEffect(()=>{
         const intervalId = setInterval(displayLaserVisibility,randomInterval);
-        setRandominterval(Math.random()*10000);
+        setRandominterval(5000);
         return () => {
             clearInterval(intervalId);
         }
@@ -128,10 +128,12 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     }
 
     const checkIfNearSecurityGuard = () => {
-        const proximityLimit = 40;
+        const proximityLimit = 80;
         const distance = Math.sqrt(Math.pow(thiefPositionX - securityGuardPositionX, 2) + Math.pow(thiefPositionY - securityGuardPositionY, 2));
         if (distance <= proximityLimit) {
             console.log("penalty");
+            setThiefPositionX(400);
+            setThiefPositionY(0);
             }
     }
 
