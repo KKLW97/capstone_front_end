@@ -30,7 +30,7 @@ body {
 }
 
 .caught-fish {
-  grid-column: 2 / 3;
+  grid-column: 4 / 4;
   height: 750px;
   background-color: rgb(255, 117, 246);
   padding: 20px;
@@ -109,4 +109,68 @@ button {
 
 .questionModalBackground{
   z-index: 1;
+}
+
+/* PaintingListContainer */
+
+.text__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.PLC__container {
+  width: 100%;
+  max-width: 550px;
+}
+
+/* LOSE/WIN MODALS */
+
+.LM__background {
+  /* width: 50%;
+  height: 50%;  */
+  /* background-color: rgba(200, 200, 200);  */
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LM__container {
+  color: black;
+  height: 800px;
+  width: 1500px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0,0,0,0.35) 0px 5px 15px;
+  padding: 25px;
+}
+
+.LM__title {
+  text-align: center;
+  font-size: 80px;
+  height: 400px;
+}
+
+.LM__button {
+  background-color: red;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 18px;
+}
+
+.forfeit {
+    display: flex;
+    justify-self: flex-end;
+    text-align: right;
+    position: relative;
+    bottom: 0;
+    /* left: 1600px; */
+}
+
+.forfeit img {
+    height: 50px;
+    width: 50px;
 }
