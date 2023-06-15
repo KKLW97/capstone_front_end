@@ -40,7 +40,7 @@ const PersonalLeaderBoardComponent = () => {
         {sortedScores.map((game) => (
           <li>
           <p className="score-entry" key={game.id}>
-            Game id: {game.id} - Score: {game.score}
+            Game id {game.id} - {game.score} points
           </p></li>
         ))}
       </div>

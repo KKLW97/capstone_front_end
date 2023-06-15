@@ -18,14 +18,14 @@ const playersHighestScores = allPlayers.filter((player) => {
     }
     
 })
-.sort((a,b) => b.highestScore - a.highestScore).slice(0, 10)
-.map((player) =>  <li> <p className="score-entry">{player.name} - {player.highestScore}</p></li>)
+.sort((a,b) => b.highestScore - a.highestScore).slice(0, 5)
+.map((player) =>  <li> <p className="score-entry">{player.name} - {player.highestScore} points </p></li>)
 
 console.log(playersHighestScores);
     
     return ( 
-        <div className="leadboard">
-            <h2> Top 10 players </h2>
+        <div className="landingleadboard">
+            <h2> Top 5 players </h2>
             <div className="score-list">
                 {playersHighestScores}
             </div>
