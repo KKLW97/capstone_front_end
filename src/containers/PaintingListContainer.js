@@ -1,9 +1,10 @@
+import "../CSSfiles/PaintingListContainer.css"
 const PaintingListContainer = ({stolenArtworkList, questionBeingDisplayed, currentGame}) => {
     return ( 
        <div>
          <div> 
-            <h3> These are the cool paintings you stole</h3> 
-            <h3>Total Score: {currentGame.score}</h3>
+            <h3 className="title-heading"> These are the cool paintings you stole</h3> 
+            <h3 className="title-heading">Total Score: {currentGame.score}</h3>
          </div>
 
          <div className="caught-fish">

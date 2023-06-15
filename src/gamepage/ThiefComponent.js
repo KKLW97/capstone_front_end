@@ -6,7 +6,8 @@ import thief_sprite_back from '../assets/thief_sprite_back.png';
 import cat from '../assets/cat.GIF';
 import { useState, useEffect } from 'react';
 
-const ThiefComponent = ({displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerHeight, containerWidth, thiefPositionX, thiefPositionY, thiefImage, questionBeingDisplayed, setQuestionModal}) => {
+
+const ThiefComponent = ({speechBubble, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerHeight, containerWidth, thiefPositionX, thiefPositionY, thiefImage, questionBeingDisplayed, setQuestionModal}) => {
 
 
     const handleClick = () => {
@@ -50,7 +51,10 @@ const ThiefComponent = ({displayPaintingInfoStatus, displayCurrentQuestion, pain
            {/* add inline style to button : visibility:`${displayStatus}`} */}
             {paintingInfo ? <button onClick={handleClick} style={{visibility: `${displayPaintingInfoStatus}`, width: "200px", position: "absolute", left: "-55px", bottom: "70px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null}
             {/* {paintingInfo ? <button onClick={handleClick} style={{width: "200px", position: "absolute", left: "-55px", bottom: "70px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null} */}
-            
+
+            {speechBubble ? <div style={{zIndex: "2", position: "absolute", left: "10px", bottom: "50px", padding: "10px"}}>{speechBubble}</div> : null}
+
+
 
         </div>
       );

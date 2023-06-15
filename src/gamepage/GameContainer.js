@@ -230,6 +230,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
           {instructionModal && <InstructionModal closeModal={setInstructionModal}/>}
           <PenaltyList currentGame={currentGame}/>
           <MapContainer artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed} setQuestionModal={setQuestionModal}/>
+
           <PaintingListContainer stolenArtworkList={stolenArtworkList} questionBeingDisplayed={questionBeingDisplayed} currentGame={currentGame}/>
           {/* {questionBeingDisplayed} */}
           {openloseGameModal && <LoseGameModal setLoseGameModal={setLoseGameModal} />} 
@@ -239,7 +240,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
         </section>
       </div>
        {/* forfeit game */}
-        <button className="forfeit" title="forfeit game" onClick={handleForfeitGame}> <img src={door} /></button>
+        <button className="forfeit" title="forfeit game" onClick={handleForfeitGame}> <img src={door} className="forfeit-image" /></button>
     </>
     
     );
