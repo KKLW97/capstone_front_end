@@ -1,0 +1,10 @@
+.audio-icon:hover{
+    filter: drop-shadow(0 0px 100px rgb(255, 117, 246)) drop-shadow(0 0px 20px rgb(255, 117, 246)) drop-shadow(0 0px 30px rgb(255, 117, 246));
+    transition: box-shadow 0.5s ease-in-out;
+}
+  
+.audio-icon{
+    background-color: rgb(255, 117, 246);
+    box-shadow: 0 0 10px;
+    border-radius: 25px;
+}

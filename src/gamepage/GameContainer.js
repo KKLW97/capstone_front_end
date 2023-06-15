@@ -21,7 +21,7 @@ import { UserContext } from "../App";
 
 const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame, fetchStolenArtwork, fetchArtworkInGameByGameId, stolenArtworkList}) => {
 
-  const {play, stop} = useContext(UserContext);
+  const {play, stop, isPlaying, setIsPlaying} = useContext(UserContext);
   
   const [gameContainerWidth, setGameContainerWidth] = useState(1082);
   const [gameContainerHeight, setGameContainerHeight] = useState(800);
@@ -53,9 +53,6 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   const scoreSound = new Audio(scoreAudio);
   const penaltySound = new Audio(penaltyAudio);
 
-  // const [play, {stop}] = useSound(gameAudio, {
-  //   volume: 0.5
-  // })
 
 
   const displayPaintingInfo = (index) => {
@@ -95,6 +92,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   const checkCompleteStopSound = (updatedCurrentGame) => {
       if(updatedCurrentGame.complete){
         stop();
+        setIsPlaying(false)
       }
   }
 

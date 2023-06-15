@@ -40,6 +40,7 @@ function App() {
   const [allCompleteGames, setAllCompleteGames] = useState([]);
   const [artworksInGame, setArtworksInGame] = useState([]);
   const [stolenArtworkList, setStolenArtworkList] = useState([]);
+  const [isPlaying, setIsPlaying] = useState(false)
   const [play, {stop}] = useSound(gameAudio, {
     playbackRate: 0.75,
     volume: 0.2
@@ -106,7 +107,7 @@ function App() {
   }
 
 
-const fetchArtworkInGameByGameId = async (gameId) => {
+  const fetchArtworkInGameByGameId = async (gameId) => {
     // gameId is hard-coded for now
     const response = await fetch(`http://localhost:8080/artworksInGame?game_id=${gameId}`)
     const jsonData = await response.json();
@@ -272,7 +273,7 @@ const fetchArtworkInGameByGameId = async (gameId) => {
 
       <h1 className="title"> Art Heist</h1>
 
-    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById, setNewPlayer, fetchArtworkInGameByGameId, setAllCompletedGamesForPlayer, allCompletedGamesForPlayer, play, stop}}>
+    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById, setNewPlayer, fetchArtworkInGameByGameId, setAllCompletedGamesForPlayer, allCompletedGamesForPlayer, play, stop, isPlaying, setIsPlaying}}>
 
 
       

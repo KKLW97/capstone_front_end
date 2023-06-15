@@ -15,7 +15,7 @@ const PlayerContainer = ({createNewGame, incompleteGamesForPlayer, fetchIncomple
 
 const [selectedId, setSelectedId] = useState(null);
 
-const {activePlayer , allCompletedGamesForPlayer, setAllCompletedGamesForPlayer, play, stop} = useContext(UserContext);
+const {activePlayer , allCompletedGamesForPlayer, setAllCompletedGamesForPlayer, play, stop, isPlaying, setIsPlaying} = useContext(UserContext);
 
 
 
@@ -38,6 +38,7 @@ console.log(activePlayer);
 const handleClick = async() => {
     await createNewGame(activePlayer.id);
     play();
+    setIsPlaying(true);
     console.log(activePlayer)
     navigate("/gamePage");
 }
@@ -55,6 +56,7 @@ const handleFormSubmit = async (event) => {
     event.preventDefault()
     await fetchGameById(selectedId)
     play();
+    setIsPlaying(true);
     // await fetchArtworkInGameByGameId(selectedId); 
     navigate("/gamePage")
 }
