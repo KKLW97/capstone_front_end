@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import ThiefComponent from "./ThiefComponent";
 import PaintingComponent from "./PaintingComponent";
+// import QuestionModal from "./QuestionModal";
 import mapImage from "../assets/unnamed-1.png";
 import Laser from "./Laser";
 import SecurityGuard from "./SecurityGuard";
 
-const MapContainer = ({currentGame, artworksInGame, hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed}) => {
+const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed, setQuestionModal}) => {
+
 
     const [laserVisibility, setLaserVisibility] = useState("hidden");
     const [randomInterval, setRandominterval] = useState(5000);
@@ -425,9 +427,20 @@ const MapContainer = ({currentGame, artworksInGame, hideDisplayPaintingInfoStatu
         checkIfNearPainting9();
         checkIfNearPainting10();
     }
+
+    // const [questionModal, setQuestionModal] = useState(false);
+
+
+
+
+
+
+
+
     return ( 
         <div className="map-container" style={{height: `${containerHeight}px`, width: `${containerWidth}px`, backgroundImage: `url(${mapImage})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundColor: `black`, backgroundPosition: "center"}}>
-            <ThiefComponent speechBubble={speechBubble} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerHeight={containerHeight} containerWidth={containerWidth} thiefPositionX={thiefPositionX} thiefPositionY={thiefPositionY} thiefImage={thiefImage} questionBeingDisplayed={questionBeingDisplayed}/>
+
+            <ThiefComponent speechBubble={speechBubble} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerHeight={containerHeight} containerWidth={containerWidth} thiefPositionX={thiefPositionX} thiefPositionY={thiefPositionY} thiefImage={thiefImage} questionBeingDisplayed={questionBeingDisplayed} setQuestionModal={setQuestionModal}/>
             
             {artworksInGame[0]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingPosition1X} paintingPositionY={paintingPosition1Y}/>
             : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition1X} paintingPositionY={paintingPosition1Y}/>}
@@ -462,6 +475,8 @@ const MapContainer = ({currentGame, artworksInGame, hideDisplayPaintingInfoStatu
             <Laser laserPositionX={laserPosition2X} laserPositionY={laserPosition2Y} laserVisibility={laserVisibility}/>
             <SecurityGuard guardSpeechBubble={guardSpeechBubble} securityGuardPositionX={securityGuardPositionX} securityGuardPositionY={securityGuardPositionY} securityGuardImage={securityGuardImage}/>
             {/* {paintingInfo ? <button style={{position: "absolute", left: "0px", bottom: "100px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null} */}
+            {/* {questionModal && <QuestionModal closeModal={setQuestionModal} questionBeingDisplayed={questionBeingDisplayed} />}  */}
+
         </div>
      );
 }
