@@ -7,6 +7,8 @@ import Laser from "./Laser";
 import SecurityGuard from "./SecurityGuard";
 
 import zap from "../assets/zap.mp3";
+
+import paintingSpriteCoordinates from "../data/paintings.json";
 // import securityGuard from "../assets/security-guard.mp3"
 
 const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed, setQuestionModal, currentGame}) => {
@@ -98,36 +100,6 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     }, [])
 
 
-    const paintingPosition1X = 150;
-    const paintingPosition1Y = 40;
-
-    const paintingPosition2X = 790;
-    const paintingPosition2Y = 40; 
-
-    const paintingPosition3X = 190;
-    const paintingPosition3Y = 720;
-
-    const paintingPosition4X = 750;
-    const paintingPosition4Y = 720; 
-
-    const paintingPosition5X = 10;
-    const paintingPosition5Y = 100;
-
-    const paintingPosition6X = 90;
-    const paintingPosition6Y = 615; 
-
-    const paintingPosition7X = 290;
-    const paintingPosition7Y = 485; 
-
-    const paintingPosition8X = 650;
-    const paintingPosition8Y = 485; 
-
-    const paintingPosition9X = 940;
-    const paintingPosition9Y = 100;
-
-    const paintingPosition10X = 855;
-    const paintingPosition10Y = 615; 
-    
     const theifSpeed = 10;
 
     const displayThiefSpeechBubble = (messageString) => {
@@ -190,7 +162,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
 
     const checkIfNearPainting1 = () => {
         const proximityLimit = 40;
-        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition1X, 2) + Math.pow(thiefPositionY - paintingPosition1Y, 2));
+        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[0].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[0].y, 2));
         if (distance <= proximityLimit) {
             displayPaintingInfo(0);
             getEasyQuestion(0);
@@ -202,7 +174,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
 
     const checkIfNearPainting2 = () => {
         const proximityLimit = 40;
-        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition2X, 2) + Math.pow(thiefPositionY - paintingPosition2Y, 2));
+        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[1].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[1].y, 2));
         if (distance <= proximityLimit) {
             displayPaintingInfo(1);
             getEasyQuestion(1);
@@ -210,7 +182,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     }
     const checkIfNearPainting3 = () => {
         const proximityLimit = 40;
-        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition3X, 2) + Math.pow(thiefPositionY - paintingPosition3Y, 2));
+        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[2].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[2].y, 2));
         if (distance <= proximityLimit) {
             displayPaintingInfo(2);
             getEasyQuestion(2);
@@ -218,7 +190,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     }
     const checkIfNearPainting4 = () => {
         const proximityLimit = 40;
-        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition4X, 2) + Math.pow(thiefPositionY - paintingPosition4Y, 2));
+        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[3].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[3].y, 2));
         if (distance <= proximityLimit) {
             displayPaintingInfo(3);
             getEasyQuestion(3);
@@ -226,7 +198,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     }
     const checkIfNearPainting5 = () => {
         const proximityLimit = 40;
-        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition5X, 2) + Math.pow(thiefPositionY - paintingPosition5Y, 2));
+        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[4].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[4].y, 2));
         if (distance <= proximityLimit) {
             displayPaintingInfo(4);
             getEasyQuestion(4);
@@ -234,7 +206,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     }
     const checkIfNearPainting6 = () => {
         const proximityLimit = 40;
-        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition6X, 2) + Math.pow(thiefPositionY - paintingPosition6Y, 2));
+        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[5].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[5].y, 2));
         if (distance <= proximityLimit) {
             displayPaintingInfo(5);
             getMediumQuestion(0);
@@ -242,7 +214,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     }
     const checkIfNearPainting7 = () => {
         const proximityLimit = 40;
-        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition7X, 2) + Math.pow(thiefPositionY - paintingPosition7Y, 2));
+        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[6].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[6].y, 2));
         if (distance <= proximityLimit) {
             displayPaintingInfo(6);
             getMediumQuestion(1);
@@ -250,7 +222,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     }
     const checkIfNearPainting8 = () => {
         const proximityLimit = 40;
-        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition8X, 2) + Math.pow(thiefPositionY - paintingPosition8Y, 2));
+        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[7].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[7].y, 2));
         if (distance <= proximityLimit) {
             displayPaintingInfo(7);
             getMediumQuestion(2);
@@ -258,7 +230,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     }
     const checkIfNearPainting9 = () => {
         const proximityLimit = 40;
-        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition9X, 2) + Math.pow(thiefPositionY - paintingPosition9Y, 2));
+        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[8].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[8].y, 2));
         if (distance <= proximityLimit) {
             displayPaintingInfo(8);
             getHardQuestion(0);
@@ -266,7 +238,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     }
     const checkIfNearPainting10 = () => {
         const proximityLimit = 40;
-        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingPosition10X, 2) + Math.pow(thiefPositionY - paintingPosition10Y, 2));
+        const distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[9].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[9].y, 2));
         if (distance <= proximityLimit) {
             displayPaintingInfo(9);
             getHardQuestion(1);
@@ -450,35 +422,35 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
 
             <ThiefComponent speechBubble={speechBubble} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerHeight={containerHeight} containerWidth={containerWidth} thiefPositionX={thiefPositionX} thiefPositionY={thiefPositionY} thiefImage={thiefImage} questionBeingDisplayed={questionBeingDisplayed} setQuestionModal={setQuestionModal}/>
             
-            {artworksInGame[0]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingPosition1X} paintingPositionY={paintingPosition1Y}/>
-            : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition1X} paintingPositionY={paintingPosition1Y}/>}
+            {artworksInGame[0]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingSpriteCoordinates[0].x} paintingPositionY={paintingSpriteCoordinates[0].y}/>
+            : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingSpriteCoordinates[0].x} paintingPositionY={paintingSpriteCoordinates[0].y}/>}
             
-            {artworksInGame[1]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingPosition2X} paintingPositionY={paintingPosition2Y}/>
-            : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition2X} paintingPositionY={paintingPosition2Y}/>}
+            {artworksInGame[1]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingSpriteCoordinates[1].x} paintingPositionY={paintingSpriteCoordinates[1].y}/>
+            : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingSpriteCoordinates[1].x} paintingPositionY={paintingSpriteCoordinates[1].y}/>}
             
-            {artworksInGame[2]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingPosition3X} paintingPositionY={paintingPosition3Y}/>
-            : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition3X} paintingPositionY={paintingPosition3Y}/>}
+            {artworksInGame[2]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingSpriteCoordinates[2].x} paintingPositionY={paintingSpriteCoordinates[2].y}/>
+            : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingSpriteCoordinates[2].x} paintingPositionY={paintingSpriteCoordinates[2].y}/>}
             
-            {artworksInGame[3]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingPosition4X} paintingPositionY={paintingPosition4Y}/>
-            : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition4X} paintingPositionY={paintingPosition4Y}/>}       
+            {artworksInGame[3]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingSpriteCoordinates[3].x} paintingPositionY={paintingSpriteCoordinates[3].y}/>
+            : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingSpriteCoordinates[3].x} paintingPositionY={paintingSpriteCoordinates[3].y}/>}       
             
-            {artworksInGame[4]?.stolen ? <PaintingComponent paintingClass={"vertical_painting stolen"} paintingPositionX={paintingPosition5X} paintingPositionY={paintingPosition5Y}/>
-            : <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition5X} paintingPositionY={paintingPosition5Y}/>}
+            {artworksInGame[4]?.stolen ? <PaintingComponent paintingClass={"vertical_painting stolen"} paintingPositionX={paintingSpriteCoordinates[4].x} paintingPositionY={paintingSpriteCoordinates[4].y}/>
+            : <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingSpriteCoordinates[4].x} paintingPositionY={paintingSpriteCoordinates[4].y}/>}
             
-            {artworksInGame[5]?.stolen ? <PaintingComponent paintingClass={"vertical_painting stolen"} paintingPositionX={paintingPosition6X} paintingPositionY={paintingPosition6Y}/>
-                :  <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition6X} paintingPositionY={paintingPosition6Y}/>}
+            {artworksInGame[5]?.stolen ? <PaintingComponent paintingClass={"vertical_painting stolen"} paintingPositionX={paintingSpriteCoordinates[5].x} paintingPositionY={paintingSpriteCoordinates[5].y}/>
+                :  <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingSpriteCoordinates[5].x} paintingPositionY={paintingSpriteCoordinates[5].y}/>}
             
-            {artworksInGame[6]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingPosition7X} paintingPositionY={paintingPosition7Y}/>
-                : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition7X} paintingPositionY={paintingPosition7Y}/>}
+            {artworksInGame[6]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingSpriteCoordinates[6].x} paintingPositionY={paintingSpriteCoordinates[6].y}/>
+                : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingSpriteCoordinates[6].x} paintingPositionY={paintingSpriteCoordinates[6].y}/>}
             
-            {artworksInGame[7]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingPosition8X} paintingPositionY={paintingPosition8Y}/>
-                : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition8X} paintingPositionY={paintingPosition8Y}/>}
+            {artworksInGame[7]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingSpriteCoordinates[7].x} paintingPositionY={paintingSpriteCoordinates[7].y}/>
+                : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingSpriteCoordinates[7].x} paintingPositionY={paintingSpriteCoordinates[7].y}/>}
             
-            {artworksInGame[8]?.stolen ? <PaintingComponent paintingClass={"vertical_painting stolen"} paintingPositionX={paintingPosition9X} paintingPositionY={paintingPosition9Y}/>
-                : <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition9X} paintingPositionY={paintingPosition9Y}/>}
+            {artworksInGame[8]?.stolen ? <PaintingComponent paintingClass={"vertical_painting stolen"} paintingPositionX={paintingSpriteCoordinates[8].x} paintingPositionY={paintingSpriteCoordinates[8].y}/>
+                : <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingSpriteCoordinates[8].x} paintingPositionY={paintingSpriteCoordinates[8].y}/>}
             
-            {artworksInGame[9]?.stolen ? <PaintingComponent paintingClass={"vertical_painting stolen"} paintingPositionX={paintingPosition10X} paintingPositionY={paintingPosition10Y}/>
-            : <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition10X} paintingPositionY={paintingPosition10Y}/>}
+            {artworksInGame[9]?.stolen ? <PaintingComponent paintingClass={"vertical_painting stolen"} paintingPositionX={paintingSpriteCoordinates[9].x} paintingPositionY={paintingSpriteCoordinates[9].y}/>
+            : <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingSpriteCoordinates[9].x} paintingPositionY={paintingSpriteCoordinates[9].y}/>}
             <Laser laserPositionX={laserPosition1X} laserPositionY={laserPosition1Y} laserVisibility={laserVisibility}/>
             <Laser laserPositionX={laserPosition2X} laserPositionY={laserPosition2Y} laserVisibility={laserVisibility}/>
             <SecurityGuard guardSpeechBubble={guardSpeechBubble} securityGuardPositionX={securityGuardPositionX} securityGuardPositionY={securityGuardPositionY} securityGuardImage={securityGuardImage}/>
