@@ -16,7 +16,12 @@ body {
   grid-area: a;
   text-align: center;
 } */
-
+.title{
+  font-size: 30px;
+  filter: drop-shadow(0px 0px 1px rgb(255, 117, 246)) drop-shadow(0 0px 2px rgb(255, 117, 246)) drop-shadow(0 0px 3px rgb(255, 117, 246));
+  transition: drop-shadow 0.5s ease-in-out;
+  margin: 0;
+}
 .game-and-stolen-art-list {
   justify-items: center;
   display: grid;

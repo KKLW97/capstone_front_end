@@ -24,3 +24,22 @@
     justify-content: center;
     margin-top: 20px;
 }
+
+.select{
+    padding: 10px;
+}
+
+.player-button{
+    background-color: white;
+    color: black;
+    margin-left: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10px;
+}
+
+.player-button:hover {
+    background-color: rgb(255, 117, 246);
+    filter: drop-shadow(0 0px 100px rgb(255, 117, 246)) drop-shadow(0 0px 20px rgb(255, 117, 246)) drop-shadow(0 0px 30px rgb(255, 117, 246));
+    transition: box-shadow 0.5s ease-in-out;
+}
+

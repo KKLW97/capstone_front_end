@@ -263,7 +263,7 @@ const fetchStolenArtwork = async () => {
       {/* <LandingContainer />
     <GameContainer /> */}
 
-      <h1 className="loginTitle"> Art Heist</h1>
+      <h1 className="title"> Art Heist</h1>
 
     <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById, setNewPlayer, fetchArtworkInGameByGameId, setAllCompletedGamesForPlayer, allCompletedGamesForPlayer}}>
 

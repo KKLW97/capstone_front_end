@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react"; 
 
 import { UserContext } from "../App";
+import "../CSSfiles/LeaderBoard.css"
 
 
 const PersonalLeaderBoardComponent = () => {
@@ -30,13 +31,10 @@ const PersonalLeaderBoardComponent = () => {
 
 
   
-    return (     
+  return (     
+    <div className="leadboard">
 
-    <>
-
-    <div>
-
-<h1>Top 5 Game Scores</h1>
+      <h3>Top 5 Game Scores</h3>
      
       <ul>
         {sortedScores.map((game) => (
@@ -47,11 +45,8 @@ const PersonalLeaderBoardComponent = () => {
           </li>
         ))}
       </ul>
-    </div>
-   
-    
-    
-    </> );
+    </div>  
+  );
 }
  
 export default PersonalLeaderBoardComponent;

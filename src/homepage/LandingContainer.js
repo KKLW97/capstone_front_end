@@ -9,30 +9,13 @@ const LandingContainer = () => {
     return ( 
 
         <>
-        <h1 className="title"> Art Heist </h1>
         <Navbar />
         <Outlet/>
         {/* <LeaderBoardComponent/> */}
 
 
         {/* <LoginContainer postNewPlayer = {postNewPlayer}/> */}
-        
-        <div className="footer">
-            <ul className="footer-nav-list">
-                <li className="">
-                <div className="nav-text">
-                <a href="http://localhost:3000" className="#">Home</a></div>
-                </li>
-                <li className="">
-                <div className="nav-text">
-                <a href="http://localhost:3000/playerAccount" className="#">Account</a></div>
-                </li>
-                <li className="">
-                <div className="nav-text">
-                <a href="http://localhost:3000/gamePage" className="#">Game</a></div>
-                </li>
-            </ul>
-        </div>
+
             
         </>
 
