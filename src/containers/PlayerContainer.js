@@ -43,13 +43,13 @@ useEffect(() => {
     return ( 
         <>
         <h1> This is the player's account !! </h1>
-        <button onClick={handleClick}>New Game</button>
+        <button className="buttonStyling" onClick={handleClick}>New Game</button>
         <form onSubmit={handleFormSubmit}>
             <select onChange={handleGameChange}>
                 <option disabled-value="Select-existing-game">Select Existing Game</option>
                 {incompleteGameList}
             </select>
-            <button type="submit" >Load Game</button>
+            <button className="buttonStyling" type="submit" >Load Game</button>
         </form>
         </>
      );
