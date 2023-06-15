@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { UserContext } from "../App";
+import StoryComponent from "./StoryComponent";
 
 const LoginContainer = () => {
   const [openRegisterModal, setRegisterModal] = useState(false);
@@ -38,8 +39,12 @@ const LoginContainer = () => {
 
 
   return (
+
+    
     <div className="background">
-      <h3> This is the login container </h3>
+
+ 
+      <h1> Art Heist</h1>
       <h3> New Player? </h3>
       <button className="openModalBtn" onClick={() => {setRegisterModal(true);}}>
         Register
@@ -61,6 +66,7 @@ const LoginContainer = () => {
 
       {/* if open modeal is true then render the LoginModal component */}
     {openRegisterModal && <LoginModal closeModal={setRegisterModal} />} 
+    <StoryComponent/>
     </div>
   );
 };
