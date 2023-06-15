@@ -158,6 +158,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     }
 
     const checkIfNearCommonPainting = () => {
+        hideDisplayPaintingInfoStatus();
         const proximityLimit = 40;
         let distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[0].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[0].y, 2));
         if (distance <= proximityLimit) {
@@ -183,9 +184,6 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
         if (distance <= proximityLimit) {
             displayPaintingInfo(4);
             getEasyQuestion(4);
-        }
-        else {
-        hideDisplayPaintingInfoStatus();
         }
     }
     const checkIfNearRarePainting = () => {
