@@ -1,6 +1,7 @@
 .instructionModalBackground{
     position: absolute;
-    margin-top: 10%;
+    /* margin-top: 10%; */
+    margin-top: 200px;
     z-index: 1;
 }
 .instructionModalBackground button{
