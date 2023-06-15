@@ -20,22 +20,36 @@ body {
 .game-and-stolen-art-list {
   justify-items: center;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  /* grid-template-columns: 2fr 1fr; */
+  grid-template: 
+  "a b" 10vh 
+  "c b" 65vh;
   gap: 10px;
 } 
+
 .map-container {
-  grid-column: 1 / 2;
+  /* grid-column: 1 / 2; */
+  grid-area: c;
   margin: 30px;
   position: relative;
 }
+
 .caught-fish {
-  grid-column: 2 / 3;
-  background-color: rgb(132, 132, 132);
+  height: 750px;
+  grid-area: b;
+  background-color: rgb(255, 117, 246);
   padding: 20px;
   margin: 30px;
   color: black;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: auto;
+}
+
+.caught-fish img {
+  border: 5px solid brown;
+  box-shadow: rgb(146, 19, 144) 5px 10px;
+  padding: 10px; 
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(253,187,45,1) 100%);
 }
 
 .table td {
@@ -49,7 +63,6 @@ button {
   cursor: pointer;
   color: white;
 }
-
 
 /* 
  body {
@@ -73,15 +86,7 @@ button {
   margin: 30px;
   position: relative;
 }
-.caught-fish{
-  grid-area: c;
-  background-color: rgb(132, 132, 132);
-  padding: 20px;
-  margin: 30px;
-  color: black;
-  overflow-y: auto;
-  overflow-x: auto;
-}
+
 
 .table td {
   text-align: center;
@@ -109,4 +114,68 @@ button {
 
 .questionModalBackground{
   z-index: 1;
+}
+
+/* PaintingListContainer */
+
+.text__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.PLC__container {
+  width: 100%;
+  max-width: 550px;
+}
+
+/* LOSE/WIN MODALS */
+
+.LM__background {
+  /* width: 50%;
+  height: 50%;  */
+  /* background-color: rgba(200, 200, 200);  */
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LM__container {
+  color: black;
+  height: 800px;
+  width: 1500px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0,0,0,0.35) 0px 5px 15px;
+  padding: 25px;
+}
+
+.LM__title {
+  text-align: center;
+  font-size: 80px;
+  height: 400px;
+}
+
+.LM__button {
+  background-color: red;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 18px;
+}
+
+.forfeit {
+    display: flex;
+    justify-self: flex-end;
+    text-align: right;
+    position: relative;
+    bottom: 0;
+    /* left: 1600px; */
+}
+
+.forfeit img {
+    height: 50px;
+    width: 50px;
 }
