@@ -11,14 +11,15 @@ const [selectedId, setSelectedId] = useState(null);
 const {activePlayer , allCompletedGamesForPlayer, setAllCompletedGamesForPlayer} = useContext(UserContext);
 
 
+
+
 const fetchAllCompletedGamesForPlayer = async (playerId) => {
     const response = await fetch(`http://localhost:8080/games?player_id=${playerId}&complete=true`);
     const jsonData = await response.json();
     setAllCompletedGamesForPlayer(jsonData);
   }
 
-  console.log(activePlayer);
-  console.log(allCompletedGamesForPlayer);
+
 
   useEffect(() => {
     fetchAllCompletedGamesForPlayer(activePlayer.id); 
