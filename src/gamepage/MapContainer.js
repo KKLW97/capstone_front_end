@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import ThiefComponent from "./ThiefComponent";
 import PaintingComponent from "./PaintingComponent";
-import QuestionModal from "./QuestionModal";
+// import QuestionModal from "./QuestionModal";
 import mapImage from "../assets/unnamed-1.png";
 import Laser from "./Laser";
 import SecurityGuard from "./SecurityGuard";
 
-const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed}) => {
+const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed, setQuestionModal}) => {
 
     const [laserVisibility, setLaserVisibility] = useState("hidden");
     const [randomInterval, setRandominterval] = useState(5000);
@@ -386,7 +386,9 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
         checkIfNearPainting10();
     }
 
-    const [questionModal, setQuestionModal] = useState(false);
+    // const [questionModal, setQuestionModal] = useState(false);
+
+
 
 
 
@@ -430,7 +432,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
             <Laser laserPositionX={laserPosition2X} laserPositionY={laserPosition2Y} laserVisibility={laserVisibility}/>
             <SecurityGuard securityGuardPositionX={securityGuardPositionX} securityGuardPositionY={securityGuardPositionY} securityGuardImage={securityGuardImage}/>
             {/* {paintingInfo ? <button style={{position: "absolute", left: "0px", bottom: "100px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null} */}
-            {questionModal && <QuestionModal closeModal={setQuestionModal} questionBeingDisplayed={questionBeingDisplayed} />} 
+            {/* {questionModal && <QuestionModal closeModal={setQuestionModal} questionBeingDisplayed={questionBeingDisplayed} />}  */}
 
         </div>
      );

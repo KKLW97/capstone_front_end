@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import MapContainer from "./MapContainer";
 import LoseGameModal from "./LoseGameModal";
 import WinGameModal from "./WinGameModal";
+import QuestionModal from "./QuestionModal";
 import PaintingListContainer from "../containers/PaintingListContainer";
 import {decode} from 'html-entities';
 import InstructionModal from "./InstructionModal";
@@ -35,6 +36,11 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   
   const [openloseGameModal, setLoseGameModal] = useState(false);
   const [openWinGameModal, setWinGameModal] = useState(false);
+
+  const [questionModal, setQuestionModal] = useState(false);
+  const [correctModal, setCorrectModal] = useState(false)
+  const [incorrectModal, setIncorrectModal] = useState(false)
+
 
 
   const displayPaintingInfo = (index) => {
@@ -85,11 +91,12 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       updatedCurrentGame.score = 0;
       LmodalHandle();
       // add modal/message saying "you lose everything... crime doesn't pay apparently"
-    }else if (stolenArtworkList.length === artworksInGame.length-1){
+    } else if (stolenArtworkList.length === artworksInGame.length-1){
       updatedCurrentGame.complete = true;
       WModalHandle();
       console.log("stolen art from check",stolenArtworkList)
       console.log(currentGame.complete)
+      
 
       // setCurrentGame(updatedCurrentGame)
     }
@@ -103,9 +110,12 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
 
   // },[])
   
+  
+  
   const handleClick = async(e) => {
     // console.log(e.target.innerText == currentQuestion.correct_answer);
     let updatedCurrentGame = currentGame;
+
 
     if(e.target.value === currentQuestion.correct_answer){
       // 1) set relevant artwork in artworksInGame (change stolen boolean in artwork game to true)
@@ -114,6 +124,9 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       updatedArtworkInGame.stolen = true;
       await updateArtworkInGame(updatedArtworkInGame);
       console.log("switch to the correct message");
+    
+      // When correct answer is clicked change the display of the question 
+      // shown in QuestionModal
       //
                               //change to current painting object
       let valueOfPainting = currentArtworkInGame.artwork.value;
@@ -123,13 +136,13 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       // setCurrentGame({updatedCurrentGame});
       
       // remove painting sprite?
-      
     } else {
       // 3) set current game with updated penalty
       updatedCurrentGame.penalty = currentGame.penalty + 1;
       console.log("switch to the incorrect message")
       // setCurrentGame({updatedCurrentGame});
     }
+
     const checkedGame = await checkGameStatus(updatedCurrentGame)
     await updateGame(checkedGame);
     fetchStolenArtwork();
@@ -152,7 +165,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     // 4) then set the question being displayed to be the variable the map is saved to
     setQuestionBeingDisplayed
     (<>
-      <h1>{decode(currentQuestion.question)}</h1>
+      <h1 className="question">{decode(currentQuestion.question)}</h1>
       <div className="btn__wrapper">
         <button className="question__btn" onClick={handleClick} value={shuffledAnswers[0]} >{decode(shuffledAnswers[0])}</button>
         <button className="question__btn" onClick={handleClick} value={shuffledAnswers[1]}>{decode(shuffledAnswers[1])}</button>
@@ -207,17 +220,21 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     setCurrentQuestion(hardQuestions[index]);
   }
 
+
+
   return (
     <>
       <div >
         <section className="game-and-stolen-art-list">
           {instructionModal && <InstructionModal closeModal={setInstructionModal}/>}
           <PenaltyList currentGame={currentGame}/>
-          <MapContainer artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed}/>
+          <MapContainer artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed} setQuestionModal={setQuestionModal}/>
           <PaintingListContainer stolenArtworkList={stolenArtworkList} questionBeingDisplayed={questionBeingDisplayed} currentGame={currentGame}/>
           {/* {questionBeingDisplayed} */}
           {openloseGameModal && <LoseGameModal setLoseGameModal={setLoseGameModal} />} 
           {openWinGameModal && <WinGameModal setWinGameModal={setWinGameModal} />} 
+          {questionModal && <QuestionModal closeModal={setQuestionModal} questionBeingDisplayed={questionBeingDisplayed} currentQuestion={currentQuestion} />} 
+
         </section>
       </div>
        {/* forfeit game */}

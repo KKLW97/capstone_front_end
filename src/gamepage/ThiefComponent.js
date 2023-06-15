@@ -10,8 +10,7 @@ const ThiefComponent = ({displayPaintingInfoStatus, displayCurrentQuestion, pain
 
 
     const handleClick = () => {
-        // displayCurrentQuestion();
-
+        setQuestionModal(true);
     }
 
     useEffect(()=>{
@@ -49,7 +48,7 @@ const ThiefComponent = ({displayPaintingInfoStatus, displayCurrentQuestion, pain
             
            {/* SET STATE FOR DISPLAY STATUS, if sprite is near painting, setDisplayStatus("visible"), else setDisplayStatus("hidden")*/}
            {/* add inline style to button : visibility:`${displayStatus}`} */}
-            {paintingInfo ? <button onClick={() => {setQuestionModal(true)}} style={{visibility: `${displayPaintingInfoStatus}`, width: "200px", position: "absolute", left: "-55px", bottom: "70px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null}
+            {paintingInfo ? <button onClick={handleClick} style={{visibility: `${displayPaintingInfoStatus}`, width: "200px", position: "absolute", left: "-55px", bottom: "70px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null}
             {/* {paintingInfo ? <button onClick={handleClick} style={{width: "200px", position: "absolute", left: "-55px", bottom: "70px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null} */}
             
 
@@ -58,6 +57,7 @@ const ThiefComponent = ({displayPaintingInfoStatus, displayCurrentQuestion, pain
 }
  
 export default ThiefComponent;
+
 
 
 
