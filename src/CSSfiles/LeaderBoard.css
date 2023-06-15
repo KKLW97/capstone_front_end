@@ -37,13 +37,14 @@
 
 .score-entry{
     color: black;
-    padding: 10px;    
+    padding: 2px;    
     list-style-type: none;
     margin: 0 auto;
     
 
 
 }
+
 
 .score-list{    
     grid-area: b;
