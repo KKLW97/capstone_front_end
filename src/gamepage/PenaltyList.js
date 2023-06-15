@@ -18,12 +18,12 @@ const PenaltyList = ({ currentGame }) => {
 
   return (
     <div className="penalty-list-container">
-      <section className="penalty-list">
+      <div className="penalty-list">
         {penaltyIndices.map((index) => (
               <img id={index < currentPenalty ? "alarm-on" : "alarm"}
-               src={alarm}  width={100} height={100} alt="an image of security alarm"/>
+               src={alarm}  width={75} height={75} alt="an image of security alarm"/>
         ))}
-      </section>
+      </div>
     </div>
   );
 };

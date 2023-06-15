@@ -1,15 +1,20 @@
 .penalty-list-container{
     grid-area: a;
-    min-height: 10px;
-    min-width: 1082px;
+    /* min-height: 10px;
+    min-width: 1082px; */
+    
 }
 
 .penalty-list{
+    min-height: 10px;
+    min-width: 1082px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template: 
     "alarm alarm alarm";
     justify-items: center;
+    margin-top: 50px;
+    
 }
 
 #alarm{
@@ -19,7 +24,7 @@
 }
 
 #alarm-on{
-    filter: drop-shadow(0 50px 100px #ff0000) drop-shadow(0 0 20px #ff0000) drop-shadow(0 0 30px #ff0000);
+    filter: drop-shadow(0 -20px 100px #ff0000) drop-shadow(0 -20px 20px #ff0000) drop-shadow(0 -20px 30px #ff0000);
     transition: box-shadow 0.5s ease-in-out;
     /* box-shadow: 0 0 20px 20px pink;  */
 
