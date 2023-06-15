@@ -183,11 +183,12 @@ button {
 }
 
 .footer{
-  margin-top: 100px;
+  margin-top: 300px;
   display: grid;
   grid-template:
    "a b" 10vh
-   "a c" 10vh;
+   "a c" 10vh
+   "d d" 5vh;
 }
 
 .footer-headers{
@@ -209,4 +210,8 @@ button {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+
+.footer-bottom{
+  grid-area: d;
 }

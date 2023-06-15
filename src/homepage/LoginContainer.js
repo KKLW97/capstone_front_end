@@ -44,7 +44,9 @@ const LoginContainer = () => {
     <div className="background">
 
 
-      <h1 className="loginTitle"> Art Heist</h1>
+      {/* <h1 className="loginTitle"> Art Heist</h1> */}
+        <h2 className="loginTitle">Steal the Art. Leave No Trace</h2>
+
         <div className="newPlayer">
             <h3 className="h3S"> New Player? </h3>
             <button className="buttonStyling" onClick={() => {setRegisterModal(true);}}>

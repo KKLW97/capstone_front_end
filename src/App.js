@@ -34,6 +34,7 @@ function App() {
   const [artworksInGame, setArtworksInGame] = useState([]);
   const [stolenArtworkList, setStolenArtworkList] = useState([]);
 
+  const year = new Date().getFullYear();
 
   
 
@@ -245,6 +246,8 @@ const fetchStolenArtwork = async () => {
     <>
       {/* <LandingContainer />
     <GameContainer /> */}
+      <h1 className="loginTitle"> Art Heist</h1>
+
     <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById, setNewPlayer, fetchArtworkInGameByGameId }}>
 
       <Navbar />
@@ -278,6 +281,9 @@ const fetchStolenArtwork = async () => {
                     <img className="social-icons" src={linkedin} width={50} height={50}/>
                     <img className="social-icons" src={instagram} width={50} height={50}/>
                 </div>
+            </div>
+            <div className="footer-bottom">
+              <h5 className="footer-copyright">{`Copyright © The Gallery Bandits ${year}`}</h5>
             </div>
         </div>
     </>
