@@ -43,12 +43,14 @@ const LoginContainer = () => {
     
     <div className="background">
 
- 
-      <h1> Art Heist</h1>
-      <h3> New Player? </h3>
-      <button className="openModalBtn" onClick={() => {setRegisterModal(true);}}>
-        Register
-      </button>
+
+      <h1 className="loginTitle"> Art Heist</h1>
+        <div className="newPlayer">
+            <h3> New Player? </h3>
+            <button className="buttonStyling" onClick={() => {setRegisterModal(true);}}>
+              Register
+            </button>
+        </div>
         
         <form onSubmit={handleFormSubmit}>
           <select

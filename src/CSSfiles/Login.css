@@ -9,8 +9,21 @@
   } */
 
   .background{
-    background-color: black;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: rgb(0, 0, 0);
     color: white;
+    text-align: center;
+  }
+
+  .loginTitle{
+    font-size: 60px;
+  }
+
+  .newPlayer{
+    display: flex;
+    justify-content: center;
   }
 
   .textboxid
