@@ -5,6 +5,10 @@
 .stolen{
   filter: grayscale(75%);
 }
+body,
+html{
+  height: 100%;
+}
 body {
   background-color: black;
   color: white;
@@ -196,6 +200,7 @@ button {
   padding: 18px;
 }
 
+/* Footer CSS */
 .social-icons:hover{
   filter: drop-shadow(0 0px 100px rgb(255, 117, 246)) drop-shadow(0 0px 20px rgb(255, 117, 246)) drop-shadow(0 0px 30px rgb(255, 117, 246));
   transition: box-shadow 0.5s ease-in-out;
@@ -209,11 +214,18 @@ button {
 
 .footer{
   margin-top: 300px;
+  position: fixed, bottom;
+  width: 100%;
   display: grid;
   grid-template:
    "a b" 10vh
    "a c" 10vh
    "d d" 5vh;
+}
+
+.footer-nav > li{
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
 .footer-headers{
@@ -222,12 +234,10 @@ button {
 
 .footer-left{
   grid-area: a;
-
 }
 
 .footer-right{
   grid-area: b;
- 
 }
 
 .footer-right-images{
