@@ -1,13 +1,89 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ThiefComponent from "./ThiefComponent";
 import PaintingComponent from "./PaintingComponent";
 import mapImage from "../assets/unnamed-1.png";
+import Laser from "./Laser";
+import SecurityGuard from "./SecurityGuard";
 
 const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed}) => {
+
+    const [laserVisibility, setLaserVisibility] = useState("hidden");
+    const [randomInterval, setRandominterval] = useState(5000);
 
     const [thiefPositionX, setThiefPositionX] = useState(480);
     const [thiefPositionY, setThiefPositionY] = useState(0);
     const [thiefImage, setThiefImage] = useState("heading down");
+
+    const [securityGuardPositionX, setSecurityGuardPositionX] = useState(200);
+    const [securityGuardPositionY, setSecurityGuardPositionY] = useState(300);
+    const [securityGuardImage, setSecurityGuardImage] = useState("heading down");
+
+    const laserPosition1X = 42;
+    const laserPosition1Y = 195;
+    const laserPosition2X = 685;
+    const laserPosition2Y = 195;
+
+
+    const moveSecurityGuardRight = () => {
+        setSecurityGuardImage("heading right");
+        setSecurityGuardPositionX(securityGuardPositionX + 5);
+      };
+    const moveSecurityGuardDown = () => {
+        setSecurityGuardImage("heading down");
+        setSecurityGuardPositionY(securityGuardPositionY + 5);
+      };
+    const moveSecurityGuardLeft = () => {
+        setSecurityGuardImage("heading left");
+        setSecurityGuardPositionX(securityGuardPositionX - 5);
+      };
+    const moveSecurityGuardUp = () => {
+        setSecurityGuardImage("heading up");
+        setSecurityGuardPositionY(securityGuardPositionY - 5);
+      };
+
+    useEffect(()=>{
+        checkIfNearSecurityGuard();
+        if(securityGuardPositionX <= 800 && securityGuardPositionY <= 280){
+            const intervalId = setInterval(moveSecurityGuardRight, 100);
+            return () => {
+                clearInterval(intervalId);
+            }
+        }
+        if(securityGuardPositionX >= 600 && securityGuardPositionY <= 650){
+            const intervalId = setInterval(moveSecurityGuardDown, 100);
+            return () => {
+                clearInterval(intervalId);
+            }
+        }
+        if(securityGuardPositionX >= 180 && securityGuardPositionY >= 650){
+            const intervalId = setInterval(moveSecurityGuardLeft, 100);
+            return () => {
+                clearInterval(intervalId);
+            }
+        }
+        if(securityGuardPositionX >= 160 && securityGuardPositionY >= 200){
+            const intervalId = setInterval(moveSecurityGuardUp, 100);
+            return () => {
+                clearInterval(intervalId);
+            }
+        }
+    }, [securityGuardPositionX, securityGuardPositionY])
+
+    const displayLaserVisibility = () => {
+        setLaserVisibility("visible");
+        setTimeout(() => {
+          setLaserVisibility("hidden");
+        }, 1000);
+      };
+
+    useEffect(()=>{
+        const intervalId = setInterval(displayLaserVisibility,randomInterval);
+        setRandominterval(5000);
+        return () => {
+            clearInterval(intervalId);
+        }
+    }, [])
+
 
     const paintingPosition1X = 150;
     const paintingPosition1Y = 40;
@@ -40,6 +116,26 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     const paintingPosition10Y = 615; 
     
     const theifSpeed = 10;
+
+    const checkIfTouchingLaser = () => {
+        const proximityLimit = 10;
+        const distance = thiefPositionX - laserPosition1X;
+        if (distance <= proximityLimit) {
+            console.log("hit by laser");
+            // displayPaintingInfo(0);
+            // getEasyQuestion(0);
+          }
+    }
+
+    const checkIfNearSecurityGuard = () => {
+        const proximityLimit = 80;
+        const distance = Math.sqrt(Math.pow(thiefPositionX - securityGuardPositionX, 2) + Math.pow(thiefPositionY - securityGuardPositionY, 2));
+        if (distance <= proximityLimit) {
+            console.log("penalty");
+            setThiefPositionX(400);
+            setThiefPositionY(0);
+            }
+    }
 
     const checkIfNearPainting1 = () => {
         const proximityLimit = 40;
@@ -321,7 +417,9 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
             
             {artworksInGame[9]?.stolen ? <PaintingComponent paintingClass={"vertical_painting stolen"} paintingPositionX={paintingPosition10X} paintingPositionY={paintingPosition10Y}/>
             : <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition10X} paintingPositionY={paintingPosition10Y}/>}
-            
+            <Laser laserPositionX={laserPosition1X} laserPositionY={laserPosition1Y} laserVisibility={laserVisibility}/>
+            <Laser laserPositionX={laserPosition2X} laserPositionY={laserPosition2Y} laserVisibility={laserVisibility}/>
+            <SecurityGuard securityGuardPositionX={securityGuardPositionX} securityGuardPositionY={securityGuardPositionY} securityGuardImage={securityGuardImage}/>
             {/* {paintingInfo ? <button style={{position: "absolute", left: "0px", bottom: "100px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null} */}
         </div>
      );
