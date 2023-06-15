@@ -204,6 +204,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   }
 
   return (
+    <>
       <div >
         <section className="game-and-stolen-art-list">
           <PenaltyList currentGame={currentGame}/>
