@@ -226,6 +226,7 @@ button {
 .footer-nav > li{
   display: grid;
   grid-template-columns: 1fr;
+  display: flex;
 }
 
 .footer-headers{
@@ -250,6 +251,19 @@ button {
 .footer-bottom{
   grid-area: d;
 }
+
+.footer-copyright {
+  text-align: center;
+  padding-bottom: 24px;
+}
+
+/* .navbar_list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+} */
 
 /* .question__modal--background { */
   /* display: flex;
