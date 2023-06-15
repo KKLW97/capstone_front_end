@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react'
+import "../CSSfiles/PlayerContainer.css"
 const PlayerContainer = ({ activePlayer, createNewGame, incompleteGamesForPlayer, fetchIncompleteGamesForPlayer, currentGame, fetchGameById, setCurrentGame, fetchArtworkInGameByGameId  }) => {
 
 const [selectedId, setSelectedId] = useState(null);
@@ -42,8 +43,9 @@ useEffect(() => {
 
     return ( 
         <>
-        <h1> This is the player's account !! </h1>
-        <button className="buttonStyling" onClick={handleClick}>New Game</button>
+        <h1 className="player-title"> Welcome {activePlayer.name}!! </h1>
+        <h3>Please create new game or select existing game</h3>
+        <button className="buttonStyling" onClick={handleClick}>Create New Game</button>
         <form onSubmit={handleFormSubmit}>
             <select onChange={handleGameChange}>
                 <option disabled-value="Select-existing-game">Select Existing Game</option>
