@@ -160,3 +160,17 @@ button {
   justify-content: flex-end;
   padding: 18px;
 }
+
+.forfeit {
+    display: flex;
+    justify-self: flex-end;
+    text-align: right;
+    position: relative;
+    bottom: 0;
+    /* left: 1600px; */
+}
+
+.forfeit img {
+    height: 50px;
+    width: 50px;
+}
