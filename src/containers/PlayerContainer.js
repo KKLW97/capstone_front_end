@@ -6,7 +6,9 @@ import { UserContext } from "../App";
 const PlayerContainer = ({createNewGame, incompleteGamesForPlayer, fetchIncompleteGamesForPlayer, currentGame, fetchGameById, setCurrentGame, fetchArtworkInGameByGameId  }) => {
 
 const [selectedId, setSelectedId] = useState(null);
+
 const {activePlayer} = useContext(UserContext);
+
 console.log(activePlayer);
 
 const handleClick = async() => {
