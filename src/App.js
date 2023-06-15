@@ -3,7 +3,7 @@ import GameContainer from "./gamepage/GameContainer";
 import LandingContainer from "./homepage/LandingContainer";
 
 //react router imports
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
 import PlayerContainer from "./containers/PlayerContainer";
 import LoginContainer from "./homepage/LoginContainer";
 import Navbar from "./components/Navbar";
@@ -17,7 +17,10 @@ import twitter from "./assets/twitter.png"
 
 const SERVER_URL = "http://localhost:8080";
 
-export const UserContext = createContext();
+export const UserContext = createContext({
+  activePlayer : null,
+  setActivePlayer : () => {}
+});
 
 function App() {
 
@@ -29,6 +32,7 @@ function App() {
   const [isNewGame, setIsNewGame] = useState(false);
   const [incompleteGamesForPlayer, setIncompleteGamesForPlayer] = useState([]);
   const [allGamesForPlayer, setAllGamesForPlayer] = useState([]);
+  const [allCompletedGamesForPlayer, setAllCompletedGamesForPlayer] = useState([]);
   const [allGames, setAllGames] = useState([]);
   const [allCompleteGames, setAllCompleteGames] = useState([]);
   const [artworksInGame, setArtworksInGame] = useState([]);
@@ -36,10 +40,12 @@ function App() {
 
   const year = new Date().getFullYear();
 
-  
-
-  // initialise context for different states
-  
+  // fetch all completed games for all players to be used for the leaderboard
+  // const fetchAllCompletedGamesForAllPlayers = async () => {
+  //   const response = await fetch("http://localhost:8080/games?complete=true");
+  //   const jsonData = await response.json();
+  //   setAllCompleteGames(jsonData);
+  // }
 
 
 
@@ -66,9 +72,10 @@ function App() {
 
   //called function when page loads
   useEffect(() => {
-    fetchAllPlayers();  
-    fetchPlayerById(1);
-  }, [])
+    fetchAllPlayers(); 
+
+    //add current game to fetch when game is complete
+  }, [currentGame])
 
   const postNewPlayer = async (newPlayer) => {
       const response = await fetch("http://localhost:8080/players", {
@@ -109,6 +116,7 @@ const fetchArtworkInGameByGameId = async (gameId) => {
   useEffect(() => {
     console.log(currentGame);  
   }, [currentGame]);
+
 
 
   // get artworks in game by game id 
@@ -210,10 +218,16 @@ const fetchStolenArtwork = async () => {
       element: (
         <LandingContainer
         />
-      )
-    },
+      ),
+      children : [
+      {
+        path:"/",
+        element:<LoginContainer postNewPlayer = {postNewPlayer}/>
+      },   
+      
+    
     {
-      path: "playerAccount",
+      path: "/playerAccount",
       element: <PlayerContainer  
       createNewGame = {createNewGame}
       activePlayer={activePlayer}
@@ -227,7 +241,7 @@ const fetchStolenArtwork = async () => {
       />,
     },
     {
-      path: "gamePage",
+      path: "/gamePage",
       element: <GameContainer
       activePlayer = {activePlayer}
       currentGame={currentGame}
@@ -239,19 +253,24 @@ const fetchStolenArtwork = async () => {
       fetchArtworkInGameByGameId={fetchArtworkInGameByGameId}
       stolenArtworkList={stolenArtworkList}
    />,
+    
     },
-  ]);
+  ]
+  }]);
 
   return (
     <>
       {/* <LandingContainer />
     <GameContainer /> */}
+
       <h1 className="loginTitle"> Art Heist</h1>
 
-    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById, setNewPlayer, fetchArtworkInGameByGameId }}>
+    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById, setNewPlayer, fetchArtworkInGameByGameId, setAllCompletedGamesForPlayer, allCompletedGamesForPlayer}}>
 
-      <Navbar />
-      <RouterProvider router={router} />
+
+      
+      
+      <RouterProvider router={router}/>
       
 
     </UserContext.Provider>

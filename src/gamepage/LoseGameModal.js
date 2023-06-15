@@ -19,7 +19,7 @@ const LoseGameModal = ({setLoseGameModal}) => {
   const handleClick = (event) => {
     event.preventDefault();
     setLoseGameModal(false);
-    navigate("/");
+    navigate("/playerAccount");
     }
 ;
 
@@ -34,7 +34,7 @@ const LoseGameModal = ({setLoseGameModal}) => {
           <h1 className="LM__title"> You Lose!</h1>
         </div>
         
-          <button onClick={handleClick} className="LM__button">Back to home</button>
+          <button onClick={handleClick} className="LM__button">Back to Account</button>
          
       </div>
     </div>

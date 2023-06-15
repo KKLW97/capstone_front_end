@@ -1,30 +1,28 @@
 
 import "../CSSfiles/Navbar.css";
 
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
 
   
   return ( 
-    <>
-      <nav className="nav-bar">
-        <ul className="navbar_list">
-          <li className="">
-            <div className="nav-text">
-            <a href="http://localhost:3000" className="#">Home</a></div>
-          </li>
-          <li className="">
-            <div className="nav-text">
-            <a href="http://localhost:3000/playerAccount" className="#">Account</a></div>
-          </li>
-          <li className="">
-            <div className="nav-text">
-            <a href="http://localhost:3000/gamePage" className="#">Game</a></div>
-          </li>
-        </ul>
-      </nav>
 
-    </> 
-  );
+    <nav>
+      <ul className="navbar_list">
+        <li >
+            <Link to="/" className="nav-text"> Home</Link>
+        </li>
+        <li >
+        <Link to="/playerAccount" className="nav-text" > Account </Link>
+        </li>
+        <li >
+        <Link to={"/gamePage"} className="nav-text" > Game </Link>
+        </li>
+      </ul>
+    </nav>
+    </> );
+
 }
  
 export default Navbar;

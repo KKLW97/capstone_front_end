@@ -156,6 +156,26 @@ button {
   padding: 25px;
 }
 
+.question__modal--background {
+  color: black;
+  height: 500px;
+  width: 500px;
+  position: fixed;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0,0,0,0.35) 0px 5px 15px;
+  padding: 25px;
+}
+
+.question__modal--title {
+  text-align: center;
+  padding-bottom: 24px;
+}
+
+.question {
+  padding-bottom: 24px;
+}
+
 .LM__title {
   text-align: center;
   font-size: 80px;
@@ -215,3 +235,10 @@ button {
 .footer-bottom{
   grid-area: d;
 }
+
+/* .question__modal--background { */
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+/* } */
+
