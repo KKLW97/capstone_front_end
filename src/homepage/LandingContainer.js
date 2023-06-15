@@ -4,11 +4,14 @@ import { Outlet} from "react-router-dom";
 
 import LeaderBoardComponent from "./LeaderBoardComponent";
 
+
+
 const LandingContainer = () => {
 
     return ( 
 
         <>
+
         <Navbar />
         <Outlet/>
    

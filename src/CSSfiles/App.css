@@ -121,6 +121,18 @@ button {
   z-index: 1;
 }
 
+/* header nav */
+.header{
+  display: grid;
+  grid-template: 
+  "a b" 5vh;
+}
+
+.audio-image-container{
+  grid-area: b;
+  justify-self: right;
+}
+
 /* PaintingListContainer */
 
 .text__wrapper {
@@ -195,6 +207,8 @@ button {
   justify-content: flex-end;
   padding: 18px;
 }
+
+  /* footer nav */
 
 .social-icons:hover{
   filter: drop-shadow(0 0px 100px rgb(255, 117, 246)) drop-shadow(0 0px 20px rgb(255, 117, 246)) drop-shadow(0 0px 30px rgb(255, 117, 246));
