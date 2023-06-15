@@ -46,7 +46,7 @@ const LoginContainer = () => {
 
       <h1 className="loginTitle"> Art Heist</h1>
         <div className="newPlayer">
-            <h3> New Player? </h3>
+            <h3 className="h3S"> New Player? </h3>
             <button className="buttonStyling" onClick={() => {setRegisterModal(true);}}>
               Register
             </button>
@@ -62,7 +62,7 @@ const LoginContainer = () => {
             </option>
             {existingPlayers}
           </select>
-          <button type="submit">Login!</button>
+          <button type="submit" className="buttonStyling">Login!</button>
         </form>
   
 

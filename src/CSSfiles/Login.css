@@ -1,7 +1,4 @@
-.openModalBtn{
-    padding: 10px;
-    border: solid 2px black;
-  }
+
   
   /* body{
     color: white;
@@ -21,9 +18,21 @@
     font-size: 60px;
   }
 
+  .buttonStyling {
+    border: solid  red;
+    margin-left: 8px;
+    font-family: 'Courier New', Courier, monospace;
+
+  }
+
+  .h3S {
+    margin: 0;
+  }
+
   .newPlayer{
     display: flex;
     justify-content: center;
+    padding-bottom: 16px;;
   }
 
   .textboxid
