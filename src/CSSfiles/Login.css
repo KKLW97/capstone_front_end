@@ -1,7 +1,4 @@
-.openModalBtn{
-    padding: 10px;
-    border: solid 2px black;
-  }
+
   
   /* body{
     color: white;
@@ -9,8 +6,42 @@
   } */
 
   .background{
-    background-color: black;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: rgb(0, 0, 0);
     color: white;
+    text-align: center;
+  }
+
+  .loginTitle{
+    font-size: 60px;
+    filter: drop-shadow(0px 0px 1px rgb(255, 117, 246)) drop-shadow(0 0px 2px rgb(255, 117, 246)) drop-shadow(0 0px 3px rgb(255, 117, 246));
+    transition: drop-shadow 0.5s ease-in-out;
+  }
+
+  .buttonStyling {
+    /* border: solid  white; */
+    background-color: white;
+    color: black;
+    margin-left: 8px;
+    font-family: 'Courier New', Courier, monospace;
+
+  }
+  .buttonStyling:hover {
+    background-color: rgb(255, 117, 246);
+    filter: drop-shadow(0 0px 100px rgb(255, 117, 246)) drop-shadow(0 0px 20px rgb(255, 117, 246)) drop-shadow(0 0px 30px rgb(255, 117, 246));
+    transition: box-shadow 0.5s ease-in-out;
+  }
+
+  .h3S {
+    margin: 0;
+  }
+
+  .newPlayer{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 16px;;
   }
 
   .textboxid
