@@ -4,7 +4,7 @@ import security_guards_front from '../assets/security_guards_front.png';
 import security_guards_back from '../assets/security_guards_back.png';
 
 
-const SecurityGuard = ({securityGuardImage, securityGuardPositionX, securityGuardPositionY}) => {
+const SecurityGuard = ({guardSpeechBubble, securityGuardImage, securityGuardPositionX, securityGuardPositionY}) => {
     // const [questionModal, setQuestionModal] = useState(false);
 
     // const handleClick = () => {
@@ -48,7 +48,7 @@ const SecurityGuard = ({securityGuardImage, securityGuardPositionX, securityGuar
            {/* SET STATE FOR DISPLAY STATUS, if sprite is near painting, setDisplayStatus("visible"), else setDisplayStatus("hidden")*/}
            {/* add inline style to button : visibility:`${displayStatus}`} */}
             {/* {paintingInfo ? <button onClick={() => {setQuestionModal(true)}} style={{visibility: `${displayPaintingInfoStatus}`, width: "200px", position: "absolute", left: "-55px", bottom: "70px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null} */}
-            {/* {paintingInfo ? <button onClick={handleClick} style={{width: "200px", position: "absolute", left: "-55px", bottom: "70px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null} */}
+            {guardSpeechBubble ? <>{guardSpeechBubble}</> : null}
             
             {/* {questionModal && <QuestionModal closeModal={setQuestionModal} questionBeingDisplayed={questionBeingDisplayed} />}  */}
 

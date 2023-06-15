@@ -18,6 +18,9 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     const [securityGuardPositionY, setSecurityGuardPositionY] = useState(300);
     const [securityGuardImage, setSecurityGuardImage] = useState("heading down");
 
+    const [speechBubble, setSpeechBubble] = useState(null);
+    const [guardSpeechBubble, setGuardSpeechBubble] = useState(null);
+
     const laserPosition1X = 42;
     const laserPosition1Y = 195;
     const laserPosition2X = 685;
@@ -118,15 +121,26 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     
     const theifSpeed = 10;
 
+    const displayThiefSpeechBubble = (messageString) => {
+        setSpeechBubble(<div style={{backgroundColor: "white", color: "black", padding: "10px", borderRadius: "1em"}}>{messageString}</div>)
+        setTimeout(() => {
+            setSpeechBubble(null);
+        }, 2000);
+    }
+
+    const displaySecurityGuardSpeechBubble = (messageString) => {
+        setGuardSpeechBubble(<div style={{backgroundColor: "white", color: "black", padding: "10px", borderRadius: "1em"}}>{messageString}</div>)
+        setTimeout(() => {
+            setGuardSpeechBubble(null);
+        }, 2000);
+    }
+
     const checkIfTouchingLaser = () => {
-        // const proximityLimit = 10;
-        // const distance = thiefPositionX - laserPosition1X;
-        
-        // if (distance <= proximityLimit) {
         if(laserVisibility == "visible" && ((thiefPositionX <= 295 && thiefPositionX >= 40 && thiefPositionY <= 200 && thiefPositionY >= 130) || (thiefPositionX <= 960 && thiefPositionX >= 680 && thiefPositionY <= 200 && thiefPositionY >= 130) )){
             console.log("hit by laser");
             setThiefPositionX(400);
             setThiefPositionY(0);
+            displayThiefSpeechBubble("Ouch!");
           }
     }
 
@@ -137,6 +151,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
             console.log("penalty");
             setThiefPositionX(400);
             setThiefPositionY(0);
+            displaySecurityGuardSpeechBubble("Hmm... suspicious");
             }
     }
 
@@ -389,7 +404,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     }
     return ( 
         <div className="map-container" style={{height: `${containerHeight}px`, width: `${containerWidth}px`, backgroundImage: `url(${mapImage})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundColor: `black`, backgroundPosition: "center"}}>
-            <ThiefComponent displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerHeight={containerHeight} containerWidth={containerWidth} thiefPositionX={thiefPositionX} thiefPositionY={thiefPositionY} thiefImage={thiefImage} questionBeingDisplayed={questionBeingDisplayed}/>
+            <ThiefComponent speechBubble={speechBubble} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerHeight={containerHeight} containerWidth={containerWidth} thiefPositionX={thiefPositionX} thiefPositionY={thiefPositionY} thiefImage={thiefImage} questionBeingDisplayed={questionBeingDisplayed}/>
             
             {artworksInGame[0]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingPosition1X} paintingPositionY={paintingPosition1Y}/>
             : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition1X} paintingPositionY={paintingPosition1Y}/>}
@@ -422,7 +437,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
             : <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition10X} paintingPositionY={paintingPosition10Y}/>}
             <Laser laserPositionX={laserPosition1X} laserPositionY={laserPosition1Y} laserVisibility={laserVisibility}/>
             <Laser laserPositionX={laserPosition2X} laserPositionY={laserPosition2Y} laserVisibility={laserVisibility}/>
-            <SecurityGuard securityGuardPositionX={securityGuardPositionX} securityGuardPositionY={securityGuardPositionY} securityGuardImage={securityGuardImage}/>
+            <SecurityGuard guardSpeechBubble={guardSpeechBubble} securityGuardPositionX={securityGuardPositionX} securityGuardPositionY={securityGuardPositionY} securityGuardImage={securityGuardImage}/>
             {/* {paintingInfo ? <button style={{position: "absolute", left: "0px", bottom: "100px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null} */}
         </div>
      );
