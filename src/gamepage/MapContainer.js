@@ -129,7 +129,7 @@ const MapContainer = ({currentGame, artworksInGame, hideDisplayPaintingInfoStatu
     }
 
     const displaySecurityGuardSpeechBubble = (messageString) => {
-        setGuardSpeechBubble(<div style={{backgroundColor: "white", color: "black", borderRadius: "1em"}}><p style={{padding: "10px"}}>{messageString}</p></div>)
+        setGuardSpeechBubble(<div style={{width: "200px", backgroundColor: "white", color: "black", borderRadius: "1em"}}><p style={{padding: "10px"}}>{messageString}</p></div>)
         setTimeout(() => {
             setGuardSpeechBubble(null);
         }, 2000);
@@ -149,16 +149,18 @@ const MapContainer = ({currentGame, artworksInGame, hideDisplayPaintingInfoStatu
         const distance = Math.sqrt(Math.pow(thiefPositionX - securityGuardPositionX, 2) + Math.pow(thiefPositionY - securityGuardPositionY, 2));
         if (distance <= proximityLimit) {
             console.log("penalty");
-            setThiefPositionX(400);
-            setThiefPositionY(0);
             if(currentGame.penalty == 0){
                 displaySecurityGuardSpeechBubble("Bonsoir, Monsieur.");
             }
             if(currentGame.penalty == 1){
-                displaySecurityGuardSpeechBubble("Hmm...suspicious");
+                displaySecurityGuardSpeechBubble("Hmm... suspicious.");
+                setThiefPositionX(400);
+                setThiefPositionY(0);
             }
             if(currentGame.penalty == 2){
                 displaySecurityGuardSpeechBubble("I've got my eyes on you...");
+                setThiefPositionX(400);
+                setThiefPositionY(0);
             }
         }
     }

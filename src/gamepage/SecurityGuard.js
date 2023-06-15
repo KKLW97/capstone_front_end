@@ -48,7 +48,7 @@ const SecurityGuard = ({guardSpeechBubble, securityGuardImage, securityGuardPosi
            {/* SET STATE FOR DISPLAY STATUS, if sprite is near painting, setDisplayStatus("visible"), else setDisplayStatus("hidden")*/}
            {/* add inline style to button : visibility:`${displayStatus}`} */}
             {/* {paintingInfo ? <button onClick={() => {setQuestionModal(true)}} style={{visibility: `${displayPaintingInfoStatus}`, width: "200px", position: "absolute", left: "-55px", bottom: "70px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null} */}
-            {guardSpeechBubble ? <div>{guardSpeechBubble}</div> : null}
+            {guardSpeechBubble ? <div style={{position: "absolute", left: "10px", bottom: "50px", padding: "10px"}}>{guardSpeechBubble}</div> : null}
             
             {/* {questionModal && <QuestionModal closeModal={setQuestionModal} questionBeingDisplayed={questionBeingDisplayed} />}  */}
 
