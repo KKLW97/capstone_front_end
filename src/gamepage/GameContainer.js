@@ -14,6 +14,7 @@ import door from '../assets/door.png';
 import "../CSSfiles/Forfeit.css";
 import scoreAudio from "../assets/correctsound.mp3";
 import penaltyAudio from "../assets/incorrectsound.mp3";
+import boo from "../assets/boo.mp3"
 import laugh from "../assets/FrenchLaugh.mp3"
 import { UserContext } from "../App";
 
@@ -52,8 +53,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   const scoreSound = new Audio(scoreAudio);
   const penaltySound = new Audio(penaltyAudio);
   const laughSound = new Audio(laugh);
-
-
+  const booSound = new Audio(boo);
 
   const displayPaintingInfo = (index) => {
     // console.log("Displays modal for Multiple Choice Question / Displays info about painting, giving the option for the player to select this painting");
@@ -86,7 +86,8 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     currentGame.complete = true;
     await updateGame(currentGame);
     checkCompleteStopSound(currentGame);
-   navigate("/playerAccount");
+    booSound.play();
+    navigate("/playerAccount");
   }
 
   const checkCompleteStopSound = (updatedCurrentGame) => {
