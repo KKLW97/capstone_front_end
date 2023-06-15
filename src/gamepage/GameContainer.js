@@ -14,8 +14,7 @@ import door from '../assets/door.png';
 import "../CSSfiles/Forfeit.css";
 import scoreAudio from "../assets/correctsound.mp3";
 import penaltyAudio from "../assets/incorrectsound.mp3";
-import gameAudio from '../assets/game.mp3'
-import useSound from "use-sound";
+import laugh from "../assets/FrenchLaugh.mp3"
 import { UserContext } from "../App";
 
 
@@ -52,6 +51,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   //sounds
   const scoreSound = new Audio(scoreAudio);
   const penaltySound = new Audio(penaltyAudio);
+  const laughSound = new Audio(laugh);
 
 
 
@@ -155,6 +155,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       updatedCurrentGame.score = currentGame.score + valueOfPainting;
       setQuestionModal(false);
       scoreSound.play()
+      laughSound.play()
       
       // setCurrentGame({updatedCurrentGame});
       
