@@ -14,12 +14,25 @@ const LandingContainer = () => {
 
     const handleClickAudio = () => {setIsPlaying((prev) => !prev)}
 
+    const checkAudioPlay = () => {
+        if(isPlaying){
+            stop()
+        }else{play()}
+    }
+
     return ( 
 
         <>
         <div className="header">
             <div className="audio-image-container">
-                {isPlaying ? <button onClick={handleClickAudio}><img className="audio-icon" src={audioOn} width={25} height={25}/></button> : <button onClick={handleClickAudio}><img className="audio-icon" src={audioMute} width={25} height={25}/></button>}
+                {isPlaying ? <button onClick={() =>{
+                    handleClickAudio();
+                    checkAudioPlay();}}>
+                    <img className="audio-icon" src={audioOn} width={35} height={35}/></button> 
+                    : <button onClick={() =>{
+                    handleClickAudio();
+                    checkAudioPlay();}}>
+                    <img className="audio-icon" src={audioMute} width={35} height={35}/></button>}
             </div>
             <div className="header-nav">
                 <Navbar />
