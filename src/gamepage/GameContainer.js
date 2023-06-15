@@ -12,6 +12,8 @@ import PenaltyList from "./PenaltyList";
 import { useNavigate } from "react-router-dom";
 import door from '../assets/door.png';
 import "../CSSfiles/Forfeit.css";
+import scoreAudio from "../assets/correctsound.mp3";
+import penaltyAudio from "../assets/incorrectsound.mp3";
 
 const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame, fetchStolenArtwork, fetchArtworkInGameByGameId, stolenArtworkList}) => {
 
@@ -41,6 +43,10 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   // const [correctModal, setCorrectModal] = useState(false)
   // const [incorrectModal, setIncorrectModal] = useState(false)
 
+
+  //sounds
+  const scoreSound = new Audio(scoreAudio);
+  const penaltySound = new Audio(penaltyAudio);
 
 
   const displayPaintingInfo = (index) => {
@@ -134,6 +140,9 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       // 2) set current game with updated score
                                     //change to current painting object value
       updatedCurrentGame.score = currentGame.score + valueOfPainting;
+      setQuestionModal(false);
+      scoreSound.play()
+      
       // setCurrentGame({updatedCurrentGame});
       
       // remove painting sprite?
@@ -141,6 +150,9 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       // 3) set current game with updated penalty
       updatedCurrentGame.penalty = currentGame.penalty + 1;
       console.log("switch to the incorrect message")
+      setQuestionModal(false);
+      penaltySound.play();
+      
       // setCurrentGame({updatedCurrentGame});
     }
 
