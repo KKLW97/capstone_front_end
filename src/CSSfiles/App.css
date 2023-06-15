@@ -261,3 +261,9 @@ button {
   justify-content: center; */
 /* } */
 
+
+/* for MCQ  modal  */
+
+.MCQbutton {
+  color: black;
+}
