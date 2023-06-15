@@ -1,8 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from 'react'
-const PlayerContainer = ({ activePlayer, createNewGame, incompleteGamesForPlayer, fetchIncompleteGamesForPlayer, currentGame, fetchGameById, setCurrentGame, fetchArtworkInGameByGameId  }) => {
+import { useEffect, useState, useContext } from 'react'
+
+import { UserContext } from "../App";
+
+const PlayerContainer = ({createNewGame, incompleteGamesForPlayer, fetchIncompleteGamesForPlayer, currentGame, fetchGameById, setCurrentGame, fetchArtworkInGameByGameId  }) => {
 
 const [selectedId, setSelectedId] = useState(null);
+const {activePlayer} = useContext(UserContext);
+console.log(activePlayer);
 
 const handleClick = async() => {
     await createNewGame(activePlayer.id);

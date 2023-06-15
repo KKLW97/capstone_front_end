@@ -12,7 +12,10 @@ import { useEffect, useState, createContext, useContext } from "react";
 
 const SERVER_URL = "http://localhost:8080";
 
-export const UserContext = createContext();
+export const UserContext = createContext({
+  activePlayer : null,
+  setActivePlayer : () => {}
+});
 
 function App() {
 
@@ -204,10 +207,16 @@ const fetchStolenArtwork = async () => {
       element: (
         <LandingContainer
         />
-      )
-    },
+      ),
+      children : [
+      {
+        path:"/",
+        element:<LoginContainer postNewPlayer = {postNewPlayer}/>
+      },   
+      
+    
     {
-      path: "playerAccount",
+      path: "/playerAccount",
       element: <PlayerContainer  
       createNewGame = {createNewGame}
       activePlayer={activePlayer}
@@ -221,7 +230,7 @@ const fetchStolenArtwork = async () => {
       />,
     },
     {
-      path: "gamePage",
+      path: "/gamePage",
       element: <GameContainer
       activePlayer = {activePlayer}
       currentGame={currentGame}
@@ -233,8 +242,10 @@ const fetchStolenArtwork = async () => {
       fetchArtworkInGameByGameId={fetchArtworkInGameByGameId}
       stolenArtworkList={stolenArtworkList}
    />,
+    
     },
-  ]);
+  ]
+  }]);
 
   return (
     <>
@@ -242,8 +253,9 @@ const fetchStolenArtwork = async () => {
     <GameContainer /> */}
     <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById, setNewPlayer, fetchArtworkInGameByGameId }}>
 
-      <Navbar />
-      <RouterProvider router={router} />
+      
+      
+      <RouterProvider router={router}/>
       
 
     </UserContext.Provider>

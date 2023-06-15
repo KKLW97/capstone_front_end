@@ -1,22 +1,24 @@
 
 import "../CSSfiles/Navbar.css";
 
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
 
   
     return ( 
     
     <>
-    <nav className="">
+    <nav>
       <ul className="navbar_list">
-        <li className="">
-          <a href="http://localhost:3000" className="#">Home</a>
+        <li >
+            <Link to="/" > Home</Link>
         </li>
-        <li className="">
-          <a href="http://localhost:3000/playerAccount" className="#">Account</a>
+        <li >
+        <Link to="/playerAccount" > Account </Link>
         </li>
-        <li className="">
-          <a href="http://localhost:3000/gamePage" className="#">Game</a>
+        <li >
+        <Link to={"/gamePage"} > Game </Link>
         </li>
       </ul>
     </nav>
