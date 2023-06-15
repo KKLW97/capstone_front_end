@@ -72,18 +72,25 @@ useEffect(() => {
     return ( 
         <>
         <h1 className="player-title"> Welcome {activePlayer.name}!! </h1>
-        <h3>Please create new game or select existing game</h3>
-        <button className="buttonStyling" onClick={handleClick}>Create New Game</button>
-        <form onSubmit={handleFormSubmit}>
-            <select onChange={handleGameChange}>
-                <option disabled-value="Select-existing-game">Select Existing Game</option>
-                {incompleteGameList}
-            </select>
-            <button className="buttonStyling" type="submit" >Load Game</button>
-        </form>
-        <h2>Personal best for completed game: </h2>
+        <div className="player-game">
+            <h3>Please create new game or select existing game</h3>
+            <div className="new-game">
+                <button className="buttonStyling" onClick={handleClick}>Create New Game</button>
+            </div>
+            <div className="select-game">
+                <form onSubmit={handleFormSubmit}>
+                    <select onChange={handleGameChange}>
+                        <option disabled-value="Select-existing-game">Select Existing Game</option>
+                        {incompleteGameList}
+                    </select>
+                    <button className="buttonStyling" type="submit" >Load Game</button>
+                </form>
+            </div>
+            <h2>Personal best for completed game: </h2>
 
         <PersonalLeaderBoardComponent />
+        </div>
+
         </>
      );
 }

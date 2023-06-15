@@ -9,7 +9,6 @@ const LandingContainer = () => {
     return ( 
 
         <>
-
         <h1 className="title"> Art Heist </h1>
         <Navbar />
         <Outlet/>
@@ -17,8 +16,6 @@ const LandingContainer = () => {
 
 
         {/* <LoginContainer postNewPlayer = {postNewPlayer}/> */}
-
-        <h1> This is the landing page</h1>
         
         <div className="footer">
             <ul className="footer-nav-list">
@@ -37,7 +34,6 @@ const LandingContainer = () => {
             </ul>
         </div>
             
-
         </>
 
      );
