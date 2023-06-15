@@ -2,9 +2,11 @@ import { useState } from "react";
 
 const StoryComponent = () => {
 
-  const [show, setShow] = useState(false);
 
-  const handleClick = () => {setShow((prev) => !prev)}
+const [show, setShow] = useState(false);
+
+const handleClick = () => {setShow((prev) => !prev)}
+
  
   return (
       
@@ -41,11 +43,8 @@ const StoryComponent = () => {
         </div>}
     
     </div>
-            
-
   );
 };
-
 
 
 export default StoryComponent;

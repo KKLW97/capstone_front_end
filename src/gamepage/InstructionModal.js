@@ -10,23 +10,26 @@ const InstructionModal = ({closeModal}) => {
   
           <div className="title">
             <h2>Instructions</h2>
-            <p><strong>Answer a question about art in order to steal a painting</strong></p>
-            <p><strong>More points for a higher value painting</strong></p>
-            <p><strong>Set off 3 alarms and you lose</strong></p>
-            <p><strong>Steal 10 paintings and you win</strong></p>
+            <p><strong>1.</strong>Walk up to an artwork and answer an <br/> art history question to steal it</p>
+            <p><strong>2.</strong>Rarer paintings get more points... <br/> but the questions are harder</p>
+            <p><strong>3.</strong>Watch out for lasers and the guards.<br/> They'll slow you down.</p>
+            <p><strong>4.</strong>Set off 3 alarms and you lose</p>
+            <p><strong>5.</strong>Steal 10 paintings and you win</p>
             <h3>Keys</h3>
-            <ul>
+            <ul className="directions">
                 <li>Arrow keys to move</li>
-                <li>Spacebar to open question</li>
                 <li>Approach painting to display info</li>
+                <li>Spacebar to open question</li>
             </ul>
             <h3>Rules</h3>
             
-              <ul>
+              <ul className="directions">
                 <li>Easy question, Common painting, </li>
                 <li>Medium question, Rare painting</li>
                 <li>Hard question, Legendary painting</li>
               </ul>
+
+              <h3>Good luck!</h3>
             
           </div>
         </div>
