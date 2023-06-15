@@ -157,62 +157,61 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
         }
     }
 
+    const artProximityLimit = 40;
+
     const checkIfNearCommonPainting = () => {
         hideDisplayPaintingInfoStatus();
-        const proximityLimit = 40;
         let distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[0].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[0].y, 2));
-        if (distance <= proximityLimit) {
+        if (distance <= artProximityLimit) {
             displayPaintingInfo(0);
             getEasyQuestion(0);
         }
         distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[1].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[1].y, 2));
-        if (distance <= proximityLimit) {
+        if (distance <= artProximityLimit) {
             displayPaintingInfo(1);
             getEasyQuestion(1);
         }
         distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[2].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[2].y, 2));
-        if (distance <= proximityLimit) {
+        if (distance <= artProximityLimit) {
             displayPaintingInfo(2);
             getEasyQuestion(2);
         }
         distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[3].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[3].y, 2));
-        if (distance <= proximityLimit) {
+        if (distance <= artProximityLimit) {
             displayPaintingInfo(3);
             getEasyQuestion(3);
         }
         distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[4].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[4].y, 2));
-        if (distance <= proximityLimit) {
+        if (distance <= artProximityLimit) {
             displayPaintingInfo(4);
             getEasyQuestion(4);
         }
     }
     const checkIfNearRarePainting = () => {
-        const proximityLimit = 40;
         let distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[5].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[5].y, 2));
-        if (distance <= proximityLimit) {
+        if (distance <= artProximityLimit) {
             displayPaintingInfo(5);
             getMediumQuestion(0);
         }
         distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[6].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[6].y, 2));
-        if (distance <= proximityLimit) {
+        if (distance <= artProximityLimit) {
             displayPaintingInfo(6);
             getMediumQuestion(1);
         }
         distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[7].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[7].y, 2));
-        if (distance <= proximityLimit) {
+        if (distance <= artProximityLimit) {
             displayPaintingInfo(7);
             getMediumQuestion(2);
         }
     }
     const checkIfNearLegendaryPainting = () => {
-        const proximityLimit = 40;
         let distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[8].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[8].y, 2));
-        if (distance <= proximityLimit) {
+        if (distance <= artProximityLimit) {
             displayPaintingInfo(8);
             getHardQuestion(0);
         }
         distance = Math.sqrt(Math.pow(thiefPositionX - paintingSpriteCoordinates[9].x, 2) + Math.pow(thiefPositionY - paintingSpriteCoordinates[9].y, 2));
-        if (distance <= proximityLimit) {
+        if (distance <= artProximityLimit) {
             displayPaintingInfo(9);
             getHardQuestion(1);
         }
