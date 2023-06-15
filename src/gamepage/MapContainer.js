@@ -43,6 +43,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
 
     useEffect(()=>{
         checkIfNearSecurityGuard();
+        checkIfTouchingLaser();
         if(securityGuardPositionX <= 800 && securityGuardPositionY <= 280){
             const intervalId = setInterval(moveSecurityGuardRight, 100);
             return () => {
@@ -118,12 +119,14 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     const theifSpeed = 10;
 
     const checkIfTouchingLaser = () => {
-        const proximityLimit = 10;
-        const distance = thiefPositionX - laserPosition1X;
-        if (distance <= proximityLimit) {
+        // const proximityLimit = 10;
+        // const distance = thiefPositionX - laserPosition1X;
+        
+        // if (distance <= proximityLimit) {
+        if(laserVisibility == "visible" && ((thiefPositionX <= 295 && thiefPositionX >= 40 && thiefPositionY <= 200 && thiefPositionY >= 130) || (thiefPositionX <= 960 && thiefPositionX >= 680 && thiefPositionY <= 200 && thiefPositionY >= 130) )){
             console.log("hit by laser");
-            // displayPaintingInfo(0);
-            // getEasyQuestion(0);
+            setThiefPositionX(400);
+            setThiefPositionY(0);
           }
     }
 
