@@ -134,6 +134,8 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       // 2) set current game with updated score
                                     //change to current painting object value
       updatedCurrentGame.score = currentGame.score + valueOfPainting;
+      setQuestionModal(false);
+      
       // setCurrentGame({updatedCurrentGame});
       
       // remove painting sprite?
@@ -141,6 +143,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       // 3) set current game with updated penalty
       updatedCurrentGame.penalty = currentGame.penalty + 1;
       console.log("switch to the incorrect message")
+      setQuestionModal(false);
       // setCurrentGame({updatedCurrentGame});
     }
 
