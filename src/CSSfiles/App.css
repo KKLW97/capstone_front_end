@@ -5,6 +5,10 @@
 .stolen{
   filter: grayscale(75%);
 }
+body,
+html{
+  height: 100%;
+}
 body {
   background-color: black;
   color: white;
@@ -208,7 +212,6 @@ button {
   padding: 18px;
 }
 
-  /* footer nav */
 
 .social-icons:hover{
   filter: drop-shadow(0 0px 100px rgb(255, 117, 246)) drop-shadow(0 0px 20px rgb(255, 117, 246)) drop-shadow(0 0px 30px rgb(255, 117, 246));
@@ -223,11 +226,19 @@ button {
 
 .footer{
   margin-top: 300px;
+  position: fixed, bottom;
+  width: 100%;
   display: grid;
   grid-template:
    "a b" 10vh
    "a c" 10vh
    "d d" 5vh;
+}
+
+.footer-nav > li{
+  display: grid;
+  grid-template-columns: 1fr;
+  display: flex;
 }
 
 .footer-headers{
@@ -236,12 +247,10 @@ button {
 
 .footer-left{
   grid-area: a;
-
 }
 
 .footer-right{
   grid-area: b;
- 
 }
 
 .footer-right-images{
@@ -254,6 +263,19 @@ button {
 .footer-bottom{
   grid-area: d;
 }
+
+.footer-copyright {
+  text-align: center;
+  padding-bottom: 24px;
+}
+
+/* .navbar_list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+} */
 
 /* .question__modal--background { */
   /* display: flex;
