@@ -22,7 +22,7 @@ const handleClick = () => {setShow((prev) => !prev)}
                   <b>Location:</b> BNTA Gallery
                   <br/>
                   <b>Event:</b>The biggest art heist in history...  
-                  <button className="story-button" onDoubleClick={handleClick}>Learn More</button>
+                  <button className="story-button" onClick={handleClick}>Learn More</button>
                 </p>
             </div>
         :
@@ -39,7 +39,7 @@ const handleClick = () => {setShow((prev) => !prev)}
                   Tonight you and your cat will break into the heavily guarded BNTA Gallery.
                   <br/>
                   Login if you dare... 
-                <button className="story-button" onDoubleClick={handleClick}>Back</button></p>
+                <button className="story-button" onClick={handleClick}>Back</button></p>
         </div>}
     
     </div>
