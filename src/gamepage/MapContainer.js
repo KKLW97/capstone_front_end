@@ -122,17 +122,17 @@ const MapContainer = ({currentGame, artworksInGame, hideDisplayPaintingInfoStatu
     const theifSpeed = 10;
 
     const displayThiefSpeechBubble = (messageString) => {
-        setSpeechBubble(<div style={{backgroundColor: "white", color: "black", borderRadius: "1em"}}><p style={{padding: "10px"}}>{messageString}</p></div>)
+        setSpeechBubble(<div style={{backgroundColor: "rgba(255, 255, 255, 0.8)", color: "black", borderRadius: "1em"}}><p style={{padding: "10px"}}>{messageString}</p></div>)
         setTimeout(() => {
             setSpeechBubble(null);
-        }, 2000);
+        }, 2500);
     }
 
     const displaySecurityGuardSpeechBubble = (messageString) => {
-        setGuardSpeechBubble(<div style={{width: "200px", backgroundColor: "white", color: "black", borderRadius: "1em"}}><p style={{padding: "10px"}}>{messageString}</p></div>)
+        setGuardSpeechBubble(<div style={{width: "200px", backgroundColor: "rgba(255, 255, 255, 0.8)", color: "black", borderRadius: "1em"}}><p style={{padding: "10px"}}>{messageString}</p></div>)
         setTimeout(() => {
             setGuardSpeechBubble(null);
-        }, 2000);
+        }, 2500);
     }
 
     const checkIfTouchingLaser = () => {
@@ -148,19 +148,32 @@ const MapContainer = ({currentGame, artworksInGame, hideDisplayPaintingInfoStatu
         const proximityLimit = 80;
         const distance = Math.sqrt(Math.pow(thiefPositionX - securityGuardPositionX, 2) + Math.pow(thiefPositionY - securityGuardPositionY, 2));
         if (distance <= proximityLimit) {
-            console.log("penalty");
+            if(thiefPositionY < securityGuardPositionY && thiefPositionX < securityGuardPositionX){
+                setThiefPositionX(thiefPositionX - 20);
+                setThiefPositionY(thiefPositionY - 20);
+            }
+            if(thiefPositionY > securityGuardPositionY && thiefPositionX > securityGuardPositionX){
+                setThiefPositionX(thiefPositionX + 20);
+                setThiefPositionY(thiefPositionY + 20);
+            }
+            if(thiefPositionY < securityGuardPositionY && thiefPositionX > securityGuardPositionX){
+                setThiefPositionX(thiefPositionX + 20);
+                setThiefPositionY(thiefPositionY - 20);
+            }
+            if(thiefPositionY > securityGuardPositionY && thiefPositionX < securityGuardPositionX){
+                setThiefPositionX(thiefPositionX - 20);
+                setThiefPositionY(thiefPositionY + 20);
+            }
             if(currentGame.penalty == 0){
                 displaySecurityGuardSpeechBubble("Bonsoir, Monsieur.");
+                displayThiefSpeechBubble("Zut alors! Ahem... bonsoir");
             }
             if(currentGame.penalty == 1){
                 displaySecurityGuardSpeechBubble("Hmm... suspicious.");
-                setThiefPositionX(400);
-                setThiefPositionY(0);
+                displayThiefSpeechBubble("Bonsoir...");
             }
             if(currentGame.penalty == 2){
                 displaySecurityGuardSpeechBubble("I've got my eyes on you...");
-                setThiefPositionX(400);
-                setThiefPositionY(0);
             }
         }
     }
