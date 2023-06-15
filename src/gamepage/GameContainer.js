@@ -4,6 +4,7 @@ import LoseGameModal from "./LoseGameModal";
 import WinGameModal from "./WinGameModal";
 import PaintingListContainer from "../containers/PaintingListContainer";
 import {decode} from 'html-entities';
+import InstructionModal from "./InstructionModal";
 import "../CSSfiles/PenaltyList.css"
 import "../CSSfiles/App.css";
 import PenaltyList from "./PenaltyList";
@@ -30,11 +31,10 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
 
   const [currentArtworkInGame, setCurrentArtworkInGame] = useState(null);
 
+  const [instructionModal, setInstructionModal] = useState(false);
+  
   const [openloseGameModal, setLoseGameModal] = useState(false);
   const [openWinGameModal, setWinGameModal] = useState(false);
-
-
-  // const [guess, setGuess] = useState();
 
 
   const displayPaintingInfo = (index) => {
@@ -191,6 +191,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     setDisplayPaintingInfoStatus("hidden");
     fetchStolenArtwork(parseInt(currentGame.id));
     fetchArtworkInGameByGameId(parseInt(currentGame.id)); 
+    setInstructionModal(true);
   }, [])
 
   const getEasyQuestion = (index) => {
@@ -206,6 +207,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   return (
     <>
       <div >
+        {instructionModal && <InstructionModal closeModal={setInstructionModal}/>}
         <section className="game-and-stolen-art-list">
           <PenaltyList currentGame={currentGame}/>
           <MapContainer artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed}/>
