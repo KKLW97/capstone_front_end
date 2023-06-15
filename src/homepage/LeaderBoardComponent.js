@@ -18,7 +18,7 @@ const playersHighestScores = allPlayers.filter((player) => {
     }
     
 })
-.sort((a,b) => b.highestScore - a.highestScore)
+.sort((a,b) => b.highestScore - a.highestScore).slice(0, 10)
 .map((player) =>  <li> <p>{player.name} - {player.highestScore}</p></li>)
 
 console.log(playersHighestScores);

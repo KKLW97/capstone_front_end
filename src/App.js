@@ -27,6 +27,7 @@ function App() {
   const [isNewGame, setIsNewGame] = useState(false);
   const [incompleteGamesForPlayer, setIncompleteGamesForPlayer] = useState([]);
   const [allGamesForPlayer, setAllGamesForPlayer] = useState([]);
+  const [allCompletedGamesForPlayer, setAllCompletedGamesForPlayer] = useState([]);
   const [allGames, setAllGames] = useState([]);
   const [allCompleteGames, setAllCompleteGames] = useState([]);
   const [artworksInGame, setArtworksInGame] = useState([]);
@@ -38,13 +39,13 @@ function App() {
   
 
   // fetch all completed games for all players to be used for the leaderboard
-  const fetchAllCompletedGamesForAllPlayers = async () => {
-    const response = await fetch("http://localhost:8080/games?complete=true");
-    const jsonData = await response.json();
-    setAllCompleteGames(jsonData);
-  }
+  // const fetchAllCompletedGamesForAllPlayers = async () => {
+  //   const response = await fetch("http://localhost:8080/games?complete=true");
+  //   const jsonData = await response.json();
+  //   setAllCompleteGames(jsonData);
+  // }
 
-
+ 
 
 
   // get all players 
@@ -70,8 +71,8 @@ function App() {
 
   //called function when page loads
   useEffect(() => {
-    fetchAllPlayers();  
-    
+    fetchAllPlayers(); 
+
     //add current game to fetch when game is complete
   }, [currentGame])
 
@@ -260,7 +261,7 @@ const fetchStolenArtwork = async () => {
     <>
       {/* <LandingContainer />
     <GameContainer /> */}
-    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById, setNewPlayer, fetchArtworkInGameByGameId, fetchAllCompletedGamesForAllPlayers }}>
+    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById, setNewPlayer, fetchArtworkInGameByGameId, setAllCompletedGamesForPlayer, allCompletedGamesForPlayer}}>
 
       
       
