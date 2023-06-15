@@ -45,8 +45,8 @@ const LoginModal = ({ closeModal }) => {
           <button onClick={() => closeModal(false)}> X </button>
         </div>
 
-        <div className="title">
-          <h1> Enter your username to register </h1>
+        <div className="titleWrapper">
+          <h1 className="title"> Enter your username to register </h1>
         </div>
         <div className="body">
           <input
@@ -59,15 +59,14 @@ const LoginModal = ({ closeModal }) => {
           />
         </div>
         {erroMessage}
-        <div className="footer">
-          <button onClick={() => closeModal(false)} id="cancelBtn">
-            Cancel
-          </button>
-          <button onClick={handleClick}> Register </button>
+        <div className="modalFooter">
+          <button onClick={() => closeModal(false)} className="cancelBtn">Cancel</button>
+          
+          <button className="registerBtn" onClick={handleClick}> Register </button>
          
         </div>
       </div>
-    </div>
+     </div>
   );
 };
 

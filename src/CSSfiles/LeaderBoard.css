@@ -40,6 +40,7 @@
     padding: 2px;    
     list-style-type: none;
     margin: 0 auto;
+    padding: 0 16px;
     
 
 
@@ -47,9 +48,7 @@
 
 
 .score-list{    
-    grid-area: b;
-    display: grid;
-    grid-template-columns: 1fr;
+ 
     align-items: center;
 
 }
