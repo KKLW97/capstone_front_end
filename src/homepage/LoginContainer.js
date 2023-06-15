@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { UserContext } from "../App";
+import LeaderBoardComponent from "./LeaderBoardComponent";
 
 const LoginContainer = () => {
   const [openRegisterModal, setRegisterModal] = useState(false);
@@ -61,7 +62,10 @@ const LoginContainer = () => {
 
       {/* if open modeal is true then render the LoginModal component */}
     {openRegisterModal && <LoginModal closeModal={setRegisterModal} />} 
+
+    <LeaderBoardComponent/>
     </div>
+
   );
 };
 

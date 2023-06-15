@@ -3,7 +3,7 @@ import GameContainer from "./gamepage/GameContainer";
 import LandingContainer from "./homepage/LandingContainer";
 
 //react router imports
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
 import PlayerContainer from "./containers/PlayerContainer";
 import LoginContainer from "./homepage/LoginContainer";
 import Navbar from "./components/Navbar";
@@ -32,10 +32,17 @@ function App() {
   const [artworksInGame, setArtworksInGame] = useState([]);
   const [stolenArtworkList, setStolenArtworkList] = useState([]);
 
+  // const location = useLocation(); 
+
 
   
 
-  // initialise context for different states
+  // fetch all completed games for all players to be used for the leaderboard
+  const fetchAllCompletedGamesForAllPlayers = async () => {
+    const response = await fetch("http://localhost:8080/games?complete=true");
+    const jsonData = await response.json();
+    setAllCompleteGames(jsonData);
+  }
   
 
 
@@ -64,8 +71,9 @@ function App() {
   //called function when page loads
   useEffect(() => {
     fetchAllPlayers();  
-    fetchPlayerById(1);
-  }, [])
+    
+    //add current game to fetch when game is complete
+  }, [currentGame])
 
   const postNewPlayer = async (newPlayer) => {
       const response = await fetch("http://localhost:8080/players", {
@@ -106,6 +114,7 @@ const fetchArtworkInGameByGameId = async (gameId) => {
   useEffect(() => {
     console.log(currentGame);  
   }, [currentGame]);
+
 
 
   // get artworks in game by game id 
@@ -251,7 +260,7 @@ const fetchStolenArtwork = async () => {
     <>
       {/* <LandingContainer />
     <GameContainer /> */}
-    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById, setNewPlayer, fetchArtworkInGameByGameId }}>
+    <UserContext.Provider value={{ activePlayer, setActivePlayer, allPlayers , newPlayer, postNewPlayer, createNewGame, fetchPlayerById, setNewPlayer, fetchArtworkInGameByGameId, fetchAllCompletedGamesForAllPlayers }}>
 
       
       

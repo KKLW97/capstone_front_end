@@ -184,3 +184,7 @@ button {
     height: 50px;
     width: 50px;
 }
+
+.title {
+  text-align: center;
+}
