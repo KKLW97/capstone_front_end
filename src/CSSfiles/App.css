@@ -28,14 +28,23 @@ body {
   margin: 30px;
   position: relative;
 }
+
 .caught-fish {
   grid-column: 4 / 4;
-  background-color: rgb(132, 132, 132);
+  height: 750px;
+  background-color: rgb(255, 117, 246);
   padding: 20px;
   margin: 30px;
   color: black;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: auto;
+}
+
+.caught-fish img {
+  border: 5px solid brown;
+  box-shadow: rgb(146, 19, 144) 5px 10px;
+  padding: 10px; 
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(253,187,45,1) 100%);
 }
 
 .table td {
@@ -49,7 +58,6 @@ button {
   cursor: pointer;
   color: white;
 }
-
 
 /* 
  body {
@@ -73,15 +81,7 @@ button {
   margin: 30px;
   position: relative;
 }
-.caught-fish{
-  grid-area: c;
-  background-color: rgb(132, 132, 132);
-  padding: 20px;
-  margin: 30px;
-  color: black;
-  overflow-y: auto;
-  overflow-x: auto;
-}
+
 
 .table td {
   text-align: center;
