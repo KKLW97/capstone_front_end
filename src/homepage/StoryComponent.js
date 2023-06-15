@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../CSSfiles/StoryComponent.css"
 
 const StoryComponent = () => {
 
@@ -9,14 +10,11 @@ const handleClick = () => {setShow((prev) => !prev)}
 
  
   return (
-      
-
-    <div>
-        
+    <div >
 
     {show==false ? 
-            <div>
-                <p>
+            <div >
+                <p className="story">
                   <b>Time:</b> Tonight
                   <br/>
                   <b>Location:</b> BNTA Gallery
@@ -26,8 +24,8 @@ const handleClick = () => {setShow((prev) => !prev)}
                 </p>
             </div>
         :
-        <div>
-          <p>
+        <div >
+          <p className="story">
                   <b>Time:</b> Tonight
                   <br/>
                   <b>Location:</b> BNTA Gallery
