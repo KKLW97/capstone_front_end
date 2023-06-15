@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import MapContainer from "./MapContainer";
+import LoseGameModal from "./LoseGameModal";
+import WinGameModal from "./WinGameModal";
 import PaintingListContainer from "../containers/PaintingListContainer";
 import {decode} from 'html-entities';
 import { useNavigate } from "react-router-dom";
@@ -25,6 +27,10 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   const [displayPaintingInfoStatus, setDisplayPaintingInfoStatus] = useState("hidden");
 
   const [currentArtworkInGame, setCurrentArtworkInGame] = useState(null);
+
+  const [openloseGameModal, setLoseGameModal] = useState(false);
+  const [openWinGameModal, setWinGameModal] = useState(false);
+
 
   // const [guess, setGuess] = useState();
 
@@ -69,15 +75,17 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     // let updatedGame = currentGame  
     // 1: LOSE 
     // PENALTY = 3, Game set to complete, message"you lose"
-    
+    const WModalHandle = () => setWinGameModal(true)
+    const LmodalHandle = () => setLoseGameModal(true) 
     if (updatedCurrentGame.penalty===3) {
       
       updatedCurrentGame.complete = true;
       updatedCurrentGame.score = 0;
-      
+      LmodalHandle();
       // add modal/message saying "you lose everything... crime doesn't pay apparently"
     }else if (stolenArtworkList.length === artworksInGame.length-1){
       updatedCurrentGame.complete = true;
+      WModalHandle();
       console.log("stolen art from check",stolenArtworkList)
       console.log(currentGame.complete)
 
@@ -196,10 +204,17 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   return (
       <div className="game-and-stolen-art-list">
         <MapContainer artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed} />
+
         <PaintingListContainer stolenArtworkList={stolenArtworkList} questionBeingDisplayed={questionBeingDisplayed} currentGame={currentGame}/>
         {/* {questionBeingDisplayed} */}
         <button className="forfeit" onClick={handleForfeitGame}> <img src={door} /></button>
 
+
+
+        <PaintingListContainer stolenArtworkList={stolenArtworkList} questionBeingDisplayed={questionBeingDisplayed} currentGame={currentGame}/>
+        {/* {questionBeingDisplayed} */}
+        {openloseGameModal && <LoseGameModal setLoseGameModal={setLoseGameModal} />} 
+        {openWinGameModal && <WinGameModal setWinGameModal={setWinGameModal} />} 
       </div>
     );
 };
