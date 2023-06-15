@@ -252,7 +252,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     <>
       <div >
         <section className="game-and-stolen-art-list">
-          {instructionModal && <InstructionModal closeModal={setInstructionModal}/>}
+          {/* {instructionModal && <InstructionModal closeModal={setInstructionModal}/>} */}
           <PenaltyList currentGame={currentGame}/>
           <MapContainer currentGame={currentGame} artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed} setQuestionModal={setQuestionModal}/>
 
