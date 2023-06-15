@@ -191,7 +191,8 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   return (
       <div className="game-and-stolen-art-list">
         <MapContainer artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed} />
-        <PaintingListContainer questionBeingDisplayed={questionBeingDisplayed} currentGame={currentGame}/>
+
+        <PaintingListContainer stolenArtworkList={stolenArtworkList} questionBeingDisplayed={questionBeingDisplayed} currentGame={currentGame}/>
         {/* {questionBeingDisplayed} */}
         {openloseGameModal && <LoseGameModal setLoseGameModal={setLoseGameModal} />} 
         {openWinGameModal && <WinGameModal setWinGameModal={setWinGameModal} />} 

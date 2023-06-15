@@ -1,11 +1,9 @@
-const PaintingListContainer = ({questionBeingDisplayed, currentGame}) => {
+const PaintingListContainer = ({stolenArtworkList, questionBeingDisplayed}) => {
     return ( 
-        <div className="caught-fish PLC__container">
-        <div className="text__wrapper">
-            <h3>Loot:</h3>   
+        <div className="caught-fish">
+            <h3> This is the PaintingListContainer</h3>
             <h3>Total Score: {currentGame.score}</h3>
-        </div>
-        
+            {stolenArtworkList.map(stolenArtwork => <div><img src={stolenArtwork.artwork.url} height="100px"/><p>"{stolenArtwork.artwork.title}", {stolenArtwork.artwork.artist}</p></div>)
         </div>
      );
 }

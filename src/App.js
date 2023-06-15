@@ -232,7 +232,6 @@ const fetchStolenArtwork = async () => {
       fetchStolenArtwork={fetchStolenArtwork}
       fetchArtworkInGameByGameId={fetchArtworkInGameByGameId}
       stolenArtworkList={stolenArtworkList}
-
    />,
     },
   ]);
