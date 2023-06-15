@@ -20,18 +20,22 @@ body {
 .game-and-stolen-art-list {
   justify-items: center;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  /* grid-template-columns: 2fr 1fr; */
+  grid-template: 
+  "a b" 10vh 
+  "c b" 65vh;
   gap: 10px;
 } 
+
 .map-container {
-  grid-column: 1 / 2;
+  /* grid-column: 1 / 2; */
+  grid-area: c;
   margin: 30px;
   position: relative;
 }
 
 .caught-fish {
-  grid-column: 4 / 4;
-  height: 750px;
+  grid-area: b;
   background-color: rgb(255, 117, 246);
   padding: 20px;
   margin: 30px;

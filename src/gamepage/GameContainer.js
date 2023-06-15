@@ -4,13 +4,15 @@ import LoseGameModal from "./LoseGameModal";
 import WinGameModal from "./WinGameModal";
 import PaintingListContainer from "../containers/PaintingListContainer";
 import {decode} from 'html-entities';
-import { useNavigate } from "react-router-dom";
-
-import door from '../assets/door.png';
-
+import "../CSSfiles/PenaltyList.css"
 import "../CSSfiles/App.css";
+import PenaltyList from "./PenaltyList";
+import { useNavigate } from "react-router-dom";
+import door from '../assets/door.png';
 import "../CSSfiles/Forfeit.css";
+
 const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame, fetchStolenArtwork, fetchArtworkInGameByGameId, stolenArtworkList}) => {
+
 
   const [gameContainerWidth, setGameContainerWidth] = useState(1082);
   const [gameContainerHeight, setGameContainerHeight] = useState(800);
@@ -202,16 +204,15 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   }
 
   return (
-    <>
-      <div className="game-and-stolen-art-list">
-        <MapContainer artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed} />
-
-        <PaintingListContainer stolenArtworkList={stolenArtworkList} questionBeingDisplayed={questionBeingDisplayed} currentGame={currentGame}/>
-        {/* {questionBeingDisplayed} */}
-       
-        {/* {questionBeingDisplayed} */}
-        {openloseGameModal && <LoseGameModal setLoseGameModal={setLoseGameModal} />} 
-        {openWinGameModal && <WinGameModal setWinGameModal={setWinGameModal} />} 
+      <div >
+        <section className="game-and-stolen-art-list">
+          <PenaltyList currentGame={currentGame}/>
+          <MapContainer artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed}/>
+          <PaintingListContainer stolenArtworkList={stolenArtworkList} questionBeingDisplayed={questionBeingDisplayed}/>
+          {/* {questionBeingDisplayed} */}
+          {openloseGameModal && <LoseGameModal setLoseGameModal={setLoseGameModal} />} 
+          {openWinGameModal && <WinGameModal setWinGameModal={setWinGameModal} />} 
+          </section>
       </div>
        {/* forfeit game */}
         <button className="forfeit" onClick={handleForfeitGame}> <img src={door} /></button>
@@ -219,5 +220,5 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     
     );
 };
-
+ 
 export default GameContainer;
