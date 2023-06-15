@@ -14,10 +14,12 @@ const LandingContainer = ({ postNewPlayer}) => {
     return ( 
 
         <>
+
         <LoginContainer postNewPlayer = {postNewPlayer}/>
 
         <h1> This is the landing page</h1>
-    
+        
+        
         </>
 
      );
