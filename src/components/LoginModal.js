@@ -66,7 +66,7 @@ const LoginModal = ({ closeModal }) => {
          
         </div>
       </div>
-     </div>
+      </div>
   );
 };
 
