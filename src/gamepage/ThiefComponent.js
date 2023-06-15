@@ -54,7 +54,7 @@ const ThiefComponent = ({speechBubble, displayPaintingInfoStatus, displayCurrent
             {paintingInfo ? <button onClick={() => {setQuestionModal(true)}} style={{visibility: `${displayPaintingInfoStatus}`, width: "200px", position: "absolute", left: "-55px", bottom: "70px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null}
             {/* {paintingInfo ? <button onClick={handleClick} style={{width: "200px", position: "absolute", left: "-55px", bottom: "70px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null} */}
             
-            {speechBubble ? <div style={{backgroundColour: "white"}}>{speechBubble}</div> : null}
+            {speechBubble ? <div>{speechBubble}</div> : null}
 
             {questionModal && <QuestionModal closeModal={setQuestionModal} questionBeingDisplayed={questionBeingDisplayed} />} 
 

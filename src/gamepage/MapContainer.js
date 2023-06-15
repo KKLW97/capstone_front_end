@@ -5,7 +5,7 @@ import mapImage from "../assets/unnamed-1.png";
 import Laser from "./Laser";
 import SecurityGuard from "./SecurityGuard";
 
-const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed}) => {
+const MapContainer = ({currentGame, artworksInGame, hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed}) => {
 
     const [laserVisibility, setLaserVisibility] = useState("hidden");
     const [randomInterval, setRandominterval] = useState(5000);
@@ -122,14 +122,14 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     const theifSpeed = 10;
 
     const displayThiefSpeechBubble = (messageString) => {
-        setSpeechBubble(<div style={{backgroundColor: "white", color: "black", padding: "10px", borderRadius: "1em"}}>{messageString}</div>)
+        setSpeechBubble(<div style={{backgroundColor: "white", color: "black", borderRadius: "1em"}}><p style={{padding: "10px"}}>{messageString}</p></div>)
         setTimeout(() => {
             setSpeechBubble(null);
         }, 2000);
     }
 
     const displaySecurityGuardSpeechBubble = (messageString) => {
-        setGuardSpeechBubble(<div style={{backgroundColor: "white", color: "black", padding: "10px", borderRadius: "1em"}}>{messageString}</div>)
+        setGuardSpeechBubble(<div style={{backgroundColor: "white", color: "black", borderRadius: "1em"}}><p style={{padding: "10px"}}>{messageString}</p></div>)
         setTimeout(() => {
             setGuardSpeechBubble(null);
         }, 2000);
@@ -151,8 +151,16 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
             console.log("penalty");
             setThiefPositionX(400);
             setThiefPositionY(0);
-            displaySecurityGuardSpeechBubble("Hmm... suspicious");
+            if(currentGame.penalty == 0){
+                displaySecurityGuardSpeechBubble("Bonsoir, Monsieur.");
             }
+            if(currentGame.penalty == 1){
+                displaySecurityGuardSpeechBubble("Hmm...suspicious");
+            }
+            if(currentGame.penalty == 2){
+                displaySecurityGuardSpeechBubble("I've got my eyes on you...");
+            }
+        }
     }
 
     const checkIfNearPainting1 = () => {
