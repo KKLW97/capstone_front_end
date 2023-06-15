@@ -1,5 +1,6 @@
 import { useState, useContext, useNavigate } from "react";
 import { UserContext } from "../App";
+import "../CSSfiles/App.css";
 
 
 const QuestionModal = ({closeModal, questionBeingDisplayed}) => {
@@ -38,8 +39,8 @@ const QuestionModal = ({closeModal, questionBeingDisplayed}) => {
     
     
     return ( 
-        <div className="questionModalBackground">
-        <div className="modalContainer">
+        <div className="question__modal--background">
+        <div className="question__modal--container">
           <div className="titleClostBtn">
             <button onClick={() => closeModal(false)}> X </button>
           </div>

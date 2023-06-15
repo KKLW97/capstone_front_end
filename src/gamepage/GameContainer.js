@@ -109,10 +109,12 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
 
     if(e.target.value === currentQuestion.correct_answer){
       // 1) set relevant artwork in artworksInGame (change stolen boolean in artwork game to true)
+
       let updatedArtworkInGame = currentArtworkInGame;
       updatedArtworkInGame.stolen = true;
       await updateArtworkInGame(updatedArtworkInGame);
-      console.log(updatedArtworkInGame);
+      console.log("switch to the correct message");
+      //
                               //change to current painting object
       let valueOfPainting = currentArtworkInGame.artwork.value;
       // 2) set current game with updated score
@@ -125,6 +127,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     } else {
       // 3) set current game with updated penalty
       updatedCurrentGame.penalty = currentGame.penalty + 1;
+      console.log("switch to the incorrect message")
       // setCurrentGame({updatedCurrentGame});
     }
     const checkedGame = await checkGameStatus(updatedCurrentGame)
