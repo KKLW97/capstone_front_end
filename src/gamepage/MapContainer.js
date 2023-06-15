@@ -32,10 +32,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     const zapAudio = new Audio(zap);
     // const securityGuardAudio = new Audio(securityGuard);
 
-    const laserPosition1X = 42;
-    const laserPosition1Y = 195;
-    const laserPosition2X = 685;
-    const laserPosition2Y = 195;
+    const laserPositions = [{x: 42, y: 195}, {x: 685, y: 195}];
 
 
     const moveSecurityGuardRight = () => {
@@ -451,8 +448,8 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
             
             {artworksInGame[9]?.stolen ? <PaintingComponent paintingClass={"vertical_painting stolen"} paintingPositionX={paintingSpriteCoordinates[9].x} paintingPositionY={paintingSpriteCoordinates[9].y}/>
             : <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingSpriteCoordinates[9].x} paintingPositionY={paintingSpriteCoordinates[9].y}/>}
-            <Laser laserPositionX={laserPosition1X} laserPositionY={laserPosition1Y} laserVisibility={laserVisibility}/>
-            <Laser laserPositionX={laserPosition2X} laserPositionY={laserPosition2Y} laserVisibility={laserVisibility}/>
+            <Laser laserPositionX={laserPositions[0].x} laserPositionY={laserPositions[0].y} laserVisibility={laserVisibility}/>
+            <Laser laserPositionX={laserPositions[1].x} laserPositionY={laserPositions[1].y} laserVisibility={laserVisibility}/>
             <SecurityGuard guardSpeechBubble={guardSpeechBubble} securityGuardPositionX={securityGuardPositionX} securityGuardPositionY={securityGuardPositionY} securityGuardImage={securityGuardImage}/>
             {/* {paintingInfo ? <button style={{position: "absolute", left: "0px", bottom: "100px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null} */}
             {/* {questionModal && <QuestionModal closeModal={setQuestionModal} questionBeingDisplayed={questionBeingDisplayed} />}  */}
