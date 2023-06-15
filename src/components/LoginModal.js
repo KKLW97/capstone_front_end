@@ -19,7 +19,7 @@ const LoginModal = ({ closeModal }) => {
     setNewPlayer(event.target.value);
   };
 
-  const handleClick = (event) => {
+  const handleClick = async (event) => {
     event.preventDefault();
 
     const existingPlayer = allPlayers.find(
@@ -27,7 +27,7 @@ const LoginModal = ({ closeModal }) => {
     );
 
     if (!existingPlayer) {
-      postNewPlayer(newPlayer);
+      await postNewPlayer(newPlayer);
       // setActivePlayer(newPlayer);
       navigate("/playerAccount");
     
