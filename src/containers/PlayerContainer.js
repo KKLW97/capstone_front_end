@@ -1,10 +1,15 @@
 import { useNavigate } from "react-router-dom";
+
 import { useEffect, useState, useContext } from 'react'
 
 import { UserContext } from "../App";
 import PersonalLeaderBoardComponent from "../components/PersonalLeaderBoardComponent";
 
 const PlayerContainer = ({createNewGame, incompleteGamesForPlayer, fetchIncompleteGamesForPlayer, currentGame, fetchGameById, setCurrentGame, fetchArtworkInGameByGameId  }) => {
+
+
+import "../CSSfiles/PlayerContainer.css"
+
 
 const [selectedId, setSelectedId] = useState(null);
 
@@ -66,14 +71,15 @@ useEffect(() => {
 
     return ( 
         <>
-        <h1> This is the player's account !! </h1>
-        <button onClick={handleClick}>New Game</button>
+        <h1 className="player-title"> Welcome {activePlayer.name}!! </h1>
+        <h3>Please create new game or select existing game</h3>
+        <button className="buttonStyling" onClick={handleClick}>Create New Game</button>
         <form onSubmit={handleFormSubmit}>
             <select onChange={handleGameChange}>
                 <option disabled-value="Select-existing-game">Select Existing Game</option>
                 {incompleteGameList}
             </select>
-            <button type="submit" >Load Game</button>
+            <button className="buttonStyling" type="submit" >Load Game</button>
         </form>
         <h2>Personal best for completed game: </h2>
 

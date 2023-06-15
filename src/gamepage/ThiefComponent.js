@@ -3,17 +3,15 @@ import thief_sprite_right from '../assets/thief_sprite_right.png';
 import thief_sprite_left from '../assets/thief_sprite_left.png';
 import thief_sprite_front from '../assets/thief_sprite_front.png';
 import thief_sprite_back from '../assets/thief_sprite_back.png';
-import QuestionModal from './QuestionModal';
 import cat from '../assets/cat.GIF';
 import { useState, useEffect } from 'react';
 
-const ThiefComponent = ({displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerHeight, containerWidth, thiefPositionX, thiefPositionY, thiefImage, questionBeingDisplayed}) => {
 
-    const [questionModal, setQuestionModal] = useState(false);
+const ThiefComponent = ({speechBubble, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerHeight, containerWidth, thiefPositionX, thiefPositionY, thiefImage, questionBeingDisplayed, setQuestionModal}) => {
+
 
     const handleClick = () => {
-        // displayCurrentQuestion();
-
+        setQuestionModal(true);
     }
 
     useEffect(()=>{
@@ -51,16 +49,19 @@ const ThiefComponent = ({displayPaintingInfoStatus, displayCurrentQuestion, pain
             
            {/* SET STATE FOR DISPLAY STATUS, if sprite is near painting, setDisplayStatus("visible"), else setDisplayStatus("hidden")*/}
            {/* add inline style to button : visibility:`${displayStatus}`} */}
-            {paintingInfo ? <button onClick={() => {setQuestionModal(true)}} style={{visibility: `${displayPaintingInfoStatus}`, width: "200px", position: "absolute", left: "-55px", bottom: "70px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null}
+            {paintingInfo ? <button onClick={handleClick} style={{visibility: `${displayPaintingInfoStatus}`, width: "200px", position: "absolute", left: "-55px", bottom: "70px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null}
             {/* {paintingInfo ? <button onClick={handleClick} style={{width: "200px", position: "absolute", left: "-55px", bottom: "70px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null} */}
-            
-            {questionModal && <QuestionModal closeModal={setQuestionModal} questionBeingDisplayed={questionBeingDisplayed} />} 
+
+            {speechBubble ? <div style={{zIndex: "2", position: "absolute", left: "10px", bottom: "50px", padding: "10px"}}>{speechBubble}</div> : null}
+
+
 
         </div>
       );
 }
  
 export default ThiefComponent;
+
 
 
 

@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import ThiefComponent from "./ThiefComponent";
 import PaintingComponent from "./PaintingComponent";
+// import QuestionModal from "./QuestionModal";
 import mapImage from "../assets/unnamed-1.png";
 import Laser from "./Laser";
 import SecurityGuard from "./SecurityGuard";
 
-const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed}) => {
+const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed, setQuestionModal, currentGame}) => {
+
 
     const [laserVisibility, setLaserVisibility] = useState("hidden");
     const [randomInterval, setRandominterval] = useState(5000);
@@ -17,6 +19,9 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     const [securityGuardPositionX, setSecurityGuardPositionX] = useState(200);
     const [securityGuardPositionY, setSecurityGuardPositionY] = useState(300);
     const [securityGuardImage, setSecurityGuardImage] = useState("heading down");
+
+    const [speechBubble, setSpeechBubble] = useState(null);
+    const [guardSpeechBubble, setGuardSpeechBubble] = useState(null);
 
     const laserPosition1X = 42;
     const laserPosition1Y = 195;
@@ -43,6 +48,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
 
     useEffect(()=>{
         checkIfNearSecurityGuard();
+        checkIfTouchingLaser();
         if(securityGuardPositionX <= 800 && securityGuardPositionY <= 280){
             const intervalId = setInterval(moveSecurityGuardRight, 100);
             return () => {
@@ -117,13 +123,26 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     
     const theifSpeed = 10;
 
+    const displayThiefSpeechBubble = (messageString) => {
+        setSpeechBubble(<div style={{backgroundColor: "rgba(255, 255, 255, 0.8)", color: "black", borderRadius: "1em"}}><p style={{padding: "10px"}}>{messageString}</p></div>)
+        setTimeout(() => {
+            setSpeechBubble(null);
+        }, 2500);
+    }
+
+    const displaySecurityGuardSpeechBubble = (messageString) => {
+        setGuardSpeechBubble(<div style={{width: "200px", backgroundColor: "rgba(255, 255, 255, 0.8)", color: "black", borderRadius: "1em"}}><p style={{padding: "10px"}}>{messageString}</p></div>)
+        setTimeout(() => {
+            setGuardSpeechBubble(null);
+        }, 2500);
+    }
+
     const checkIfTouchingLaser = () => {
-        const proximityLimit = 10;
-        const distance = thiefPositionX - laserPosition1X;
-        if (distance <= proximityLimit) {
+        if(laserVisibility == "visible" && ((thiefPositionX <= 295 && thiefPositionX >= 40 && thiefPositionY <= 200 && thiefPositionY >= 130) || (thiefPositionX <= 960 && thiefPositionX >= 680 && thiefPositionY <= 200 && thiefPositionY >= 130) )){
             console.log("hit by laser");
-            // displayPaintingInfo(0);
-            // getEasyQuestion(0);
+            setThiefPositionX(400);
+            setThiefPositionY(0);
+            displayThiefSpeechBubble("Ouch!");
           }
     }
 
@@ -131,10 +150,34 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
         const proximityLimit = 80;
         const distance = Math.sqrt(Math.pow(thiefPositionX - securityGuardPositionX, 2) + Math.pow(thiefPositionY - securityGuardPositionY, 2));
         if (distance <= proximityLimit) {
-            console.log("penalty");
-            setThiefPositionX(400);
-            setThiefPositionY(0);
+            if(thiefPositionY < securityGuardPositionY && thiefPositionX < securityGuardPositionX){
+                setThiefPositionX(thiefPositionX - 20);
+                setThiefPositionY(thiefPositionY - 20);
             }
+            if(thiefPositionY > securityGuardPositionY && thiefPositionX > securityGuardPositionX){
+                setThiefPositionX(thiefPositionX + 20);
+                setThiefPositionY(thiefPositionY + 20);
+            }
+            if(thiefPositionY < securityGuardPositionY && thiefPositionX > securityGuardPositionX){
+                setThiefPositionX(thiefPositionX + 20);
+                setThiefPositionY(thiefPositionY - 20);
+            }
+            if(thiefPositionY > securityGuardPositionY && thiefPositionX < securityGuardPositionX){
+                setThiefPositionX(thiefPositionX - 20);
+                setThiefPositionY(thiefPositionY + 20);
+            }
+            if(currentGame.penalty == 0){
+                displaySecurityGuardSpeechBubble("Bonsoir, Monsieur.");
+                displayThiefSpeechBubble("Zut alors! Ahem... bonsoir");
+            }
+            if(currentGame.penalty == 1){
+                displaySecurityGuardSpeechBubble("Hmm... suspicious.");
+                displayThiefSpeechBubble("Bonsoir...");
+            }
+            if(currentGame.penalty == 2){
+                displaySecurityGuardSpeechBubble("I've got my eyes on you...");
+            }
+        }
     }
 
     const checkIfNearPainting1 = () => {
@@ -384,9 +427,20 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
         checkIfNearPainting9();
         checkIfNearPainting10();
     }
+
+    // const [questionModal, setQuestionModal] = useState(false);
+
+
+
+
+
+
+
+
     return ( 
         <div className="map-container" style={{height: `${containerHeight}px`, width: `${containerWidth}px`, backgroundImage: `url(${mapImage})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundColor: `black`, backgroundPosition: "center"}}>
-            <ThiefComponent displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerHeight={containerHeight} containerWidth={containerWidth} thiefPositionX={thiefPositionX} thiefPositionY={thiefPositionY} thiefImage={thiefImage} questionBeingDisplayed={questionBeingDisplayed}/>
+
+            <ThiefComponent speechBubble={speechBubble} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerHeight={containerHeight} containerWidth={containerWidth} thiefPositionX={thiefPositionX} thiefPositionY={thiefPositionY} thiefImage={thiefImage} questionBeingDisplayed={questionBeingDisplayed} setQuestionModal={setQuestionModal}/>
             
             {artworksInGame[0]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingPosition1X} paintingPositionY={paintingPosition1Y}/>
             : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingPosition1X} paintingPositionY={paintingPosition1Y}/>}
@@ -419,8 +473,10 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
             : <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingPosition10X} paintingPositionY={paintingPosition10Y}/>}
             <Laser laserPositionX={laserPosition1X} laserPositionY={laserPosition1Y} laserVisibility={laserVisibility}/>
             <Laser laserPositionX={laserPosition2X} laserPositionY={laserPosition2Y} laserVisibility={laserVisibility}/>
-            <SecurityGuard securityGuardPositionX={securityGuardPositionX} securityGuardPositionY={securityGuardPositionY} securityGuardImage={securityGuardImage}/>
+            <SecurityGuard guardSpeechBubble={guardSpeechBubble} securityGuardPositionX={securityGuardPositionX} securityGuardPositionY={securityGuardPositionY} securityGuardImage={securityGuardImage}/>
             {/* {paintingInfo ? <button style={{position: "absolute", left: "0px", bottom: "100px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null} */}
+            {/* {questionModal && <QuestionModal closeModal={setQuestionModal} questionBeingDisplayed={questionBeingDisplayed} />}  */}
+
         </div>
      );
 }

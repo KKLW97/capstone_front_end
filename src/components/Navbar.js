@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
 
   
-    return ( 
-    
+  return ( 
     <>
+
     <nav>
       <ul className="navbar_list">
         <li >
@@ -27,6 +27,7 @@ const Navbar = () => {
     
     
     </> );
+
 }
  
 export default Navbar;

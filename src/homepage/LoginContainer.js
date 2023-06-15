@@ -4,7 +4,11 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { UserContext } from "../App";
+
 import LeaderBoardComponent from "./LeaderBoardComponent";
+
+import StoryComponent from "./StoryComponent";
+
 
 const LoginContainer = () => {
   const [openRegisterModal, setRegisterModal] = useState(false);
@@ -41,12 +45,18 @@ const LoginContainer = () => {
 
 
   return (
+
+    
     <div className="background">
-      <h3> This is the login container </h3>
-      <h3> New Player? </h3>
-      <button className="openModalBtn" onClick={() => {setRegisterModal(true);}}>
-        Register
-      </button>
+
+
+      <h1 className="loginTitle"> Art Heist</h1>
+        <div className="newPlayer">
+            <h3 className="h3S"> New Player? </h3>
+            <button className="buttonStyling" onClick={() => {setRegisterModal(true);}}>
+              Register
+            </button>
+        </div>
         
         <form onSubmit={handleFormSubmit}>
           <select
@@ -58,14 +68,18 @@ const LoginContainer = () => {
             </option>
             {existingPlayers}
           </select>
-          <button type="submit">Login!</button>
+          <button type="submit" className="buttonStyling">Login!</button>
         </form>
   
 
       {/* if open modeal is true then render the LoginModal component */}
     {openRegisterModal && <LoginModal closeModal={setRegisterModal} />} 
 
+     <StoryComponent/>
     <LeaderBoardComponent/>
+
+   
+
     </div>
 
   );
