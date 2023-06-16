@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import ThiefComponent from "./ThiefComponent";
 import PaintingComponent from "./PaintingComponent";
-// import QuestionModal from "./QuestionModal";
 import mapImage from "../assets/unnamed-1.png";
 import Laser from "./Laser";
 import SecurityGuard from "./SecurityGuard";
@@ -432,8 +431,6 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
             <Laser laserPositionX={laserPositions[0].x} laserPositionY={laserPositions[0].y} laserVisibility={laserVisibility}/>
             <Laser laserPositionX={laserPositions[1].x} laserPositionY={laserPositions[1].y} laserVisibility={laserVisibility}/>
             <SecurityGuard guardSpeechBubble={guardSpeechBubble} securityGuardPositionX={securityGuardPositionX} securityGuardPositionY={securityGuardPositionY} securityGuardImage={securityGuardImage}/>
-            {/* {paintingInfo ? <button style={{position: "absolute", left: "0px", bottom: "100px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null} */}
-            {/* {questionModal && <QuestionModal closeModal={setQuestionModal} questionBeingDisplayed={questionBeingDisplayed} />}  */}
 
         </div>
      );

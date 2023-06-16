@@ -5,26 +5,7 @@ import security_guards_back from '../assets/security_guards_back.png';
 
 
 const SecurityGuard = ({guardSpeechBubble, securityGuardImage, securityGuardPositionX, securityGuardPositionY}) => {
-    // const [questionModal, setQuestionModal] = useState(false);
-
-    // const handleClick = () => {
-    //     // displayCurrentQuestion();
-
-    // }
-
-    // useEffect(()=>{
-    //     const handleKeyDown = (e) => {
-    //         if (e.code === 'Space'){
-    //             setQuestionModal(true);
-    //         }
-    //     }
-
-    //     window.addEventListener('keydown', handleKeyDown);
-
-    //     return () => {
-    //         window.removeEventListener('keydown', handleKeyDown);
-    //     }
-    // },[])
+   
 
 
     return (
