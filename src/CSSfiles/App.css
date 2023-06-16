@@ -185,6 +185,12 @@ button {
   margin-bottom: 32px;
 }
 
+.LM__h2 {
+  text-align: center;
+  filter: drop-shadow(0px 0px 3px rgb(255, 117, 246)) drop-shadow(0 0px 2px rgb(255, 117, 246)) drop-shadow(0 0px 3px rgb(255, 117, 246));
+  margin-bottom: 24px;
+}
+
 .question__modal--background {
   color: black;
   height: 500px;
@@ -205,9 +211,10 @@ button {
   padding-bottom: 24px;
 }
 
-.LM__title {
+.LM__title{
   text-align: center;
   font-size: 80px;
+  margin: 36px 0;
   filter: drop-shadow(0px 0px 3px rgb(255, 117, 246)) drop-shadow(0 0px 2px rgb(255, 117, 246)) drop-shadow(0 0px 3px rgb(255, 117, 246));
 }
 

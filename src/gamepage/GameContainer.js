@@ -229,8 +229,8 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
           <MapContainer currentGame={currentGame} artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed} setQuestionModal={setQuestionModal}/>
 
           <PaintingListContainer stolenArtworkList={stolenArtworkList} questionBeingDisplayed={questionBeingDisplayed} currentGame={currentGame}/>
-          {openloseGameModal && <LoseGameModal setLoseGameModal={setLoseGameModal} />} 
-          {openWinGameModal && <WinGameModal setWinGameModal={setWinGameModal} />} 
+          {openloseGameModal && <LoseGameModal setLoseGameModal={setLoseGameModal} currentGame={currentGame}/>} 
+          {openWinGameModal && <WinGameModal setWinGameModal={setWinGameModal} currentGame={currentGame}/>} 
           {questionModal && <QuestionModal closeModal={setQuestionModal} questionBeingDisplayed={questionBeingDisplayed} currentQuestion={currentQuestion} />} 
 
         </section>
