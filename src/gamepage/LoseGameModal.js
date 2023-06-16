@@ -8,12 +8,6 @@ import thief_sprite_front from '../assets/thief_sprite_front.png';
 import { useNavigate } from "react-router-dom";
 
 const LoseGameModal = ({setLoseGameModal}) => {
-   // const [newPlayerToBeAdded, setNewPlayerToBeAdded] = useState("");
-  const [erroMessage, setErrorMessage] = useState("");
-  const [confirmationMessage] = useState("Your username has now been registered");
-
-  const { allPlayers, postNewPlayer, setActivePlayer, newPlayer, setNewPlayer} = useContext(UserContext);
-
   const navigate = useNavigate();
 
  

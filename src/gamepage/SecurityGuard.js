@@ -5,26 +5,7 @@ import security_guards_back from '../assets/security_guards_back.png';
 
 
 const SecurityGuard = ({guardSpeechBubble, securityGuardImage, securityGuardPositionX, securityGuardPositionY}) => {
-    // const [questionModal, setQuestionModal] = useState(false);
-
-    // const handleClick = () => {
-    //     // displayCurrentQuestion();
-
-    // }
-
-    // useEffect(()=>{
-    //     const handleKeyDown = (e) => {
-    //         if (e.code === 'Space'){
-    //             setQuestionModal(true);
-    //         }
-    //     }
-
-    //     window.addEventListener('keydown', handleKeyDown);
-
-    //     return () => {
-    //         window.removeEventListener('keydown', handleKeyDown);
-    //     }
-    // },[])
+   
 
 
     return (
@@ -39,18 +20,12 @@ const SecurityGuard = ({guardSpeechBubble, securityGuardImage, securityGuardPosi
             top: `${securityGuardPositionY}px`,
             }}
         >
-            {/* <img src={blob2}/> */}
             {securityGuardImage === "heading right" ? <img src={security_guards_right} style={{"-webkit-filter":"drop-shadow(5px 5px 5px #222)", filter: "drop-shadow(5px 5px 5px #222)"}}/> 
                 : securityGuardImage === "heading left" ? <img src={security_guards_left} style={{"-webkit-filter":"drop-shadow(5px 5px 5px #222)", filter: "drop-shadow(5px 5px 5px #222)"}}/> 
                 : securityGuardImage === "heading up" ? <img src={security_guards_back} style={{"-webkit-filter":"drop-shadow(5px 5px 5px #222)", filter: "drop-shadow(5px 5px 5px #222)"}}/> 
             : <img src={security_guards_front} style={{"-webkit-filter":"drop-shadow(5px 5px 5px #222)", filter: "drop-shadow(5px 5px 5px #222)"}}/>}
-            
-           {/* SET STATE FOR DISPLAY STATUS, if sprite is near painting, setDisplayStatus("visible"), else setDisplayStatus("hidden")*/}
-           {/* add inline style to button : visibility:`${displayStatus}`} */}
-            {/* {paintingInfo ? <button onClick={() => {setQuestionModal(true)}} style={{visibility: `${displayPaintingInfoStatus}`, width: "200px", position: "absolute", left: "-55px", bottom: "70px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null} */}
             {guardSpeechBubble ? <div style={{position: "absolute", left: "10px", bottom: "50px", padding: "10px"}}>{guardSpeechBubble}</div> : null}
             
-            {/* {questionModal && <QuestionModal closeModal={setQuestionModal} questionBeingDisplayed={questionBeingDisplayed} />}  */}
 
         </div>
       );

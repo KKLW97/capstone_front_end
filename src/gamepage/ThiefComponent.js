@@ -42,16 +42,13 @@ const ThiefComponent = ({speechBubble, displayPaintingInfoStatus, displayCurrent
             top: `${thiefPositionY}px`,
             }}
         >
-            {/* <img src={blob2}/> */}
             {thiefImage === "heading right" ? <img src={thief_sprite_right} style={{"-webkit-filter":"drop-shadow(5px 5px 5px #222)", filter: "drop-shadow(5px 5px 5px #222)"}}/> 
                 : thiefImage === "heading left" ? <img src={thief_sprite_left} style={{"-webkit-filter":"drop-shadow(5px 5px 5px #222)", filter: "drop-shadow(5px 5px 5px #222)"}}/> 
                 : thiefImage === "heading up" ? <img src={thief_sprite_back} style={{"-webkit-filter":"drop-shadow(5px 5px 5px #222)", filter: "drop-shadow(5px 5px 5px #222)"}}/> 
             : <img src={thief_sprite_front} style={{"-webkit-filter":"drop-shadow(5px 5px 5px #222)", filter: "drop-shadow(5px 5px 5px #222)"}}/>}
             
-           {/* SET STATE FOR DISPLAY STATUS, if sprite is near painting, setDisplayStatus("visible"), else setDisplayStatus("hidden")*/}
-           {/* add inline style to button : visibility:`${displayStatus}`} */}
+         
             {paintingInfo ? <button onClick={handleClick} style={{visibility: `${displayPaintingInfoStatus}`, width: "200px", position: "absolute", left: "-55px", bottom: "70px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null}
-            {/* {paintingInfo ? <button onClick={handleClick} style={{width: "200px", position: "absolute", left: "-55px", bottom: "70px", color: "black", backgroundColor: "rgba(255, 255, 255, 0.6)", padding: "10px", border: "2px solid black"}}>{paintingInfo}</button> : null} */}
 
             {speechBubble ? <div style={{zIndex: "2", position: "absolute", left: "10px", bottom: "50px", padding: "10px"}}>{speechBubble}</div> : null}
 

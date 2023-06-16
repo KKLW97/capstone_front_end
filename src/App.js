@@ -48,27 +48,13 @@ function App() {
   })
 
 
-  // fetch all completed games for all players to be used for the leaderboard
-  // const fetchAllCompletedGamesForAllPlayers = async () => {
-  //   const response = await fetch("http://localhost:8080/games?complete=true");
-  //   const jsonData = await response.json();
-  //   setAllCompleteGames(jsonData);
-  // }
-
-
-
   // get all players 
   const fetchAllPlayers = async () => {
       const response = await fetch("http://localhost:8080/players");
       const jsonData = await response.json();
       setAllPlayers(jsonData)
   }
-  // fetch all the player data
-  // const fetchPlayers = async () => {
-  //   const response = await fetch("http://localhost:8080/players");
-  //   const jsonData = await response.json();
-  //   setAllPlayers(jsonData);
-  // };
+ 
 
   // get player by id 
   const fetchPlayerById = async (playerId) => {
@@ -111,33 +97,13 @@ function App() {
     // gameId is hard-coded for now
     const response = await fetch(`http://localhost:8080/artworksInGame?game_id=${gameId}`)
     const jsonData = await response.json();
-    // const artworks = jsonData.map((artworkGame) => artworkGame);
     setArtworksInGame(jsonData);
-    
-    
-    // const artworks = await jsonData.map((artworkGame)=> 
-    // { return artworkGame.artwork})
-    // setArtworksInGame(artworks);
-    // console.log(artworks);
   };
 
   useEffect(() => {
     console.log(currentGame);  
   }, [currentGame]);
 
-
-
-  // get artworks in game by game id 
-  // const fetchArtworkInGameByGameId = async () => {
-  //   const response = await fetch("http://localhost:8080/artworksInGame?game_id=2")
-  //   const jsonData = await response.json();
-  //   console.log(jsonData); // Check the retrieved data in the browser console
-  //   setArtworksInGame(jsonData);
-  // };
-
-  // useEffect(() => {
-  //   fetchArtworkInGameByGameId();
-  // }, []);
 
   const fetchGameById = async (gameId) => {
     const response = await fetch(`${SERVER_URL}/games/${gameId}`);
@@ -161,31 +127,11 @@ function App() {
       })
     const data = await response.json();
     setCurrentGame(data);
-    // fetchGameById(data.id);
     console.log(currentGame);
 
   }
 
 
-  // updateArtworkInGame
-//   const updateArtworkInGame = (updatedArtworkInGame) => {
-//     fetch(`${SERVER_URL}/artworksInGame/${updatedArtworkInGame.id}?stolen=true`, {
-//           method: "PATCH",
-//           headers: {"Content-Type": "application/json",}}
-//     )
-//     .then ((response) => response.json())
-//     .then ((jsonData) => {
-//           const updatedArtworksInGame = artworksInGame.map((artworkInGame) => {
-//             if(artworkInGame.id != updatedArtworkInGame.id){
-//               return artworkInGame
-//             } else {
-//               return jsonData
-//             }
-//           })
-//           console.log(updatedArtworksInGame)
-//           setArtworksInGame(updatedArtworksInGame)
-//     })
-// }
 
   const updateArtworkInGame = async(updatedArtworkInGame) => {
     const response = await fetch(`${SERVER_URL}/artworksInGame/${updatedArtworkInGame.id}?stolen=true`, {

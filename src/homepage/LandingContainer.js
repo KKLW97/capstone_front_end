@@ -42,8 +42,7 @@ const LandingContainer = () => {
               <h5 className="footer-copyright">{`Copyright © The Gallery Bandits ${year}`}</h5>
             </div>
         </div>
-            {/* <LeaderBoardComponent/> */}
-            {/* <LoginContainer postNewPlayer = {postNewPlayer}/> */} 
+       
 
         </>
     );

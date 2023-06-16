@@ -182,7 +182,7 @@ button {
   justify-content: center;
   align-items: center;
   z-index: 1;
-  margin: 0 auto;
+  margin-bottom: 32px;
 }
 
 .question__modal--background {
