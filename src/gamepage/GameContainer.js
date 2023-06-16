@@ -61,7 +61,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
            setCurrentArtworkInGame(artworksInGame[index]);
     }
     else {setDisplayPaintingInfoStatus("hidden")};
-  
+  }
 
   const hideDisplayPaintingInfoStatus = () => {
     setDisplayPaintingInfoStatus("hidden");
@@ -234,7 +234,8 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
         <button className="forfeit" title="forfeit game" onClick={handleForfeitGame}> <img src={door} className="forfeit-image" /></button>
     </>
     
-    );
+  );
+
 };
  
 export default GameContainer;
