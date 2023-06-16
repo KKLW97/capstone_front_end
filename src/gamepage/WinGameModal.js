@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import thief_sprite_front from '../assets/thief_sprite_front.png';
 
 
-const WinGameModal = ({setWinGameModal}) => {
+const WinGameModal = ({setWinGameModal, currentGame}) => {
 
   const navigate = useNavigate();
 
@@ -29,6 +29,7 @@ const WinGameModal = ({setWinGameModal}) => {
 
         <div>
           <h1 className="LM__title"> You Win!</h1>
+          <h2 className="LM__h2">Final Score: {currentGame.score}</h2>
           <figure className="LM__figure">
             <img src={thief_sprite_front} className="LM__img"/>
           </figure>
