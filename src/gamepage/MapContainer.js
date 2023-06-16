@@ -10,6 +10,7 @@ import squeak from "../assets/squeak.mp3"
 import zap from "../assets/zap.mp3";
 import hmm from "../assets/hmm.mp3"
 import ahem from "../assets/ahem.mp3"
+import mumble from "../assets/mumble1.mp3"
 
 import paintingSpriteCoordinates from "../data/paintings.json";
 
@@ -36,6 +37,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     squeakAudio.volume = 0.2;
     const hmmAudio = new Audio(hmm);
     const ahemAudio = new Audio(ahem);
+    const mumbleAudio = new Audio(mumble);
 
 
     const laserPositions = [{x: 42, y: 195}, {x: 685, y: 195}];
@@ -153,6 +155,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
                 displaySecurityGuardSpeechBubble("Bonsoir, Monsieur.");
                 displayThiefSpeechBubble("Zut alors! Ahem... bonsoir");
                 squeakAudio.play();
+                mumbleAudio.play();
             }
             if(currentGame.penalty == 1){
                 displaySecurityGuardSpeechBubble("Hmm... suspicious.");

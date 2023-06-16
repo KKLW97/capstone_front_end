@@ -16,6 +16,7 @@ import scoreAudio from "../assets/correctsound.mp3";
 import penaltyAudio from "../assets/incorrectsound.mp3";
 import boo from "../assets/boo.mp3"
 import laugh from "../assets/FrenchLaugh.mp3"
+import win from "../assets/win.mp3"
 import { UserContext } from "../App";
 
 
@@ -54,6 +55,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
   const penaltySound = new Audio(penaltyAudio);
   const laughSound = new Audio(laugh);
   const booSound = new Audio(boo);
+  const winSound = new Audio(win);
 
   const displayPaintingInfo = (index) => {
     // console.log("Displays modal for Multiple Choice Question / Displays info about painting, giving the option for the player to select this painting");
@@ -116,10 +118,10 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
     } else if (stolenArtworkList.length === artworksInGame.length-1){
       updatedCurrentGame.complete = true;
       checkCompleteStopSound(updatedCurrentGame);
+      winSound.play();
       WModalHandle();
       console.log("stolen art from check",stolenArtworkList)
       console.log(currentGame.complete)
-      
       
       // setCurrentGame(updatedCurrentGame)
     }
