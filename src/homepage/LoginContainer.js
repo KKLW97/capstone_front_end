@@ -35,7 +35,6 @@ const LoginContainer = () => {
 
 
   const navigate = useNavigate();
-  // navigate to playerAccount page once a player selects their name and click login 
   const handleFormSubmit = (event) => {
     event.preventDefault();
     navigate("/playerAccount");
@@ -67,7 +66,6 @@ const LoginContainer = () => {
         </form>
   
 
-      {/* if open modeal is true then render the LoginModal component */}
     {openRegisterModal && <LoginModal closeModal={setRegisterModal} />} 
      <StoryComponent/>
     <LeaderBoardComponent/>

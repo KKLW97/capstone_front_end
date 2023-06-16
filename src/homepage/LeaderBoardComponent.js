@@ -8,10 +8,8 @@ const LeaderBoardComponent = () => {
     
 
 const playersHighestScores = allPlayers.filter((player) => {
-    // console.log( player.games.filter((game) => game.complete === true).length!==0);
     return player.games.filter((game) => game.complete === true).length !==0})
 .map((player) =>{
-    // console.log(Math.max(0, ...player.games.filter((game) => game.complete===true).map((game) => game.score)))
     return {
         name: player.name, 
         highestScore: Math.max(0, ...player.games.filter((game) => game.complete===true).map((game) => game.score))

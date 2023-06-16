@@ -16,7 +16,6 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
 
 
     const [laserVisibility, setLaserVisibility] = useState("hidden");
-    const [randomInterval, setRandominterval] = useState(5000);
 
     const [thiefPositionX, setThiefPositionX] = useState(480);
     const [thiefPositionY, setThiefPositionY] = useState(0);
@@ -94,8 +93,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
       };
 
     useEffect(()=>{
-        const intervalId = setInterval(displayLaserVisibility,randomInterval);
-        setRandominterval(5000);
+        const intervalId = setInterval(displayLaserVisibility,);
         return () => {
             clearInterval(intervalId);
         }
@@ -385,7 +383,6 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
         checkIfNearLegendaryPainting();
     }
 
-    // const [questionModal, setQuestionModal] = useState(false);
 
 
 
