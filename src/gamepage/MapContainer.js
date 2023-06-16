@@ -95,7 +95,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
       };
 
     useEffect(()=>{
-        const intervalId = setInterval(displayLaserVisibility,);
+        const intervalId = setInterval(displayLaserVisibility, 5000);
         return () => {
             clearInterval(intervalId);
         }
