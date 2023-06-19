@@ -3,14 +3,10 @@ import GameContainer from "./gamepage/GameContainer";
 import LandingContainer from "./homepage/LandingContainer";
 
 //react router imports
-import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
+import { createBrowserRouter, RouterProvider} from "react-router-dom";
 import PlayerContainer from "./containers/PlayerContainer";
 import LoginContainer from "./homepage/LoginContainer";
-import Navbar from "./components/Navbar";
-import { useEffect, useState, createContext, useContext } from "react";
-
-
-
+import { useEffect, useState, createContext } from "react";
 
 // audio useSound
 import useSound from "use-sound";
@@ -33,12 +29,8 @@ function App() {
   const [activePlayer, setActivePlayer] = useState(null);
   const [newPlayer, setNewPlayer] = useState("");
   const [currentGame, setCurrentGame] = useState(null);
-  const [isNewGame, setIsNewGame] = useState(false);
   const [incompleteGamesForPlayer, setIncompleteGamesForPlayer] = useState([]);
-  const [allGamesForPlayer, setAllGamesForPlayer] = useState([]);
   const [allCompletedGamesForPlayer, setAllCompletedGamesForPlayer] = useState([]);
-  const [allGames, setAllGames] = useState([]);
-  const [allCompleteGames, setAllCompleteGames] = useState([]);
   const [artworksInGame, setArtworksInGame] = useState([]);
   const [stolenArtworkList, setStolenArtworkList] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false)
@@ -67,10 +59,11 @@ function App() {
   //called function when page loads
   useEffect(() => {
     fetchAllPlayers(); 
-
     //add current game to fetch when game is complete
   }, [currentGame])
 
+
+  // create new player 
   const postNewPlayer = async (newPlayer) => {
       const response = await fetch("http://localhost:8080/players", {
           method: "POST",
@@ -82,6 +75,7 @@ function App() {
       setActivePlayer(savedPlayer)
   }
 
+  // create a new game for a given player
   const createNewGame = async (playerId) => {
     const response = await fetch(`http://localhost:8080/games?playerId=${playerId}`, {
       method: "POST",
@@ -93,24 +87,22 @@ function App() {
   }
 
 
+//fetch artworks in game by specified game ID 
   const fetchArtworkInGameByGameId = async (gameId) => {
-    // gameId is hard-coded for now
     const response = await fetch(`http://localhost:8080/artworksInGame?game_id=${gameId}`)
     const jsonData = await response.json();
     setArtworksInGame(jsonData);
   };
 
-  useEffect(() => {
-    console.log(currentGame);  
-  }, [currentGame]);
 
-
+// fetch game by id
   const fetchGameById = async (gameId) => {
     const response = await fetch(`${SERVER_URL}/games/${gameId}`);
     const jsonData = await response.json();
     setCurrentGame(jsonData);
   };
 
+  // fetch all incomplete completed games for a specific player by id
   const fetchIncompleteGamesForPlayer = async (playerId) => {
     const response = await fetch(`${SERVER_URL}/games?player_id=${playerId}&complete=false`);
     const jsonData = await response.json();
@@ -118,7 +110,7 @@ function App() {
 
   };
 
-  // update a penalty etc. in a game (general)
+  // update a penalty and score etc. in a game (general)
   const updateGame = async (updatedCurrentGame) => {
     const response = await fetch(`${SERVER_URL}/games/${updatedCurrentGame.id}`, {
         method: "PUT",
@@ -131,8 +123,7 @@ function App() {
 
   }
 
-
-
+// update the stolen property for artwork in game to true when it's stolen
   const updateArtworkInGame = async(updatedArtworkInGame) => {
     const response = await fetch(`${SERVER_URL}/artworksInGame/${updatedArtworkInGame.id}?stolen=true`, {
         method: "PATCH",
@@ -151,6 +142,7 @@ function App() {
   }
 
 
+//fetch stolen artworks in games (stolen=true)
   const fetchStolenArtwork = async () => {
     const response = await fetch(`${SERVER_URL}/artworksInGame?game_id=${currentGame.id}&stolen=true`)
     const jsonData = await response.json()
@@ -163,6 +155,7 @@ function App() {
     }
   }
 
+
   const handleClickAudio = () => {setIsPlaying((prev) => !prev)}
 
   const checkAudioPlay = () => {
@@ -171,6 +164,8 @@ function App() {
       }else{play()}
   }
 
+
+  // REACT ROUTER 
   const router = createBrowserRouter([
     {
       path: "/",
