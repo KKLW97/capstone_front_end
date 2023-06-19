@@ -11,7 +11,6 @@ const Navbar = () => {
     <nav>
       <ul className="navbar_list">
         <li >
-          {/* <Link to="/"> Home</Link> */}
           <a href="/">Home</a>
         </li>
         <li >
