@@ -3,7 +3,7 @@ Steal the art. Leave no trace.
 
 ## Collaborators - The Gallery Bandits
 
-![GalleryBandits] (https://github.com/KKLW97/capstone_front_end/blob/main/The%20Gallery%20Bandits.png)
+![GalleryBandits](https://github.com/KKLW97/capstone_front_end/blob/main/The%20Gallery%20Bandits.png)
 <ul>
     <li>Hayan Butt (GitHub: HayanButt) </li>
     <li>Katie Bamford (GitHub: klb545)</li>
