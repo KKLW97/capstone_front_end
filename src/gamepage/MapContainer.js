@@ -16,18 +16,24 @@ import paintingSpriteCoordinates from "../data/paintings.json";
 const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed, setQuestionModal, currentGame}) => {
 
 
-    const [laserVisibility, setLaserVisibility] = useState("hidden");
-
+    
+    // THIEF
     const [thiefPositionX, setThiefPositionX] = useState(480);
     const [thiefPositionY, setThiefPositionY] = useState(0);
     const [thiefImage, setThiefImage] = useState("heading down");
 
+    // SECURITY GUARD
     const [securityGuardPositionX, setSecurityGuardPositionX] = useState(200);
     const [securityGuardPositionY, setSecurityGuardPositionY] = useState(300);
     const [securityGuardImage, setSecurityGuardImage] = useState("heading down");
 
+    // SPEECH BUBBLES
     const [speechBubble, setSpeechBubble] = useState(null);
     const [guardSpeechBubble, setGuardSpeechBubble] = useState(null);
+
+    // LASERS
+    const [laserVisibility, setLaserVisibility] = useState("hidden");
+    const laserPositions = [{x: 42, y: 195}, {x: 685, y: 195}];
 
     // AUDIO FILES
     const zapAudio = new Audio(zap);
@@ -38,9 +44,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     const mumbleAudio = new Audio(mumble);
 
 
-    const laserPositions = [{x: 42, y: 195}, {x: 685, y: 195}];
-
-
+    // SECURITY GUARD MOVEMENT & CALL METHODS TO CHECK IF THIEF IS TOUCHING SECURITY GUARD OR LASER (in useEffect)
     const moveSecurityGuardRight = () => {
         setSecurityGuardImage("heading right");
         setSecurityGuardPositionX(securityGuardPositionX + 5);
@@ -87,6 +91,8 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
         }
     }, [securityGuardPositionX, securityGuardPositionY])
 
+
+    // LASER - CHANGE VISIBILITY AT INTERVAL
     const displayLaserVisibility = () => {
         setLaserVisibility("visible");
         setTimeout(() => {
@@ -101,9 +107,10 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
         }
     }, [])
 
-
+    // THIEF SPEED
     const theifSpeed = 10;
 
+    // SPEECH BUBBLES
     const displayThiefSpeechBubble = (messageString) => {
         setSpeechBubble(<div style={{backgroundColor: "rgba(255, 255, 255, 0.8)", color: "black", borderRadius: "1em"}}><p style={{padding: "10px"}}>{messageString}</p></div>)
         setTimeout(() => {
@@ -118,6 +125,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
         }, 2500);
     }
 
+    // PROXIMITY CHECK FOR LASER (which calls relevant functions)
     const checkIfTouchingLaser = () => {
         if(laserVisibility === "visible" && ((thiefPositionX <= 295 && thiefPositionX >= 40 && thiefPositionY <= 200 && thiefPositionY >= 130) || (thiefPositionX <= 960 && thiefPositionX >= 680 && thiefPositionY <= 200 && thiefPositionY >= 130) )){
             setThiefPositionX(400);
@@ -127,6 +135,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
           }
     }
 
+    // PROXIMITY CHECK FOR SECURITY GUARD (which calls relevant functions)
     const checkIfNearSecurityGuard = () => {
         const proximityLimit = 80;
         const distance = Math.sqrt(Math.pow(thiefPositionX - securityGuardPositionX, 2) + Math.pow(thiefPositionY - securityGuardPositionY, 2));
@@ -168,6 +177,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
         }
     }
 
+    // PROXIMITY CHECKS FOR PAINTINGS (which call relevant functions)
     const artProximityLimit = 40;
 
     const checkIfNearCommonPainting = () => {
@@ -227,7 +237,6 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
             getHardQuestion(1);
         }
     }
-
 
     const moveRight = () => {
         setThiefImage("heading right");
@@ -384,14 +393,6 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
         checkIfNearRarePainting();
         checkIfNearLegendaryPainting();
     }
-
-
-
-
-
-
-
-
 
     return ( 
         <div className="map-container" style={{height: `${containerHeight}px`, width: `${containerWidth}px`, backgroundImage: `url(${mapImage})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundColor: `black`, backgroundPosition: "center"}}>
