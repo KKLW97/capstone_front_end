@@ -4,7 +4,7 @@ import thief_sprite_front from '../assets/thief_sprite_front.png';
 import thief_sprite_back from '../assets/thief_sprite_back.png';
 import { useEffect } from 'react';
 
-const ThiefComponent = ({speechBubble, displayPaintingInfoStatus, paintingInfo, containerHeight, containerWidth, thiefPositionX, thiefPositionY, thiefImage, questionBeingDisplayed, setQuestionModal}) => {
+const ThiefComponent = ({speechBubble, displayPaintingInfoStatus, paintingInfo, thiefPositionX, thiefPositionY, thiefImage, setQuestionModal}) => {
 
     const handleClick = () => {
         setQuestionModal(true);
