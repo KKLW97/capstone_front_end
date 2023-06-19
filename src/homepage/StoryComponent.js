@@ -3,12 +3,9 @@ import "../CSSfiles/StoryComponent.css"
 
 const StoryComponent = () => {
 
-
   const [show, setShow] = useState(false);
-
   const handleClick = () => {setShow((prev) => !prev)}
 
- 
   return (
     <div >
       <p className="story">
@@ -39,6 +36,4 @@ const StoryComponent = () => {
   );
 };
 
-
 export default StoryComponent;
-
