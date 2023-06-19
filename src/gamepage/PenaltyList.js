@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "../CSSfiles/PenaltyList.css";
 import alarm from "../assets/alarm.png"
 
-
 const PenaltyList = ({ currentGame }) => {
   const [currentPenalty, setCurrentPenalty] = useState(0);
 
@@ -17,14 +16,11 @@ const PenaltyList = ({ currentGame }) => {
   const penaltyIndices = Array.from({ length: numPenalties }, (_, index) => index);
 
   return (
-    <div className="penalty-list-container">
-      <div className="penalty-list">
-        {penaltyIndices.map((index) => (
-              <img id={index < currentPenalty ? "alarm-on" : "alarm"}
-               src={alarm}  width={75} height={75} alt="an image of security alarm"/>
-        ))}
+      <div className="penalty-list-container">
+          <div className="penalty-list">
+              {penaltyIndices.map(index => <img id={index < currentPenalty ? "alarm-on" : "alarm"} src={alarm} width={75} height={75} alt="an image of security alarm"/>)}
+          </div>
       </div>
-    </div>
   );
 };
 
