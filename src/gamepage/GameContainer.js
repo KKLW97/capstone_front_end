@@ -168,19 +168,21 @@ const GameContainer = ({updateArtworkInGame, updateGame, currentGame, artworksIn
     }
   }, [currentQuestion])
 
-
+// fetching easy difficulty level questions from MCQ (external) API
   const fetchEasyQuestions = async () => {
       const response = await fetch("https://opentdb.com/api.php?amount=5&category=25&difficulty=easy&type=multiple");
       const jsonData = await response.json();
       setEasyQuestions(jsonData.results);
   }
 
+  // fetching medium difficulty questions from MCQ (external) API
   const fetchMediumQuestions = async () => {
     const response = await fetch("https://opentdb.com/api.php?amount=3&category=25&difficulty=medium&type=multiple");
     const jsonData = await response.json();
     setMediumQuestions(jsonData.results);
   }
 
+  // fetching hard questions from MCQ (external) API
   const fetchHardQuestions = async () => {
     const response = await fetch("https://opentdb.com/api.php?amount=2&category=25&difficulty=hard&type=multiple");
     const jsonData = await response.json();
