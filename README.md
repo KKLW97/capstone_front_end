@@ -1,69 +1,105 @@
-# Getting Started with Create React App
+## Art Heist 
+Steal the art. Leave no trace.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). :)
-## Available Scripts
+## Collaborators - The Gallery Bandits
 
-In the project directory, you can run:
+![GalleryBandits] ()
+<ul>
+    <li>Hayan Butt (GitHub: HayanButt) </li>
+    <li>Katie Bamford (GitHub: klb545)</li>
+    <li>Kelly Wong (GitHub: KKLW97)</li>
+    <li>Isabel Galwey (GitHub: IsabelG96)</li>
+    <li>Stella Annor (GitHub: StellaA30) </li>
+</ul>
 
-### `npm start`
+## Project description
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+As a team, The Gallery Bandits, created a Back End RESTful API to serve a Front End Game Application. We decided to create an RPG/trivia game where you play as the thief and you can successfully steal art when you answer art trivia questions correctly.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Wireframe
 
-### `npm test`
+![WireframeExtensions](https://github.com/KKLW97/capstone_front_end/blob/main/src/Wireframe.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+For the wireframe we decided on a multi page application using React Router. There is a navbar for the drop-down list of users, which enables switching between users. There is also a welcome message that changes with the selected user.  </li>
 
-### `npm run build`
+## React Router
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The LandingContainer.js is our parent page and every other page within the application is a child of this page.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+If you want to learn more about React Router please click on this link: https://www.w3schools.com/react/react_router.asp
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Landing Pages
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Game Page
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## Components Diagram
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Components.png]
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+ 
 
-### Code Splitting
+# Tech Stack
+<ul>
+    <li>React</li>
+    <li>JSX</li>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>Visual Studio Code</li>
+</ul>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Set Up 
 
-### Analyzing the Bundle Size
+Ensure the following are installed on your machine:
+<ul>
+<li>Visual Studio Code</li>
+<li>Intellij IDEA (JDK 17)</li>
+<li>PostgreSQL</li>
+<li>Postico</li>
+<li>Postman</li>
+</ul>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Back End Api link: https://github.com/IsabelG96/capstone_backend
+Front End link: https://github.com/KKLW97/capstone_front_end
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Clone the API repository from GitHub. 
 
-### Advanced Configuration
+Scroll to the top of this page and click on the green Code button. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Ensure SSH is selected and copy the link provided. In your terminal, perform the following command:
+  <pre><code>git clone git@github.com:IsabelG96/capstone_backend.git</code></pre> </li>
 
-### Deployment
+Create a new PostgreSQL database named 'Capstone_Backend' anywhere in your terminal.
+  <pre> <code>createdb Capstone_Backend </code></pre>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Via Intellij IDEA, run the CapstoneBackendApplication and make sure the API is running on port 8080.
 
-### `npm run build` fails to minify
+Clone the Capstone Front End repository from GitHub. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Scroll to the top of this page and click on the green Code button. 
+
+Ensure SSH is selected and copy the link provided. 
+
+In your terminal, perform the following command:
+  <pre><code>git clone git@github.com:KKLW97/capstone_front_end.git</code></pre> 
+
+Via terminal ensure you're in the correct folder for the Capstone Front End and type 
+<pre><code>npm i</code></pre>
+to install the node modules. After it is installed, type 
+<pre><code>npm start</code></pre>
+to start the app up on localhost:3000
+
+## MVP and Extensions
+### MVP
+* 
+
+### Extensions
+* 
+
+### Possible Extensions
+* 
+
