@@ -24,9 +24,6 @@ const GameContainer = ({updateArtworkInGame, updateGame, currentGame, artworksIn
 
   const { stop, setIsPlaying } = useContext(UserContext);
   
-  const gameContainerWidth = 1082;
-  const gameContainerHeight = 800;
-
   const [paintingInfo, setPaintingInfo] = useState([]);
 
   const [easyQuestions, setEasyQuestions] = useState([]);
@@ -227,7 +224,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, currentGame, artworksIn
       <div >
         <section className="game-and-stolen-art-list">
           <PenaltyList currentGame={currentGame}/>
-          <MapContainer currentGame={currentGame} artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed} setQuestionModal={setQuestionModal}/>
+          <MapContainer currentGame={currentGame} artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed} setQuestionModal={setQuestionModal}/>
           <PaintingListContainer stolenArtworkList={stolenArtworkList} questionBeingDisplayed={questionBeingDisplayed} currentGame={currentGame}/>
           {openloseGameModal && <LoseGameModal setLoseGameModal={setLoseGameModal} currentGame={currentGame}/>} 
           {openWinGameModal && <WinGameModal setWinGameModal={setWinGameModal} currentGame={currentGame}/>} 
