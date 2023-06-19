@@ -13,7 +13,7 @@ import mumble from "../assets/mumble1.mp3"
 
 import paintingSpriteCoordinates from "../data/paintings.json";
 
-const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed, setQuestionModal, currentGame}) => {
+const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed, setQuestionModal, currentGame}) => {
 
     // STATES
     // - thief
@@ -34,6 +34,9 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     const [laserVisibility, setLaserVisibility] = useState("hidden");
 
     // GLOBAL VARIABLES
+    // map container height and width
+    const containerWidth = 1082;
+    const containerHeight = 800;
     // - laser positions
     const laserPositions = [{x: 42, y: 195}, {x: 685, y: 195}];
 
@@ -400,22 +403,22 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     return ( 
         <div className="map-container" style={{height: `${containerHeight}px`, width: `${containerWidth}px`, backgroundImage: `url(${mapImage})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundColor: `black`, backgroundPosition: "center"}}>
 
-            <ThiefComponent speechBubble={speechBubble} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerHeight={containerHeight} containerWidth={containerWidth} thiefPositionX={thiefPositionX} thiefPositionY={thiefPositionY} thiefImage={thiefImage} questionBeingDisplayed={questionBeingDisplayed} setQuestionModal={setQuestionModal}/>
+            <ThiefComponent speechBubble={speechBubble} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} thiefPositionX={thiefPositionX} thiefPositionY={thiefPositionY} thiefImage={thiefImage} questionBeingDisplayed={questionBeingDisplayed} setQuestionModal={setQuestionModal}/>
             
             {artworksInGame[0]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingSpriteCoordinates[0].x} paintingPositionY={paintingSpriteCoordinates[0].y}/>
-            : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingSpriteCoordinates[0].x} paintingPositionY={paintingSpriteCoordinates[0].y}/>}
+                : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingSpriteCoordinates[0].x} paintingPositionY={paintingSpriteCoordinates[0].y}/>}
             
             {artworksInGame[1]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingSpriteCoordinates[1].x} paintingPositionY={paintingSpriteCoordinates[1].y}/>
-            : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingSpriteCoordinates[1].x} paintingPositionY={paintingSpriteCoordinates[1].y}/>}
+                : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingSpriteCoordinates[1].x} paintingPositionY={paintingSpriteCoordinates[1].y}/>}
             
             {artworksInGame[2]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingSpriteCoordinates[2].x} paintingPositionY={paintingSpriteCoordinates[2].y}/>
-            : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingSpriteCoordinates[2].x} paintingPositionY={paintingSpriteCoordinates[2].y}/>}
+                : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingSpriteCoordinates[2].x} paintingPositionY={paintingSpriteCoordinates[2].y}/>}
             
             {artworksInGame[3]?.stolen ? <PaintingComponent paintingClass={"horizontal_painting stolen"} paintingPositionX={paintingSpriteCoordinates[3].x} paintingPositionY={paintingSpriteCoordinates[3].y}/>
-            : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingSpriteCoordinates[3].x} paintingPositionY={paintingSpriteCoordinates[3].y}/>}       
+                : <PaintingComponent paintingClass={"horizontal_painting"} paintingPositionX={paintingSpriteCoordinates[3].x} paintingPositionY={paintingSpriteCoordinates[3].y}/>}       
             
             {artworksInGame[4]?.stolen ? <PaintingComponent paintingClass={"vertical_painting stolen"} paintingPositionX={paintingSpriteCoordinates[4].x} paintingPositionY={paintingSpriteCoordinates[4].y}/>
-            : <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingSpriteCoordinates[4].x} paintingPositionY={paintingSpriteCoordinates[4].y}/>}
+                : <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingSpriteCoordinates[4].x} paintingPositionY={paintingSpriteCoordinates[4].y}/>}
             
             {artworksInGame[5]?.stolen ? <PaintingComponent paintingClass={"vertical_painting stolen"} paintingPositionX={paintingSpriteCoordinates[5].x} paintingPositionY={paintingSpriteCoordinates[5].y}/>
                 :  <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingSpriteCoordinates[5].x} paintingPositionY={paintingSpriteCoordinates[5].y}/>}
@@ -430,7 +433,8 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
                 : <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingSpriteCoordinates[8].x} paintingPositionY={paintingSpriteCoordinates[8].y}/>}
             
             {artworksInGame[9]?.stolen ? <PaintingComponent paintingClass={"vertical_painting stolen"} paintingPositionX={paintingSpriteCoordinates[9].x} paintingPositionY={paintingSpriteCoordinates[9].y}/>
-            : <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingSpriteCoordinates[9].x} paintingPositionY={paintingSpriteCoordinates[9].y}/>}
+                : <PaintingComponent paintingClass={"vertical_painting"} paintingPositionX={paintingSpriteCoordinates[9].x} paintingPositionY={paintingSpriteCoordinates[9].y}/>}
+
             <Laser laserPositionX={laserPositions[0].x} laserPositionY={laserPositions[0].y} laserVisibility={laserVisibility}/>
             <Laser laserPositionX={laserPositions[1].x} laserPositionY={laserPositions[1].y} laserVisibility={laserVisibility}/>
             <SecurityGuard guardSpeechBubble={guardSpeechBubble} securityGuardPositionX={securityGuardPositionX} securityGuardPositionY={securityGuardPositionY} securityGuardImage={securityGuardImage}/>
