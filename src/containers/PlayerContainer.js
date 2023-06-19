@@ -7,7 +7,7 @@ import PersonalLeaderBoardComponent from "../components/PersonalLeaderBoardCompo
 
 
 
-const PlayerContainer = ({createNewGame, incompleteGamesForPlayer, fetchIncompleteGamesForPlayer, currentGame, fetchGameById, setCurrentGame, fetchArtworkInGameByGameId}) => {
+const PlayerContainer = ({createNewGame, incompleteGamesForPlayer, fetchIncompleteGamesForPlayer, currentGame, fetchGameById }) => {
 
 
 
@@ -15,7 +15,7 @@ const PlayerContainer = ({createNewGame, incompleteGamesForPlayer, fetchIncomple
 
 const [selectedId, setSelectedId] = useState(null);
 
-const {activePlayer , allCompletedGamesForPlayer, setAllCompletedGamesForPlayer, play, stop, isPlaying, setIsPlaying} = useContext(UserContext);
+const {activePlayer , setAllCompletedGamesForPlayer, play, setIsPlaying} = useContext(UserContext);
 
 
 
@@ -39,7 +39,6 @@ const handleClick = async() => {
     await createNewGame(activePlayer.id);
     play();
     setIsPlaying(true);
-    console.log(activePlayer)
     navigate("/gamePage");
 }
 
@@ -57,7 +56,6 @@ const handleFormSubmit = async (event) => {
     await fetchGameById(selectedId)
     play();
     setIsPlaying(true);
-    // await fetchArtworkInGameByGameId(selectedId); 
     navigate("/gamePage")
 }
 
@@ -71,9 +69,7 @@ useEffect(() => {
   }, [activePlayer])
 
  
-// const handleSelect = () => {
-    // fetchIncompleteGamesForPlayer(activePlayer.id)
-// }
+
 
     return ( 
         <>

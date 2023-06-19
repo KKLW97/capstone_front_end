@@ -1,5 +1,5 @@
 import "../CSSfiles/PaintingListContainer.css"
-const PaintingListContainer = ({stolenArtworkList, questionBeingDisplayed, currentGame}) => {
+const PaintingListContainer = ({stolenArtworkList, currentGame}) => {
     return ( 
        <div>
          <div> 
@@ -14,7 +14,7 @@ const PaintingListContainer = ({stolenArtworkList, questionBeingDisplayed, curre
        </div>
      );
 }
-// console.log(stolenArtwork[1].artwork.id);
+
 export default PaintingListContainer;
 
 //
