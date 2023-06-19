@@ -238,6 +238,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
         }
     }
 
+    // THIEF MOVEMENT & MAP BOUNDARIES (defined by if statements)
     const moveRight = () => {
         setThiefImage("heading right");
         if(thiefPositionX <= 1000){
