@@ -119,8 +119,7 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     }
 
     const checkIfTouchingLaser = () => {
-        if(laserVisibility == "visible" && ((thiefPositionX <= 295 && thiefPositionX >= 40 && thiefPositionY <= 200 && thiefPositionY >= 130) || (thiefPositionX <= 960 && thiefPositionX >= 680 && thiefPositionY <= 200 && thiefPositionY >= 130) )){
-            console.log("hit by laser");
+        if(laserVisibility === "visible" && ((thiefPositionX <= 295 && thiefPositionX >= 40 && thiefPositionY <= 200 && thiefPositionY >= 130) || (thiefPositionX <= 960 && thiefPositionX >= 680 && thiefPositionY <= 200 && thiefPositionY >= 130) )){
             setThiefPositionX(400);
             setThiefPositionY(0);
             displayThiefSpeechBubble("Ouch!");
@@ -148,20 +147,20 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
                 setThiefPositionX(thiefPositionX - 20);
                 setThiefPositionY(thiefPositionY + 20);
             }
-            if(currentGame.penalty == 0){
+            if(currentGame.penalty === 0){
                 displaySecurityGuardSpeechBubble("Bonsoir, Monsieur.");
                 displayThiefSpeechBubble("Zut alors! Ahem... bonsoir");
                 squeakAudio.play();
                 mumbleAudio.play();
             }
-            if(currentGame.penalty == 1){
+            if(currentGame.penalty === 1){
                 displaySecurityGuardSpeechBubble("Hmm... suspicious.");
                 displayThiefSpeechBubble("Bonsoir...");
                 squeakAudio.play();
                 hmmAudio.play();
 
             }
-            if(currentGame.penalty == 2){
+            if(currentGame.penalty === 2){
                 displaySecurityGuardSpeechBubble("I've got my eyes on you...");
                 squeakAudio.play();
                 ahemAudio.play();
