@@ -7,7 +7,7 @@ import PersonalLeaderBoardComponent from "../components/PersonalLeaderBoardCompo
 
 
 
-const PlayerContainer = ({createNewGame, incompleteGamesForPlayer, fetchIncompleteGamesForPlayer, currentGame, fetchGameById }) => {
+const PlayerContainer = ({ createNewGame, incompleteGamesForPlayer, fetchIncompleteGamesForPlayer, currentGame, fetchGameById }) => {
 
 
 
@@ -32,8 +32,6 @@ useEffect(() => {
     fetchAllCompletedGamesForPlayer(activePlayer.id); 
 }, [currentGame]);
 
-
-console.log(activePlayer);
 
 const handleClick = async() => {
     await createNewGame(activePlayer.id);
