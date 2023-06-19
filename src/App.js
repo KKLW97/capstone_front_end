@@ -119,8 +119,6 @@ function App() {
       })
     const data = await response.json();
     setCurrentGame(data);
-    console.log(currentGame);
-
   }
 
 // update the stolen property for artwork in game to true when it's stolen
@@ -137,7 +135,6 @@ function App() {
         return data
       }
     })
-    console.log(updatedArtworksInGame)
     setArtworksInGame(updatedArtworksInGame)
   }
 
@@ -149,7 +146,6 @@ function App() {
     if (Array.isArray(jsonData)) {
       const stolenArtworks = jsonData.map((artworkGame) => artworkGame);
       setStolenArtworkList(stolenArtworks)
-      console.log("stolen artwork", stolenArtworks);
     } else {
       setStolenArtworkList(jsonData);
     }
