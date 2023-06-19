@@ -15,27 +15,29 @@ import paintingSpriteCoordinates from "../data/paintings.json";
 
 const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPaintingInfoStatus, displayCurrentQuestion, paintingInfo, containerWidth, containerHeight, displayPaintingInfo, getEasyQuestion, getMediumQuestion, getHardQuestion, questionBeingDisplayed, setQuestionModal, currentGame}) => {
 
-
-    
-    // THIEF
+    // STATES
+    // - thief
     const [thiefPositionX, setThiefPositionX] = useState(480);
     const [thiefPositionY, setThiefPositionY] = useState(0);
     const [thiefImage, setThiefImage] = useState("heading down");
 
-    // SECURITY GUARD
+    // - security guard
     const [securityGuardPositionX, setSecurityGuardPositionX] = useState(200);
     const [securityGuardPositionY, setSecurityGuardPositionY] = useState(300);
     const [securityGuardImage, setSecurityGuardImage] = useState("heading down");
 
-    // SPEECH BUBBLES
+    // - speach bubbles
     const [speechBubble, setSpeechBubble] = useState(null);
     const [guardSpeechBubble, setGuardSpeechBubble] = useState(null);
 
-    // LASERS
+    // - lasers
     const [laserVisibility, setLaserVisibility] = useState("hidden");
+
+    // GLOBAL VARIABLES
+    // - laser positions
     const laserPositions = [{x: 42, y: 195}, {x: 685, y: 195}];
 
-    // AUDIO FILES
+    // - audio
     const zapAudio = new Audio(zap);
     let squeakAudio = new Audio(squeak);
     squeakAudio.volume = 0.2;
@@ -107,8 +109,6 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
         }
     }, [])
 
-    // THIEF SPEED
-    const theifSpeed = 10;
 
     // SPEECH BUBBLES
     const displayThiefSpeechBubble = (messageString) => {
@@ -239,6 +239,8 @@ const MapContainer = ({artworksInGame, hideDisplayPaintingInfoStatus, displayPai
     }
 
     // THIEF MOVEMENT & MAP BOUNDARIES (defined by if statements)
+    const theifSpeed = 10;
+
     const moveRight = () => {
         setThiefImage("heading right");
         if(thiefPositionX <= 1000){
