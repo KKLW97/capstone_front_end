@@ -42,7 +42,9 @@ The external API would return questions and answers with HTML entities so we nee
 
 We used the useSound React Hook for our game's soundtrack. (https://www.npmjs.com/package/use-sound)
 
-## context hooks
+## Context & UseContext Hooks
+
+We utilised context and useContext to minimise prop drilling and we can just pass through the active user down to the game page.
 
 ## Components Diagram
 
