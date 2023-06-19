@@ -20,9 +20,9 @@ import win from "../assets/win.mp3"
 import { UserContext } from "../App";
 
 
-const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGame, setCurrentGame, artworksInGame, fetchStolenArtwork, fetchArtworkInGameByGameId, stolenArtworkList}) => {
+const GameContainer = ({updateArtworkInGame, updateGame, currentGame, artworksInGame, fetchStolenArtwork, fetchArtworkInGameByGameId, stolenArtworkList}) => {
 
-  const {play, stop, isPlaying, setIsPlaying} = useContext(UserContext);
+  const { stop, setIsPlaying } = useContext(UserContext);
   
   const [gameContainerWidth, setGameContainerWidth] = useState(1082);
   const [gameContainerHeight, setGameContainerHeight] = useState(800);
@@ -87,8 +87,6 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
 
 
   const checkGameStatus = (updatedCurrentGame) => {
-    console.log("stolen artworks" , stolenArtworkList)
- 
     const WModalHandle = () => setWinGameModal(true)
     const LmodalHandle = () => setLoseGameModal(true) 
     if (updatedCurrentGame.penalty===3) {
@@ -102,10 +100,7 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       updatedCurrentGame.complete = true;
       checkCompleteStopSound(updatedCurrentGame);
       winSound.play();
-      WModalHandle();
-      console.log("stolen art from check",stolenArtworkList)
-      console.log(currentGame.complete)
-      
+      WModalHandle();  
     }
     return updatedCurrentGame
     
@@ -122,8 +117,6 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
       let updatedArtworkInGame = currentArtworkInGame;
       updatedArtworkInGame.stolen = true;
       await updateArtworkInGame(updatedArtworkInGame);
-      console.log("switch to the correct message");
-    
 
       let valueOfPainting = currentArtworkInGame.artwork.value;
      
@@ -135,7 +128,6 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
  
     } else {
       updatedCurrentGame.penalty = currentGame.penalty + 1;
-      console.log("switch to the incorrect message")
       setQuestionModal(false);
       penaltySound.play();      
     }
@@ -223,12 +215,11 @@ const GameContainer = ({updateArtworkInGame, updateGame, activePlayer, currentGa
         <section className="game-and-stolen-art-list">
           <PenaltyList currentGame={currentGame}/>
           <MapContainer currentGame={currentGame} artworksInGame={artworksInGame} hideDisplayPaintingInfoStatus={hideDisplayPaintingInfoStatus} displayPaintingInfoStatus={displayPaintingInfoStatus} displayCurrentQuestion={displayCurrentQuestion} paintingInfo={paintingInfo} containerWidth={gameContainerWidth} containerHeight={gameContainerHeight} displayPaintingInfo={displayPaintingInfo} getEasyQuestion={getEasyQuestion} getMediumQuestion={getMediumQuestion} getHardQuestion={getHardQuestion} questionBeingDisplayed={questionBeingDisplayed} setQuestionModal={setQuestionModal}/>
-
           <PaintingListContainer stolenArtworkList={stolenArtworkList} questionBeingDisplayed={questionBeingDisplayed} currentGame={currentGame}/>
           {openloseGameModal && <LoseGameModal setLoseGameModal={setLoseGameModal} currentGame={currentGame}/>} 
           {openWinGameModal && <WinGameModal setWinGameModal={setWinGameModal} currentGame={currentGame}/>} 
           {questionModal && <QuestionModal closeModal={setQuestionModal} questionBeingDisplayed={questionBeingDisplayed} currentQuestion={currentQuestion} />} 
-
+          {instructionModal && <InstructionModal closeModal={setInstructionModal}/>}
         </section>
       </div>
         <button className="forfeit" title="forfeit game" onClick={handleForfeitGame}> <img src={door} className="forfeit-image" /></button>
