@@ -38,7 +38,7 @@ If you want to learn more about React Router please click on this link: https://
 
 ## Components Diagram
 
-![Components.png]
+![Components.png](https://github.com/KKLW97/capstone_front_end/blob/main/src/Component.png)
 
  
 
