@@ -4,7 +4,7 @@ import { UserContext } from "../App";
 import "../CSSfiles/LeaderBoard.css"
 const LeaderBoardComponent = () => {
 
-    const { allPlayers } = useContext(UserContext);
+const { allPlayers } = useContext(UserContext);
     
 
 const playersHighestScores = allPlayers.filter((player) => {

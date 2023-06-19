@@ -22,19 +22,27 @@ As a team, The Gallery Bandits, created a Back End RESTful API to serve a Front 
 
 For the wireframe we decided on a multi page application using React Router. There is a navbar for the drop-down list of users, which enables switching between users. There is also a welcome message that changes with the selected user.  </li>
 
-## React Router
+## Landing Page & React Router
 
 The LandingContainer.js is our parent page and every other page within the application is a child of this page.
 
 If you want to learn more about React Router please click on this link: https://www.w3schools.com/react/react_router.asp
 
-## Landing Pages
-
-
-
 ## Game Page
 
+## External API - trivia questions
 
+We used an external API for our trivia questions. (link to: https://opentdb.com/api_config.php) 
+
+## HTML entities decode
+
+The external API would return questions and answers with HTML entities so we needed to decode them. We navigated the issue by installing the html-entities package from npm. (https://www.npmjs.com/package/html-entities)
+
+## UseSound
+
+We used the useSound React Hook for our game's soundtrack. (https://www.npmjs.com/package/use-sound)
+
+## context hooks
 
 ## Components Diagram
 
