@@ -105,11 +105,20 @@ to start the app up on localhost:3000
 
 ## MVP and Extensions
 ### MVP
-* 
+* Endpoints from our API met in our React app
+* Integrate external API supplying trivia questions
+* Map and sprite functioning when moving with arrow keys
+* Leaderboard for every user and individual user
 
 ### Extensions
-* 
+* Penalty function - you get a question wrong, you get a penalty, three penalties and you lose the game
+* Guard NPC travelling the map
+* Music, sound effects
 
 ### Possible Extensions
-* 
+* Full responsiveness - game is made for PC only at the moment, can be made mobile friendly
+* Multiple game modes - easy, medium, hard. The higher the difficulty the harder the questions
+* Different levels - design more maps increasing in difficulty eg. more guards, more lasers
+* More questions - Instead of using external API with limited questions, data load our own questions
+* Settings menu - instructions, volume control
 
