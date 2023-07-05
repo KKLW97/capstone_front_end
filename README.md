@@ -30,6 +30,25 @@ If you want to learn more about React Router please click on this link: https://
 
 ## Game Page
 
+This is where the user will play the game, and the majority of the game logic takes place. 
+
+It contains: 
+
+* The `map container` which displays the user interface, including the gallery map, the thief, the artworks around the gallery and their respective questions from the external API, and the obstacles (security guard and lasers). It contains the functions which move the `thief` around the gallery, and its interactions with other components.
+* The `painting list container` which keeps track of the stolen paintings' data and their value 
+* Modals for the game instructions, the current question, winning a game, and losing a game
+* The penalty list of 'alarms' which will increase as the player answers questions incorrectly
+* `Laser` and `security guard` components who interact with the `thief` without actually changing the game score or penalty.
+* `Forfeit` game option, a button which allows the player to end their game with their current score and without stealing all the paintings.
+
+
+The arrow keys can be used to move the `thief` around the map. When the thief comes into proximity with a painting, the player can choose to answer the question associated with that painting.
+
+Answering the question calls the `handleClick` function which updates the game score and/or penalty. 
+
+After every guess, the `checkGameStatus` function checks whether the player has reached the 0 paintings (win) or 3 lives (lose), and updates the game status accordingly. 
+
+
 ## External API - trivia questions
 
 We used an external API for our trivia questions. (link to: https://opentdb.com/api_config.php) 
