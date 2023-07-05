@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react"; 
+import { useContext} from "react"; 
 
 import { UserContext } from "../App";
 import "../CSSfiles/LeaderBoard.css"
@@ -6,28 +6,13 @@ import "../CSSfiles/LeaderBoard.css"
 
 const PersonalLeaderBoardComponent = () => {
 
-    const { activePlayer, currentGame , allCompletedGamesForPlayer} = useContext(UserContext);
+    const { allCompletedGamesForPlayer } = useContext(UserContext);
 
+    // get all completed games for active player, sort and return top 5 best scores
     const sortedScores = allCompletedGamesForPlayer
-    .filter((game) => game.complete === true)
+    .map((game) => game)
     .sort((a, b) => b.score - a.score)
     .slice(0, 5);
-
-
-//     const completedGamesForPlayer = activePlayer.games.filter((game) => game.complete === true);
-//     const sortedScoresForPlayer = completedGames.sort((a, b) => b.score - a.score).slice(0, 10);
-    
-//     const PersonalHighestBoard = sortedScoresForPlayer.map((game) => {
-//   return {
-//     id: game.id,
-//     score: game.score
-//   };
-// }).map(game => <li><p> Game id {game.id} - Score {game.score}</p></li> )
-
-// useEffect(() => {
-//    fetchAllCompletedGamesForPlayer(activePlayer.id)  
-//   }, [currentGame]);
-
 
 
   

@@ -7,11 +7,11 @@ import { useNavigate } from "react-router-dom";
 
 const LoginModal = ({ closeModal }) => {
   
-  // const [newPlayerToBeAdded, setNewPlayerToBeAdded] = useState("");
-  const [erroMessage, setErrorMessage] = useState("");
-  const [confirmationMessage] = useState("Your username has now been registered");
 
-  const { allPlayers, postNewPlayer, setActivePlayer, newPlayer, setNewPlayer} = useContext(UserContext);
+  const [erroMessage, setErrorMessage] = useState("");
+
+
+  const { allPlayers, postNewPlayer, newPlayer, setNewPlayer } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -28,7 +28,6 @@ const LoginModal = ({ closeModal }) => {
 
     if (!existingPlayer) {
       await postNewPlayer(newPlayer);
-      // setActivePlayer(newPlayer);
       navigate("/playerAccount");
     
     } else {
