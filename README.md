@@ -18,7 +18,7 @@ As a team, The Gallery Bandits, created a Back End RESTful API to serve a Front 
 
 ## Wireframe
 
-![WireframeExtensions](https://github.com/KKLW97/capstone_front_end/blob/main/src/Wireframe.png)
+![WireframeExtensions](https://github.com/KKLW97/capstone_front_end/blob/main/src/assets/Wireframe.png?raw=true)
 
 For the wireframe we decided on a multi page application using React Router. There is a navbar for the drop-down list of users, which enables switching between users. There is also a welcome message that changes with the selected user.  </li>
 
